@@ -2,23 +2,27 @@ import React from 'react';
 import logo from './logo.svg';
 import './stylesheets/input.scss';
 
+function Logo() {
+  let logos = [];
+  for (let z = 0; z < 3; z++) {
+    logos.push(<img src={logo} className="App-logo" alt="logo" />)
+  }
+  return (
+    <div>
+      {logos}
+    </div>
+  )
+}
+
 function App() {
+  let logos = Logo();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Sudoku
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {logos}
+        {logos}
+        {logos}
+        <div className="hide">Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Game from './Game.jsx';
 import logo from './logo.svg';
 import './stylesheets/input.scss';
 
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div className="App">
+      <Game />
         {logos}
         {logos}
         {logos}

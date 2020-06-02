@@ -48,12 +48,6 @@ table {
   border-spacing: 0;
 }
 
-.App {
-  height: 100vh;
-  text-align: center;
-  background-color: darkblue;
-}
-
 .App-logo {
   height: 32vh;
   pointer-events: none;
@@ -90,6 +84,13 @@ table {
 }
 .hide {
   display: none;
+}
+
+.main {
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  background-color: darkblue;
 }
 
 /*# sourceMappingURL=output.css.map */

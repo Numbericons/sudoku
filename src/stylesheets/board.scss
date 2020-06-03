@@ -5,22 +5,25 @@
 .grid {
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
   &-row {
     display: flex;
-    // flex-direction: column;
     &-box-row {
       display: flex;
-      // flex-direction: column;
+      width: 75vw;
     }
   }
 }
 
 .box {
-  // width: 30vw;
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
   &-row {
     display: flex;
-    // justify-content: column;
   }
+}
+
+.box-row + .box-row {
+  border-top: 1px solid #bbb;
 }

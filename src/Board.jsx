@@ -4,33 +4,73 @@ import Square from './Square.jsx';
 class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.grid = this.build(props.squares, props.gridLen);
+    this.grid = this.makeSquares(props.len);
   }
 
-  makeSquares(len) {
+  makeSquares(len=3) {
     let arr = [];
-    for (let z=0;z<len**4;z++) { arr.push([z,true]) };
+    for (let z=0;z<len**4;z++) { arr.push([z+1,true]) };
     return arr;
   }
 
-  build(gridLen=3) {
-    let sqAttrs = this.makeSquares(gridLen);
-    debugger
-    let grid = [];
-    for (let y=0;y<gridLen**gridLen;y++) { grid.push([])};
-    for (let z=0;z<grid.length;z++) {
-      for (let x=0;x<gridLen;x++) { 
-        const attr = sqAttrs.shift();
-        grid[z].push(<Square key={z.toString() + x.toString()} attr={attr}></Square>);
-      }
-    }
-    return grid;
+  row(idx) {
+    return <div>
+      <Square key={idx} attr={this.grid[idx]}></Square>
+      <Square key={idx+1} attr={this.grid[idx+1]}></Square>
+      <Square key={idx+2} attr={this.grid[idx+2]}></Square>
+    </div>
   }
-// squares={squares}
+
+  box(idx) {
+    return <div className="box">
+      <div className="box-row">{this.row(idx)}</div>
+      <div className="box-row">{this.row(idx+3)}</div>
+      <div className="box-row">{this.row(idx+6)}</div>
+    </div>
+  }
+
+  boxRow(idx) {
+    return <div className="grid-row-box-row">
+      {this.box(idx)}
+      {this.box(idx+9)}
+      {this.box(idx+18)}
+    </div>
+  }
+
+  build() {
+    // let sqAttrs = this.grid.slice();
+    // let grid = [];
+    // for (let y=0;y<gridLen**gridLen;y++) { grid.push([])};
+    // for (let z=0;z<grid.length;z++) {
+    //   let box = [];
+    //   for (let x=0;x<gridLen**gridLen;x++) {
+    //     const attr = sqAttrs.shift();
+    //     gird[z].push(
+    //     <div>
+    //       <div>
+    //         <Square key={z.toString() + x.toString()} attr={attr}></Square>
+    //       </div>
+    //     </div>)
+    //     grid[z].push(<Square key={z.toString() + x.toString()} attr={attr}></Square>);
+    //   }
+    // }
+    return <div className="grid">
+      <div className="grid-row">
+        {this.boxRow(0)}
+      </div>
+      <div className="grid-row">
+        {this.boxRow(27)}
+      </div>
+      <div className="grid-row">
+        {this.boxRow(54)}
+      </div>
+    </div>
+  }
+  
   render() {
     // const row1 = this.getRow();
     return <div className='board'>
-      {this.grid}
+      {this.build()}
     </div>
   }
 }

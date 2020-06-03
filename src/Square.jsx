@@ -14,7 +14,7 @@ class Square extends React.Component {
   render() {
     const val = this.state.revealed ? this.state.value : "";
     
-    return <div className='board-square'>
+    return <div className='square'>
       <img src={logo} className="App-logo" alt="logo" />
       {val}
     </div>

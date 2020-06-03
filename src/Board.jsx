@@ -9,7 +9,11 @@ class Board extends React.Component {
 
   makeSquares(len=3) {
     let arr = [];
-    for (let z=0;z<len**4;z++) { arr.push([z+1,true]) };
+    for (let z=0;z<len**4;z++) {
+      let val = (z + 1) % 9;
+      if (val === 0) val = 9;
+      arr.push([val,true]);
+    }
     return arr;
   }
 

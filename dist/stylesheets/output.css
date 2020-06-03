@@ -49,7 +49,7 @@ table {
 }
 
 .App-logo {
-  height: 32vh;
+  height: 8vh;
   pointer-events: none;
 }
 
@@ -93,6 +93,25 @@ table {
 }
 
 .board {
+  display: flex;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+}
+.grid-row {
+  display: flex;
+}
+.grid-row-box-row {
+  display: flex;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+}
+.box-row {
   display: flex;
 }
 

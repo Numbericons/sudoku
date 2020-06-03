@@ -3,7 +3,23 @@
 }
 
 .grid {
+  display: flex;
+  flex-direction: column;
   &-row {
-    
+    display: flex;
+    // flex-direction: column;
+    &-box-row {
+      display: flex;
+      // flex-direction: column;
+    }
+  }
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  &-row {
+    display: flex;
+    // justify-content: column;
   }
 }

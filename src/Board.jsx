@@ -14,7 +14,7 @@ class Board extends React.Component {
   }
 
   row(idx) {
-    return <div>
+    return <div className="box-row">
       <Square key={idx} attr={this.grid[idx]}></Square>
       <Square key={idx+1} attr={this.grid[idx+1]}></Square>
       <Square key={idx+2} attr={this.grid[idx+2]}></Square>
@@ -23,9 +23,9 @@ class Board extends React.Component {
 
   box(idx) {
     return <div className="box">
-      <div className="box-row">{this.row(idx)}</div>
-      <div className="box-row">{this.row(idx+3)}</div>
-      <div className="box-row">{this.row(idx+6)}</div>
+      {this.row(idx)}
+      {this.row(idx+3)}
+      {this.row(idx+6)}
     </div>
   }
 

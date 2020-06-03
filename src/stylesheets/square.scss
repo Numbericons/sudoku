@@ -1,18 +1,18 @@
 .square {
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 9vh;
-  // border: .25px solid darkgrey;
-  // border-width: .5px .5px .5px .5px;
-  // border-color: darkgrey;
-  // border-style: solid;
+  width: 4.5vw;
 }
 
 .square + .square {
-  border-left: 1px solid #bbb;
+  border-left: 1.4px solid #bbb;
 }
+
+// .square:nth-of-type(2) {background-color: red};
 
 .App-logo {
   height: 60%;
@@ -49,3 +49,4 @@
     transform: rotate(360deg);
   }
 }
+

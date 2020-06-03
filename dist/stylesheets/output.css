@@ -55,8 +55,22 @@ table {
 .main {
   height: 100vh;
   width: 100vw;
-  text-align: center;
   background-color: darkblue;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.main-head {
+  margin: 2vh 0vw 2vh 0vw;
+}
+.main-head-text {
+  color: white;
+  font-size: 8vh;
+  font-family: "Open Sans", sans-serif;
+}
+.main-body {
+  display: flex;
+  justify-content: center;
 }
 
 .board {
@@ -66,39 +80,40 @@ table {
 .grid {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1.5px solid black;
 }
 .grid-row {
   display: flex;
 }
 .grid-row-box-row {
   display: flex;
-  width: 75vw;
 }
 
 .box {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1.5px solid black;
 }
 .box-row {
   display: flex;
 }
 
 .box-row + .box-row {
-  border-top: 1px solid #bbb;
+  border-top: 1.4px solid #bbb;
 }
 
 .square {
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 9vh;
+  width: 4.5vw;
 }
 
 .square + .square {
-  border-left: 1px solid #bbb;
+  border-left: 1.4px solid #bbb;
 }
 
 .App-logo {

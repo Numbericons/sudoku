@@ -11,7 +11,14 @@ class Game extends React.Component {
 
   render() {
     return <div className='main'>
-      <Board ></Board>
+      <div className='main-head'>
+        <h1 className='main-head-text'>Sudoku</h1>
+      </div>
+      <div className='main-body'>
+        <div></div>
+        <Board ></Board>
+        <div></div>
+      </div>
       <div className="hide">Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </div>
   }

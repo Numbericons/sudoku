@@ -5,6 +5,20 @@
 .main {
   height: 100vh;
   width: 100vw;
-  text-align: center;
   background-color: darkblue;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  &-head{
+    margin: 2vh 0vw 2vh 0vw;
+    &-text {
+      color: white;
+      font-size: 8vh;
+      font-family: 'Open Sans', sans-serif;
+    }
+  }
+  &-body{
+    display: flex;
+    justify-content: center;
+  }
 }

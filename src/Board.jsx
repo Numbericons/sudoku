@@ -38,22 +38,6 @@ class Board extends React.Component {
   }
 
   build() {
-    // let sqAttrs = this.grid.slice();
-    // let grid = [];
-    // for (let y=0;y<gridLen**gridLen;y++) { grid.push([])};
-    // for (let z=0;z<grid.length;z++) {
-    //   let box = [];
-    //   for (let x=0;x<gridLen**gridLen;x++) {
-    //     const attr = sqAttrs.shift();
-    //     gird[z].push(
-    //     <div>
-    //       <div>
-    //         <Square key={z.toString() + x.toString()} attr={attr}></Square>
-    //       </div>
-    //     </div>)
-    //     grid[z].push(<Square key={z.toString() + x.toString()} attr={attr}></Square>);
-    //   }
-    // }
     return <div className="grid">
       <div className="grid-row">
         {this.boxRow(0)}
@@ -66,9 +50,8 @@ class Board extends React.Component {
       </div>
     </div>
   }
-  
+
   render() {
-    // const row1 = this.getRow();
     return <div className='board'>
       {this.build()}
     </div>

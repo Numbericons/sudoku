@@ -51,7 +51,6 @@ table {
 .App-logo {
   height: 32vh;
   pointer-events: none;
-  border: 0.5px solid black;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -91,6 +90,14 @@ table {
   width: 100vw;
   text-align: center;
   background-color: darkblue;
+}
+
+.board {
+  display: flex;
+}
+
+.square {
+  border: 0.5px solid black;
 }
 
 /*# sourceMappingURL=output.css.map */

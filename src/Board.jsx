@@ -14,16 +14,15 @@ class Board extends React.Component {
 
   getRow(arr, i, j) {
     let ret = [];
-    for (let x=0;x<arr.length;x++) {
-      
-    }
+    // const start = (i - 1) * 9;
+    // for (let x = start; x >= 0; x -= 9) { ret.push(arr[x][0]) };
     return ret;
   }
   
   getCol(arr, i, j) {
     let ret = [];
-    const start = (i - 1) * 9;
-    for (let x = start; x >= 0; x-=9) { ret.push(arr[x][0]) };
+    // const start = (i - 1) * 9;
+    // for (let x = start; x >= 0; x-=9) { ret.push(arr[x][0]) };
     return ret;
   }
 
@@ -38,7 +37,7 @@ class Board extends React.Component {
     let arr = [];
     for (let i=0;i<len**2;i++) {
       let numbers = [1,2,3,4,5,6,7,8,9];
-      if (i > 0) debugger;
+      // if (i > 0) debugger;
       for (let j=0;j<len**2;j++) {
         let num = this.sample(numbers);
         while (!this.checkRow(num, arr, i, j) || !this.checkCol(num, arr, i, j)) {

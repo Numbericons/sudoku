@@ -8,33 +8,40 @@ class Board extends React.Component {
   }
 
   sample(arr) {
-    // debugger
     const idx = Math.floor(Math.random()*arr.length);
     return arr.splice(idx,1)[0];
   }
 
-  getRow() {
-    return [];
+  getRow(arr, i, j) {
+    let ret = [];
+    for (let x=0;x<arr.length;x++) {
+      
+    }
+    return ret;
   }
   
-  getCol() {
-    return [];  
+  getCol(arr, i, j) {
+    let ret = [];
+    const start = (i - 1) * 9;
+    for (let x = start; x >= 0; x-=9) { ret.push(arr[x][0]) };
+    return ret;
   }
 
-  checkRow(num){
-    return !this.getRow().includes(num);
+  checkRow(num, arr, i, j) {
+    return !this.getRow(arr, i, j).includes(num);
   }
-  checkCol(num){
-    return !this.getCol().includes(num);
+  checkCol(num, arr, i, j) {
+    return !this.getCol(arr, i, j).includes(num);
   }
 
   makeSquares(len=3) {
     let arr = [];
-    for (let z=0;z<len**2;z++) {
+    for (let i=0;i<len**2;i++) {
       let numbers = [1,2,3,4,5,6,7,8,9];
+      if (i > 0) debugger;
       for (let j=0;j<len**2;j++) {
         let num = this.sample(numbers);
-        while (!this.checkRow(num) || !this.checkCol(num)) {
+        while (!this.checkRow(num, arr, i, j) || !this.checkCol(num, arr, i, j)) {
           numbers.push(num);
           num = this.sample(numbers);
         }

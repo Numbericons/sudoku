@@ -16,7 +16,9 @@ class Square extends React.Component {
     
     return <div className='square'>
       <img src={logo} className="App-logo" alt="logo" />
-      {val}
+      <h3 className='square-text'>
+        {val}
+      </h3>
     </div>
   }
 }

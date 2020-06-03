@@ -6,6 +6,10 @@
   align-items: center;
   height: 9vh;
   width: 4.5vw;
+  &-text {
+    font-size: 3vh;
+    font-family: 'Open Sans', sans-serif;
+  }
 }
 
 .square + .square {

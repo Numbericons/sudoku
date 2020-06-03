@@ -5,10 +5,6 @@ import './stylesheets/input.scss';
 
 
 class Game extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   gameOver(){}
   chkBoard(){}
   play(){}
@@ -26,12 +22,13 @@ class Game extends React.Component {
   }
 
   render() {
-    const logos = this.logo();
+    // const logos = this.logo();
+    // const squares = this.makeSquares()
     return <div className='main'>
       {/* {logos}
       {logos}
       {logos} */}
-      <Board></Board>
+      <Board ></Board>
       <div className="hide">Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </div>
   }

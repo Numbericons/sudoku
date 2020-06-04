@@ -12,52 +12,49 @@ class Board extends React.Component {
     return arr.splice(idx,1)[0];
   }
 
-  getRow(arr, i, j) {
+  getRow(arr, i) {
+    if (!arr.length) return arr;
     let ret = [];
-    // const start = (i - 1) * 9;
-    // for (let x = start; x >= 0; x -= 9) { ret.push(arr[x][0]) };
+    const start = i - 9;
+    for (let x = start; x >= 0; x -= 9) { 
+      ret.push(arr[x][0]) 
+      ret.push(arr[x+1][0]) 
+      ret.push(arr[x+2][0]) 
+    };
     return ret;
   }
   
-  getCol(arr, i, j) {
+  getCol(arr) {
+    if (!arr.length) return arr;
     let ret = [];
-    // const start = (i - 1) * 9;
-    // for (let x = start; x >= 0; x-=9) { ret.push(arr[x][0]) };
+    const start = arr.length - 9;
+    for (let x = start; x >= 0; x-=9) { 
+      ret.push(arr[x][0]);
+      ret.push(arr[x+3][0]);
+      ret.push(arr[x+6][0]);
+    };
     return ret;
-  }
-
-  checkRow(num, arr, i, j) {
-    return !this.getRow(arr, i, j).includes(num);
-  }
-  checkCol(num, arr, i, j) {
-    return !this.getCol(arr, i, j).includes(num);
   }
 
   makeSquares(len=3) {
     let arr = [];
     for (let i=0;i<len**2;i++) {
       let numbers = [1,2,3,4,5,6,7,8,9];
-      // if (i > 0) debugger;
+      let row = this.getRow(arr,len**2*i);
       for (let j=0;j<len**2;j++) {
         let num = this.sample(numbers);
-        while (!this.checkRow(num, arr, i, j) || !this.checkCol(num, arr, i, j)) {
-          numbers.push(num);
-          num = this.sample(numbers);
-        }
+        let col = this.getCol(arr);
+        if (i===1) debugger;
+        // while (row.includes(num) || col.includes(num)) {
+        //   if (!numbers.length) break;
+        //   numbers.push(num);
+        //   num = this.sample(numbers);
+        // }
         arr.push([num,true]);
       }
     }
     return arr;
   }
-  // makeSquares(len=3) {
-  //   let arr = [];
-  //   for (let z=0;z<len**4;z++) {
-  //     let val = (z + 1) % 9;
-  //     if (val === 0) val = 9;
-  //     arr.push([val,true]);
-  //   }
-  //   return arr;
-  // }
 
   row(idx) {
     return <div className="box-row">

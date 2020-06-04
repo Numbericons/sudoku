@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 
 class Square extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Square extends React.Component {
     const val = this.state.revealed ? this.state.value : "";
     
     return <div className='square'>
-      <img src={logo} className="App-logo" alt="logo" />
+      {/* <img src={logo} className="App-logo" alt="logo" /> */}
       <h3 className='square-text'>
         {val}
       </h3>

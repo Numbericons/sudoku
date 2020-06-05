@@ -109,18 +109,17 @@ function makeSquares(len = 3) {
       if (arr.length === 25) debugger;
       if (arr.length === 36) debugger;
       if (arr.length === 54) debugger;
+      if (!numbers.length) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
       if (j === 3) nextRow = getRow(arr,len,i,j+3);
       //only relevant since others already used in current box
       nextRow = nextRow.filter(el=> numbers.includes(el)); 
       let num = j > 2 ? sampleNext(numbers, nextRow,arr) : sample(numbers);
       let col = getCol(arr, numbers.length);
-      if (num === undefined) debugger;
       while (row.includes(num) || col.includes(num)) {
         // if (!numbers.length) break;
         nextRow.length ? nextRow.push(num) : numbers.push(num);
         num = sample(numbers);
-        if (num === undefined) debugger;
       }
       arr.push([num, true]);
     }

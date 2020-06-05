@@ -107,7 +107,7 @@ function makeSquares(len = 3) {
     let nextRow = [];
     for (let j = 0; j < len ** 2; j++) {
       if (arr.length === 25) debugger;
-      if (arr.length === 36) debugger;
+      if (arr.length === 35) debugger;
       if (arr.length === 54) debugger;
       if (!numbers.length) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);

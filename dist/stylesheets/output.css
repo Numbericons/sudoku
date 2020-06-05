@@ -111,6 +111,10 @@ table {
   height: 9vh;
   width: 4.5vw;
 }
+.square-text {
+  font-size: 4.5vh;
+  font-family: "Open Sans", sans-serif;
+}
 
 .square + .square {
   border-left: 1.4px solid #bbb;

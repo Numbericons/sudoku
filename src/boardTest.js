@@ -34,21 +34,26 @@ function splPriority(numbers,nextRow,priority){
 }
 
 function sampleNext(numbers, nRow, nextCols, row){
-  const len = numbers.length;
   const priority = common(nextCols, nRow);
   if (priority) return splPriority(numbers, nRow, priority);
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el)); //flag, not numbers?
 
   if (nRow.length || valid.length) {
     let el;
-    if (valid.length) {
-      el = valid[randIdx(valid)];
-      // let idx = nRow.indexOf(el); not needed with priority check
-      // nRow.splice(idx,1)[0];
-    } else {
+    if (nRow.length) {
       let idx = randIdx(nRow);
       el = nRow.splice(idx,1)[0];
+    } else {
+      el = valid[randIdx(valid)];
     }
+    // if (valid.length) {
+    //   el = valid[randIdx(valid)];
+    //   // let idx = nRow.indexOf(el); not needed with priority check
+    //   // nRow.splice(idx,1)[0];
+    // } else {
+    //   let idx = randIdx(nRow);
+    //   el = nRow.splice(idx,1)[0];
+    // }
     const numbIdx = numbers.indexOf(el);
     return numbers.splice(numbIdx, 1)[0];
   } else {

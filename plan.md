@@ -18,3 +18,6 @@
    1 1 1             1 1 1             1 1 1
    Idea: outer loop relates to first row
   
+
+* Get Col
+  Create a length max for the return array based on which box we are in;

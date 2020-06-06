@@ -46,8 +46,8 @@ function sampleNext(numbers, nextRow, arr){
     let el;
     if (valid.length) {
       el = valid[randIdx(valid)];
-      let idx = nextRow.indexOf(el);
-      nextRow.splice(idx,1)[0];
+      // let idx = nextRow.indexOf(el); not needed with priority check
+      // nextRow.splice(idx,1)[0];
     } else {
       let idx = randIdx(nextRow);
       el = nextRow.splice(idx,1)[0];
@@ -106,20 +106,23 @@ function makeSquares(len = 3) {
     let row;
     let nextRow = [];
     for (let j = 0; j < len ** 2; j++) {
-      if (arr.length === 25) debugger;
+      if (arr.length === 24) debugger;
       if (arr.length === 35) debugger;
       if (arr.length === 54) debugger;
       if (!numbers.length) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
       if (j === 3) nextRow = getRow(arr,len,i,j+3);
       //only relevant since others already used in current box
-      nextRow = nextRow.filter(el=> numbers.includes(el)); 
-      let num = j > 2 ? sampleNext(numbers, nextRow,arr) : sample(numbers);
+      nRow = nRow.filter(el=> numbers.includes(el));
+      const nRowCopy = nRow.splice();
+      let num = j > 2 ? sampleNext(numbers, nRow,arr) : sample(numbers);
       let col = getCol(arr, numbers.length);
       while (row.includes(num) || col.includes(num)) {
+        //two fixes 
         // if (!numbers.length) break;
-        nextRow.length ? nextRow.push(num) : numbers.push(num);
-        num = sample(numbers);
+        numbers.push(num);
+        nRow.length ? nRow.push(num) : 
+        num = j > 2 ? sampleNext(numbers, nRow,arr) : sample(numbers);
       }
       arr.push([num, true]);
     }

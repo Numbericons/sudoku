@@ -31,9 +31,8 @@ function splPriority(numbers,nextRow,priority){
   return nextRow.splice(rowIdx,1)[0];
 }
 
-function sampleNext(numbers, nRow, arr, row){
+function sampleNext(numbers, nRow, nextCols, row){
   const len = numbers.length;
-  let nextCols = getCols(numbers, arr,len);
   const priority = common(nextCols, nRow);
   if (priority) return splPriority(numbers, nRow, priority);
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el)); //flag, not numbers?
@@ -108,7 +107,6 @@ function makeSquares(len = 3) {
     for (let j = 0; j < len ** 2; j++) {
       if (arr.length === 24) debugger;
       if (arr.length === 35) debugger;
-      if (arr.length === 54) debugger;
       if (!numbers.length) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
       if (j === 3) nRow = getRow(arr,len,i,j+3);
@@ -117,11 +115,12 @@ function makeSquares(len = 3) {
       const nRowCopy = nRow.splice();
       let num = j > 2 ? sampleNext(numbers, nRow,arr,row) : sample(numbers);
       let col = getCol(arr, numbers.length);
+      let nextCols = getCols(numbers, arr, len);s
       while (row.includes(num) || col.includes(num)) {
         //3 fixes to sample next when applicable and to always push back into numbers and last to make a nRow copy for reference
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);
-        num = j > 2 ? sampleNext(numbers, nRow,arr,row) : sample(numbers);
+        num = j > 2 ? sampleNext(numbers, nRow, nextCols,row) : sample(numbers);
       }
       arr.push([num, true]);
     }
@@ -132,41 +131,39 @@ function makeSquares(len = 3) {
 let result = makeSquares();
 console.log(result);
 
-//creates first grid-row of 3 boxes and then getRow breaks
-
 console.log('box 1:')
-console.log(arr.map(el=>el[0]).slice(0,3));
-console.log(arr.map(el=>el[0]).slice(3,6));
-console.log(arr.map(el=>el[0]).slice(6,9));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(0,3)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3,6)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(6,9)));
 console.log('box 2:')
-console.log(arr.map(el=>el[0]).slice(9,12));
-console.log(arr.map(el=>el[0]).slice(12,15));
-console.log(arr.map(el=>el[0]).slice(15,18));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(9,12)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(12,15)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(15,18)));
 console.log('box 3:')
-console.log(arr.map(el=>el[0]).slice(3*6,3*7));
-console.log(arr.map(el=>el[0]).slice(3*7,3*8));
-console.log(arr.map(el=>el[0]).slice(3*8,3*9));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*6,3*7)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*7,3*8)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*8,3*9)));
 console.log('box 4:')
-console.log(arr.map(el=>el[0]).slice(3*9,3*10));
-console.log(arr.map(el=>el[0]).slice(3*10,3*11));
-console.log(arr.map(el=>el[0]).slice(3*11,3*12));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*9,3*10)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*10,3*11)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*11,3*12)));
 console.log('box 5:')
-console.log(arr.map(el=>el[0]).slice(3*10,3*11));
-console.log(arr.map(el=>el[0]).slice(3*11,3*12));
-console.log(arr.map(el=>el[0]).slice(3*12,3*13));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*10,3*11)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*11,3*12)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*12,3*13)));
 console.log('box 6:')
-console.log(arr.map(el=>el[0]).slice(3*11,3*12));
-console.log(arr.map(el=>el[0]).slice(3*12,3*13));
-console.log(arr.map(el=>el[0]).slice(3*13,3*14));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*11,3*12)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*12,3*13)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*13,3*14)));
 console.log('box 7:')
-console.log(arr.map(el=>el[0]).slice(3*12,3*11));
-console.log(arr.map(el=>el[0]).slice(3*13,3*12));
-console.log(arr.map(el=>el[0]).slice(3*14,3*13));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*12,3*11)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*13,3*12)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*14,3*13)));
 console.log('box 8:')
-console.log(arr.map(el=>el[0]).slice(3*13,3*14));
-console.log(arr.map(el=>el[0]).slice(3*14,3*15));
-console.log(arr.map(el=>el[0]).slice(3*15,3*16));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*13,3*14)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*14,3*15)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*15,3*16)));
 console.log('box 9:')
-console.log(arr.map(el=>el[0]).slice(3*16,3*17));
-console.log(arr.map(el=>el[0]).slice(3*17,3*18));
-console.log(arr.map(el=>el[0]).slice(3*18,3*19));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*16,3*17)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*17,3*18)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*18,3*19)));

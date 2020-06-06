@@ -31,26 +31,26 @@ function splPriority(numbers,nextRow,priority){
   return nextRow.splice(rowIdx,1)[0];
 }
 
-function sampleNext(numbers, nextRow, arr){
+function sampleNext(numbers, nRow, arr, row){
   const len = numbers.length;
   let nextCols = getCols(numbers, arr,len);
-  const priority = common(nextCols, nextRow);
-  if (common(nextCols, nextRow)) return splPriority(numbers, nextRow, priority);
-  const valid = nextCols.filter(el=> numbers.includes(el)); //flag, not numbers?
+  const priority = common(nextCols, nRow);
+  if (priority) return splPriority(numbers, nRow, priority);
+  const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el)); //flag, not numbers?
   // let valid = [];
   // for (let z=0; z<nextCols.length;z++) {
   //   if (numbers.includes(nextCols[z])) valid.push(nextCols[z]); //flag, not numbers?
   // }
 
-  if (nextRow.length || valid.length) {
+  if (nRow.length || valid.length) {
     let el;
     if (valid.length) {
       el = valid[randIdx(valid)];
-      // let idx = nextRow.indexOf(el); not needed with priority check
-      // nextRow.splice(idx,1)[0];
+      // let idx = nRow.indexOf(el); not needed with priority check
+      // nRow.splice(idx,1)[0];
     } else {
-      let idx = randIdx(nextRow);
-      el = nextRow.splice(idx,1)[0];
+      let idx = randIdx(nRow);
+      el = nRow.splice(idx,1)[0];
     }
     const numbIdx = numbers.indexOf(el);
     return numbers.splice(numbIdx, 1)[0];
@@ -104,25 +104,24 @@ function makeSquares(len = 3) {
   for (let i = 0; i < len ** 2; i++) {
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let row;
-    let nextRow = [];
+    let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
       if (arr.length === 24) debugger;
       if (arr.length === 35) debugger;
       if (arr.length === 54) debugger;
       if (!numbers.length) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
-      if (j === 3) nextRow = getRow(arr,len,i,j+3);
+      if (j === 3) nRow = getRow(arr,len,i,j+3);
       //only relevant since others already used in current box
       nRow = nRow.filter(el=> numbers.includes(el));
       const nRowCopy = nRow.splice();
-      let num = j > 2 ? sampleNext(numbers, nRow,arr) : sample(numbers);
+      let num = j > 2 ? sampleNext(numbers, nRow,arr,row) : sample(numbers);
       let col = getCol(arr, numbers.length);
       while (row.includes(num) || col.includes(num)) {
-        //two fixes 
-        // if (!numbers.length) break;
+        //3 fixes to sample next when applicable and to always push back into numbers and last to make a nRow copy for reference
         numbers.push(num);
-        nRow.length ? nRow.push(num) : 
-        num = j > 2 ? sampleNext(numbers, nRow,arr) : sample(numbers);
+        if (nRowCopy.includes(num)) nRow.push(num);
+        num = j > 2 ? sampleNext(numbers, nRow,arr,row) : sample(numbers);
       }
       arr.push([num, true]);
     }

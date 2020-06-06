@@ -115,7 +115,7 @@ function makeSquares(len = 3) {
       const nRowCopy = nRow.splice();
       let num = j > 2 ? sampleNext(numbers, nRow,arr,row) : sample(numbers);
       let col = getCol(arr, numbers.length);
-      let nextCols = getCols(numbers, arr, len);s
+      let nextCols = getCols(numbers, arr, len);
       while (row.includes(num) || col.includes(num)) {
         //3 fixes to sample next when applicable and to always push back into numbers and last to make a nRow copy for reference
         numbers.push(num);

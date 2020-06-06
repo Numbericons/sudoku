@@ -13,11 +13,13 @@ function combine(arr1,arr2) {
 
 function getCols(numbers, arr,len) {
   let nextCols = [];
-
-  if (numbers.length % 3 < 2) nextCols = getCol(arr, len, 1);
-  if (numbers.length % 3 === 0) combine(nextCols, getCol(arr, len, 2));
+  const secondCol = [8,5,2];
+  const nLen = numbers.length;
+  if (nLen % 3 === 0 || secondCol.includes(nLen)) nextCols = getCol(arr, len, 1);
+  if (nLen % 3 === 0) combine(nextCols, getCol(arr, len, 2));
   return nextCols;
 }
+//when 9,6,3 we want both when 8,5,2 we want 2nd and when 7,4,1 dont want
 
 function common(cols,row) {
   for (let z=0;z<cols.length;z++) { if (row.includes(cols[z])) return cols[z] };
@@ -105,7 +107,7 @@ function makeSquares(len = 3) {
     let row;
     let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
-      if (arr.length === 24) debugger;
+      if (arr.length === 21) debugger;
       if (arr.length === 35) debugger;
       if (!numbers.length) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
@@ -113,9 +115,9 @@ function makeSquares(len = 3) {
       //only relevant since others already used in current box
       nRow = nRow.filter(el=> numbers.includes(el));
       const nRowCopy = nRow.splice();
-      let num = j > 2 ? sampleNext(numbers, nRow,arr,row) : sample(numbers);
-      let col = getCol(arr, numbers.length);
-      let nextCols = getCols(numbers, arr, len);
+      const nextCols = getCols(numbers, arr, len);
+      let num = j > 2 ? sampleNext(numbers, nRow, nextCols,row) : sample(numbers);
+      const col = getCol(arr, numbers.length);
       while (row.includes(num) || col.includes(num)) {
         //3 fixes to sample next when applicable and to always push back into numbers and last to make a nRow copy for reference
         numbers.push(num);

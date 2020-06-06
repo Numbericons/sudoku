@@ -7,16 +7,17 @@ function sample(numbers) {
   return numbers.splice(idx, 1)[0];
 }
 
-function combine(arr1,arr2) {
-  return (arr1.join("")+arr2.join("")).split("").map(str => parseInt(str));
-}
+// function combine(arr1,arr2) {
+//   return (arr1.join("")+arr2.join("")).split("").map(str => parseInt(str));
+// }
 
 function getCols(numbers, arr,len) {
   let nextCols = [];
   const secondCol = [8,5,2];
   const nLen = numbers.length;
   if (nLen % 3 === 0 || secondCol.includes(nLen)) nextCols = getCol(arr, numbers.length, 1);
-  if (nLen % 3 === 0) nextCols = combine(nextCols, getCol(arr, numbers.length, 2));
+  if (nLen % 3 === 0) nextCols = nextCols.concat(getCol(arr, numbers.length, 2));
+  // if (nLen % 3 === 0) nextCols = combine(nextCols, getCol(arr, numbers.length, 2));
   return nextCols;
 }
 //when 9,6,3 we want both when 8,5,2 we want 2nd and when 7,4,1 dont want
@@ -150,22 +151,62 @@ console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*9,3*10)));
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*10,3*11)));
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*11,3*12)));
 console.log('box 5:')
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*10,3*11)));
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*11,3*12)));
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*12,3*13)));
-console.log('box 6:')
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*11,3*12)));
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*12,3*13)));
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*13,3*14)));
-console.log('box 7:')
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*12,3*11)));
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*13,3*12)));
-console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*14,3*13)));
-console.log('box 8:')
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*13,3*14)));
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*14,3*15)));
+console.log('box 6:')
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*15,3*16)));
-console.log('box 9:')
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*16,3*17)));
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*17,3*18)));
+console.log('box 7:')
 console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*18,3*19)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*19,3*20)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*20,3*21)));
+console.log('box 8:')
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*21,3*22)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*22,3*23)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*23,3*24)));
+console.log('box 9:')
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*24,3*25)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*25,3*26)));
+console.log(JSON.stringify(arr.map(el=>el[0]).slice(3*26,3*27)));
+
+console.log('row 1:')
+console.log(arr.map(el => el[0]).slice(3*0, 3*1)
+.concat(arr.map(el => el[0]).slice(3*3, 3*4))
+.concat(arr.map(el => el[0]).slice(3*6, 3*7)).join(" ")
+);
+console.log(arr.map(el => el[0]).slice(3, 3*2)
+.concat(arr.map(el => el[0]).slice(3*4, 3*5))
+.concat(arr.map(el => el[0]).slice(3*7, 3*8)).join(" ")
+);
+console.log(arr.map(el => el[0]).slice(3*2, 3*3)
+.concat(arr.map(el => el[0]).slice(3*5, 3*6))
+.concat(arr.map(el => el[0]).slice(3*8, 3*9)).join(" ")
+);
+console.log('row 4:')
+console.log(arr.map(el => el[0]).slice(3*9, 3*10)
+  .concat(arr.map(el => el[0]).slice(3*12, 3*13))
+  .concat(arr.map(el => el[0]).slice(3*15, 3*16)).join(" ")
+);
+console.log(arr.map(el => el[0]).slice(3*10, 3*11)
+  .concat(arr.map(el => el[0]).slice(3*13, 3*14))
+  .concat(arr.map(el => el[0]).slice(3*16, 3*17)).join(" ")
+);
+console.log(arr.map(el => el[0]).slice(3*11, 3*12)
+  .concat(arr.map(el => el[0]).slice(3*14, 3*15))
+  .concat(arr.map(el => el[0]).slice(3*17, 3*18)).join(" ")
+);
+console.log('row 7:');
+console.log(arr.map(el => el[0]).slice(3*18, 3*19)
+  .concat(arr.map(el => el[0]).slice(3*21, 3*22))
+  .concat(arr.map(el => el[0]).slice(3*24, 3*25)).join(" ")
+);
+console.log(arr.map(el => el[0]).slice(3*19, 3*20)
+  .concat(arr.map(el => el[0]).slice(3*22, 3*23))
+  .concat(arr.map(el => el[0]).slice(3*25, 3*26)).join(" ")
+);
+console.log(arr.map(el => el[0]).slice(3*20, 3*21)
+  .concat(arr.map(el => el[0]).slice(3*23, 3*24))
+  .concat(arr.map(el => el[0]).slice(3*26, 3*27)).join(" ")
+);

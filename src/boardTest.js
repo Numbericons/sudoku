@@ -38,10 +38,6 @@ function sampleNext(numbers, nRow, nextCols, row){
   const priority = common(nextCols, nRow);
   if (priority) return splPriority(numbers, nRow, priority);
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el)); //flag, not numbers?
-  // let valid = [];
-  // for (let z=0; z<nextCols.length;z++) {
-  //   if (numbers.includes(nextCols[z])) valid.push(nextCols[z]); //flag, not numbers?
-  // }
 
   if (nRow.length || valid.length) {
     let el;

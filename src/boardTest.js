@@ -15,8 +15,8 @@ function getCols(numbers, arr,len) {
   let nextCols = [];
   const secondCol = [8,5,2];
   const nLen = numbers.length;
-  if (nLen % 3 === 0 || secondCol.includes(nLen)) nextCols = getCol(arr, len, 1);
-  if (nLen % 3 === 0) combine(nextCols, getCol(arr, len, 2));
+  if (nLen % 3 === 0 || secondCol.includes(nLen)) nextCols = getCol(arr, numbers.length, 1);
+  if (nLen % 3 === 0) nextCols = combine(nextCols, getCol(arr, numbers.length, 2));
   return nextCols;
 }
 //when 9,6,3 we want both when 8,5,2 we want 2nd and when 7,4,1 dont want
@@ -86,11 +86,10 @@ function getRow(arr, len, i,j) {
 function getCol(arr, len, offset=0) {
   if (!arr.length) return arr;
   let ret = [];
-  let prevBoxCols = 21;  //diff between last row of prev box and first row of current box
-
+  let prevBoxCols = 21;  //diff between curr row and last row of prev box
   //2nd row within box so need to subtract 3 to line up with prev box cols
-  if (len < 6) prevBoxCols += 3; 
-  if (len < 3) prevBoxCols += 3;
+  if (len < 7) prevBoxCols += 3; 
+  if (len < 4) prevBoxCols += 3;
 
   const start = arr.length + offset - prevBoxCols;
   for (let x = start; x >= 0; x -= 3) { ret.push(arr[x][0]) };
@@ -107,17 +106,17 @@ function makeSquares(len = 3) {
     let row;
     let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
-      if (arr.length === 21) debugger;
-      if (arr.length === 35) debugger;
+      // if (arr.length === 21) debugger;
+      // if (arr.length === 35) debugger;
       if (!numbers.length) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
       if (j === 3) nRow = getRow(arr,len,i,j+3);
       //only relevant since others already used in current box
       nRow = nRow.filter(el=> numbers.includes(el));
       const nRowCopy = nRow.splice();
+      const col = getCol(arr, numbers.length);
       const nextCols = getCols(numbers, arr, len);
       let num = j > 2 ? sampleNext(numbers, nRow, nextCols,row) : sample(numbers);
-      const col = getCol(arr, numbers.length);
       while (row.includes(num) || col.includes(num)) {
         //3 fixes to sample next when applicable and to always push back into numbers and last to make a nRow copy for reference
         numbers.push(num);

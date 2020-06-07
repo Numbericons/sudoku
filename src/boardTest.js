@@ -2,16 +2,21 @@ function randIdx(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 
-function sample(numbers) {
-  const idx = randIdx(numbers);
-  return numbers.splice(idx, 1)[0];
+function sample(numbers, nTried) {
+  const copy = numbers.slice().filter(el => !nTried.includes(el))
+  const idx = randIdx(copy);
+  const num = copy.splice(idx,1)[0];
+  const nIdx = numbers.indexOf(num);
+  numbers.splice(nIdx,1)[0];
+  if (!nTried.includes(num)) nTried.push(num);
+  return num;
 }
 
 // function combine(arr1,arr2) {
 //   return (arr1.join("")+arr2.join("")).split("").map(str => parseInt(str));
 // }
 
-function getCols(numbers, arr,len) {
+function getCols(numbers, arr) {
   let nextCols = [];
   const nLen = numbers.length;
   const firstCol = [9,6,3];
@@ -31,20 +36,43 @@ function getCols(numbers, arr,len) {
 //when 9,6,3 we want both when 8,5,2 we want 2nd and when 7,4,1 dont want
 
 function common(cols,row) {
-  for (let z=0;z<cols.length;z++) { if (row.includes(cols[z])) return cols[z] };
+  let arr = [];
+  for (let z=0;z<cols.length;z++) { if (row.includes(cols[z])) arr.push(cols[z]) };
   return false;
 }
 
-function splPriority(numbers,nextRow,priority){
-  const numbIdx = numbers.indexOf(priority);
+function chkValid(arr, len, n, i, j) {
+  // const idx = arr.length - 1 + n;
+  const col = getCol(arr, len, n);
+  const row = getRow(arr, len, i, j, offset = 0)
+}
+// need to get row and columns for both elements
+
+//arr length should be a max of 2 since it is sourcing from 2 columns
+function getPriority(numbers, nextRow, arr, i, j) {
+  debugger;
+  if (arr.length === 1) return splPriority(numbers, nextRow, arr[0]);
+  const validNext = chkValid(arr, numbers.length, 1, i, j);
+  const validNext2 = chkValid(arr, numbers.length, 2, i, j);
+  if (validNext && validNext2) {
+    return Math.random > .5 ? splPriority(numbers, nextRow, arr[0]) : splPriority(numbers, nextRow, arr[1]);
+  } else if (validNext) {
+    return splPriority(numbers, nextRow, arr[0]);
+  } else {
+    return splPriority(numbers, nextRow, arr[1]);
+  }
+}
+
+function splPriority(numbers,nextRow,el){
+  const numbIdx = numbers.indexOf(el);
   numbers.splice(numbIdx,1);
-  const rowIdx = nextRow.indexOf(priority);
+  const rowIdx = nextRow.indexOf(el);
   return nextRow.splice(rowIdx,1)[0];
 }
 
-function sampleNext(numbers, nRow, nextCols, row){
+function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
   const priority = common(nextCols, nRow);
-  if (priority) return splPriority(numbers, nRow, priority);
+  if (priority) return getPriority(numbers, nRow, priority, i, j);
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el));
 
   if (nRow.length || valid.length) {
@@ -66,7 +94,7 @@ function sampleNext(numbers, nRow, nextCols, row){
     const numbIdx = numbers.indexOf(el);
     return numbers.splice(numbIdx, 1)[0];
   } else {
-    return sample(numbers);
+    return sample(numbers, nTried);
   }
 }
 
@@ -80,15 +108,13 @@ function getStop(i){
   }
 }
 
-function getRow(arr, len, i,j) {
+function getRow(arr, len, i, j, offset=0) {
   if (!arr.length) return arr;
   let ret = [];
   const start = (len**2 * i) - 9 + j;
   const stop = getStop(i);
   for (let x = start; x >= stop; x -= 9) {
-    ret.push(arr[x][0])
-    ret.push(arr[x + 1][0])
-    ret.push(arr[x + 2][0])
+    for (let z=0;z<3;z++) { ret.push(arr[x+z][0]) } 
   };
   return ret;
 }
@@ -105,7 +131,7 @@ function getCol(arr, len, offset=0) {
   const start = arr.length + offset - prevBoxCols;
   for (let x = start; x >= 0; x -= 3) { 
     if (ret.length === 3) x -= 18; 
-    ret.push(arr[x][0]) 
+    ret.unshift(arr[x][0]) 
     if (ret.length === maxLen) break;
   };
   return ret;
@@ -114,6 +140,13 @@ function getCol(arr, len, offset=0) {
 //go by length of numbers array to determine which subRow within current box
 //then need the columns from above boxes, if applicable
 
+function getNRow(numbers, arr, len, i, j) {
+  if (numbers.length < 4) return [];
+  let nRow = getRow(arr, len, i, j + 3);
+  // if (j === 3) nRow = getRow(arr,len,i,j+3);
+  return nRow.filter(el => numbers.includes(el)); //flag
+}
+
 function makeSquares(len = 3) {
   let arr = [];
   for (let i = 0; i < len ** 2; i++) {
@@ -121,20 +154,21 @@ function makeSquares(len = 3) {
     let row;
     let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
-      // if (arr.length === 29) debugger;
+      if (arr.length === 46) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
-      if (j === 3) nRow = getRow(arr,len,i,j+3);
+      nRow = getNRow(numbers, arr, len, i, j);
       //only relevant since others already used in current box
-      nRow = nRow.filter(el=> numbers.includes(el));
       const nRowCopy = nRow.splice();
       const col = getCol(arr, numbers.length);
       const nextCols = getCols(numbers, arr, len);
-      let num = j > 1 ? sampleNext(numbers, nRow, nextCols,row) : sample(numbers); //flag
-      // let num = sampleNext(numbers, nRow, nextCols,row);
+      let nTried = [];
+      // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
+      let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);
-        num = j > 1 ? sampleNext(numbers, nRow, nextCols,row) : sample(numbers); //flag
+        // num = j > -1 ? sampleNext(numbers, nRow, nextCols, row, nTried) : sample(numbers, nTried); //flag
+        num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       }
       arr.push([num, true]);
     }
@@ -145,6 +179,7 @@ function makeSquares(len = 3) {
 let result = makeSquares();
 console.log(result);
 
+console.log('');
 console.log(arr.map(el => el[0]).slice(3*0, 3*1).concat(" ")
 .concat(arr.map(el => el[0]).slice(3*3, 3*4)).concat(" ")
 .concat(arr.map(el => el[0]).slice(3*6, 3*7)).join(" ")
@@ -157,7 +192,7 @@ console.log(arr.map(el => el[0]).slice(3*2, 3*3).concat(" ")
 .concat(arr.map(el => el[0]).slice(3*5, 3*6)).concat(" ")
 .concat(arr.map(el => el[0]).slice(3*8, 3*9)).join(" ")
 );
-console.log('')
+console.log('');
 console.log(arr.map(el => el[0]).slice(3*9, 3*10).concat(" ")
   .concat(arr.map(el => el[0]).slice(3*12, 3*13)).concat(" ")
   .concat(arr.map(el => el[0]).slice(3*15, 3*16)).join(" ")

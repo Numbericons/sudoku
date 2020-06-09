@@ -107,8 +107,10 @@ function getStop(i){
     return 54;
   }
 }
-
-function getRow(arr, len, i, j) {
+//j might be 8 for most possible
+//i will be the row from the pos we are checking
+function getRow(arr, len, i, j, full) {
+  if (arr.length === 46) debugger;
   if (!arr.length) return arr;
   let ret = [];
   const start = (len**2 * i) - 9 + j;
@@ -120,6 +122,7 @@ function getRow(arr, len, i, j) {
 }
 
 function getCol(arr, len, offset=0, el=null) {
+  if (arr.length === 53) debugger;
   if (arr.length < 27) return [];
   let ret = [];
   const maxLen = arr.length < 54 ? 3 : 6;
@@ -143,6 +146,10 @@ function getNRow(numbers, arr, len, i, j) {
   let nRow = getRow(arr, len, i, j + 3);
   // if (j === 3) nRow = getRow(arr,len,i,j+3);
   return nRow.filter(el => numbers.includes(el)); //flag
+}
+
+function legalPos(arr, num, idx) {
+
 }
 
 function boxIncl(arr, num, idx) {
@@ -171,7 +178,8 @@ function makeSquares(len = 3) {
       let nTried = []; 
       // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-      // if (arr.length === 46) debugger;
+      let test;
+      if (arr.length === 46) test = getRow(arr,len,2,9);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);

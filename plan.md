@@ -36,7 +36,11 @@
     4. Check if 2 elements can legally swap
       1. Has its own helper to check legal position for an element to move
         1. Check if positions column or row contains the number
-          1. Careful not to validate duplicate numbers within a box in the process
+          1. Maybe use get row and column
+            1. Might need to adjust to pick up full rows and columns
+              1. Rows - need to give one of the last columns rows and j as 9 to get last column included
+            2. Other option is to just make simpler versions
+          1. +Careful not to validate duplicate numbers within a box in the process
               //convert idx into a box
               //check if element is contained in that range
               // const box = Math.floor(idx / 9); //0-8

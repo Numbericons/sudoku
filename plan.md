@@ -21,3 +21,10 @@
 
 * Get Col
   Create a length max for the return array based on which box we are in;
+
+* Element Swap to correct board
+  1. Get Column of position you can't place
+  2. Swap the required element (row/box right?) in a column above and see if it can swap with an element in its respective row
+  3. Need helpers
+  4. Check if eles can swap
+  5. Check if new/old positions are ok for elements to help swap check

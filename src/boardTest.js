@@ -109,7 +109,7 @@ function getStop(i){
 }
 //j might be 8 for most possible
 //i will be the row from the pos we are checking
-function getRow(arr, len, i, j, full) {
+function getRow(arr, len, i, j) {
   if (arr.length === 46) debugger;
   if (!arr.length) return arr;
   let ret = [];
@@ -135,7 +135,7 @@ function getCol(arr, len, offset=0, el=null) {
   for (let x = start; x >= 0; x -= 3) { 
     if (ret.length === 3) x -= 18; //jumping to next box
     if (el === arr[x][0]) return arr[x][0];
-    ret.unshift(arr[x][0]);
+    ret.unshift(arr[x][0]); //flag want index?
     if (ret.length === maxLen) break;
   };
   return ret;
@@ -148,9 +148,28 @@ function getNRow(numbers, arr, len, i, j) {
   return nRow.filter(el => numbers.includes(el)); //flag
 }
 
-function legalPos(arr, num, idx) {
+function legalPos(arr, num, idx, len) {
+  const offset = arr.length - 1 - idx;
 
+  if (getCol(arr, len, offset, num) === num) return false;
+  if (getRow(arr, len, idx, 9).includes(num)) return false;
+  if (boxIncl(arr, num, idx)) return false;
+
+  return true;
 }
+
+function chkSwap(pos1,pos2,arr,num,len) {
+  return legalPos(arr, num, pos1, len) && legalPos(arr, num, pos2, len);
+}
+
+function makeSwap(arr,pos1,pos2) {
+  let temp = arr[pos1].slice();
+  arr[pos1] = arr[pos2].slice();
+  arr[pos2] = temp;
+}
+
+function findNum(){}
+//getCol? how will
 
 function boxIncl(arr, num, idx) {
   const start = idx - idx % 9;
@@ -178,8 +197,8 @@ function makeSquares(len = 3) {
       let nTried = []; 
       // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-      let test;
-      if (arr.length === 46) test = getRow(arr,len,2,9);
+      // let test;
+      // if (arr.length === 46) test = getRow(arr,len,2,9);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);

@@ -12,10 +12,6 @@ function sample(numbers, nTried) {
   return num;
 }
 
-// function combine(arr1,arr2) {
-//   return (arr1.join("")+arr2.join("")).split("").map(str => parseInt(str));
-// }
-
 function getCols(numbers, arr) {
   let nextCols = [];
   const nLen = numbers.length;
@@ -141,9 +137,6 @@ function getCol(arr, len, offset=0, el=null) {
   };
   return ret;
 }
-
-//go by length of numbers array to determine which subRow within current box
-//then need the columns from above boxes, if applicable
 
 function getNRow(numbers, arr, len, i, j) {
   if (numbers.length < 4 || numbers.length > 6) return [];

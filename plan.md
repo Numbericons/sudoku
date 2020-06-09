@@ -24,7 +24,16 @@
 
 * Element Swap to correct board
   1. Get Column of position you can't place
-  2. Swap the required element (row/box right?) in a column above and see if it can swap with an element in its respective row
+  2. Adjust while loop in make square
+    1. Needs to check nTried and disqualify ones in current row/column
+  2. Swap the required element (row/box) in a column above and see if it can swap with an element in its respective row
+    1. Idea: If not, try within current row [?]
+    2. Noticing that could be better to just try finding the required element and checking swaps
+      1. So not necessarily within the current column (j)
+      2. Accounts for broken box #7 situation
+      3. Also can swap element within its column
   3. Need helpers
-  4. Check if eles can swap
-  5. Check if new/old positions are ok for elements to help swap check
+    4. Check if 2 elements can legally swap
+      1. Has its own helper to check legal position for an element to move
+        1. Check if positions column or row contains the number
+          1. Careful not to validate duplicate numbers within a box in the process

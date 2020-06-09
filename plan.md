@@ -37,3 +37,9 @@
       1. Has its own helper to check legal position for an element to move
         1. Check if positions column or row contains the number
           1. Careful not to validate duplicate numbers within a box in the process
+              //convert idx into a box
+              //check if element is contained in that range
+              // const box = Math.floor(idx / 9); //0-8
+
+Test Checklist
+  1. boardIncl

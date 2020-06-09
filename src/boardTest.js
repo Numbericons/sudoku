@@ -145,6 +145,16 @@ function getNRow(numbers, arr, len, i, j) {
   return nRow.filter(el => numbers.includes(el)); //flag
 }
 
+function boxIncl(arr, num, idx) {
+  const start = idx - idx % 9;
+
+  for (let z = start; z < start + 9; z++) {
+    if (arr[z][0] === num) return true;
+  }
+
+  return false;
+}
+
 function makeSquares(len = 3) {
   let arr = [];
   for (let i = 0; i < len ** 2; i++) {
@@ -152,7 +162,6 @@ function makeSquares(len = 3) {
     let row;
     let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
-      // if (arr.length === 46) debugger;
       if (j % 3 === 0) row = getRow(arr, len, i, j);
       nRow = getNRow(numbers, arr, len, i, j);
       //only relevant since others already used in current box
@@ -162,6 +171,7 @@ function makeSquares(len = 3) {
       let nTried = []; 
       // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+      // if (arr.length === 46) debugger;
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);

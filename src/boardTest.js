@@ -292,7 +292,7 @@ function makeSquares(len = 3) {
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);
-        if (nTried.length + j >= 8 && (row.includes(num) || col.includes(num))) {
+        if (nTried.length + j > 8 && (row.includes(num) || col.includes(num))) {
           nTried.splice(nTried.indexOf(findSwap(arr,numbers)),1);
           col = getCol(arr, numbers.length+1);
         }

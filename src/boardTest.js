@@ -9,6 +9,7 @@ function sample(numbers, nTried) {
   const nIdx = numbers.indexOf(num);
   numbers.splice(nIdx,1)[0];
   if (!nTried.includes(num)) nTried.push(num);
+
   return num;
 }
 
@@ -43,7 +44,7 @@ function chkValid(arr, numbers, n, i, j) {
   const number = numbers[n-1];
   const col = getCol(arr, numbers.length, n);
   const row = getRow(arr, numbers.length, i, j+1);
-  
+
   return !col.includes(number) && !row.includes(number);
 }
 // need to get row and columns for both elements
@@ -115,11 +116,10 @@ function getRow(arr, len, i, j) {
   return ret;
 }
 
-function getCol(arr, len, offset=0, el=null) {
-  if (arr.length === 53) debugger;
+function getCol(arr, len, offset=0, max=null, num=null) {
   if (arr.length < 27) return [];
   let ret = [];
-  const maxLen = arr.length < 54 ? 3 : 6;
+  let maxLen = max ? max : arr.length < 54 ? 3 : 6;
   let prevBoxCols = 21;  //diff between curr row and last row of prev box
   //2nd row within box so need to subtract 3 to line up with prev box cols
   if (len < 7) prevBoxCols += 3; 
@@ -127,8 +127,8 @@ function getCol(arr, len, offset=0, el=null) {
 
   const start = arr.length + offset - prevBoxCols;
   for (let x = start; x >= 0; x -= 3) { 
-    if (ret.length === 3) x -= 18; //jumping to next box
-    if (el === arr[x][0]) return arr[x][0];
+    if (ret.length === 3 || ret.length === 6) x -= 18; //jumping to next box
+    if (num === arr[x][0]) return arr[x][0];
     ret.unshift(arr[x][0]); //flag want index?
     if (ret.length === maxLen) break;
   };
@@ -142,12 +142,49 @@ function getNRow(numbers, arr, len, i, j) {
   return nRow.filter(el => numbers.includes(el)); //flag
 }
 
+function getLine(line, idx) {
+  const keys = Object.keys(line)
+  for (let z=0; z<keys.length;z++) {
+    if (line[keys[z]].includes(idx)) return z + 1;
+  }
+}
+
+function colByIdx(idx) {
+  const columns = {
+    1: [60,57,54,33,30,27,6,3,0], 2: [61,58,55,34,31,28,7,4,1], 3: [62,59,56,35,32,29,8,5,2],
+    4: [69,66,63,42,39,36,15,12,9], 5: [70,67,64,43,40,37,16,13,10], 6: [71,68,65,44,40,38,17,14,11],
+    7: [78,75,72,51,48,45,24,21,18], 8: [79,76,73,52,49,46,25,22,19], 9: [80,77,74,53,50,47,26,23,20]
+  }
+  return columns[getLine(columns,idx)];
+}
+
+function rowByIdx(idx) {
+  const rows = {
+    1: [0,1,2,9,10,11,18,19,20], 2: [3,4,5,12,13,14,21,22,23], 3: [6,7,8,15,16,17,24,25,26],
+    4: [27,28,29,36,37,37,44,45,46], 5: [30,31,32,39,40,41,48,49,50], 6: [33,34,35,42,43,44,51,52,53],
+    7: [54,55,56,63,64,65,72,73,74], 8: [57,58,59,66,67,68,75,76,77], 9: [60,61,62,69,70,71,78,79,80]
+  }
+  return rows[getLine(rows,idx)];
+}
+
+function chkLine(arr, line, num) {
+  for (let z=0;z<line.length;z++) {
+    if (arr[line[z]][0] === num) return true;
+  }
+}
+
 function legalPos(arr, num, idx, len) {
   debugger;
   // const offset = arr.length - 1 - idx;
-  if (getCol(arr, len, 0, num) === num) return false;
-  if (getRow(arr, len, idx, 9).includes(num)) return false;
-  if (boxIncl(arr, num, idx)) return false;
+  // const start = getColStart(idx);
+  // if (getRow(arr, len, idx, 9).includes(num)) return false;
+  if (boxInclOrRet(arr, num, idx, true) === true) return false;
+  
+  const row = rowByIdx(idx);
+  const col = colByIdx(idx);
+  if (chkLine(arr, row, num)) return false;
+  if (chkLine(arr, col, num)) return false;
+  // if (getCol(arr, 1, arr.length - start + 19, 9, num) === num) return false;
 
   return true;
 }
@@ -165,14 +202,16 @@ function makeSwap(arr,pos1,pos2) {
 function findNum(){}
 //getCol? how will it work? Maybe adjust or new version to get elements with their indices?
 
-function boxIncl(arr, num, idx) {
+function boxInclOrRet(arr, num, idx, include) {
   const start = idx - idx % 9;
+  let box = [];
 
   for (let z = start; z < start + 9; z++) {
-    if (arr[z][0] === num) return true;
+    if (include && arr[z][0] === num) return true;
+    box.push(arr[z])
   }
 
-  return false;
+  return box;
 }
 
 function makeSquares(len = 3) {
@@ -192,7 +231,7 @@ function makeSquares(len = 3) {
       // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       // let test;
-      if (arr.length === 46) legalPos(arr, 4, 22, len);
+      if (arr.length === 64) legalPos(arr, 4, 4, len);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);

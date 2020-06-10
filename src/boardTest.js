@@ -43,6 +43,7 @@ function chkValid(arr, numbers, n, i, j) {
   const number = numbers[n-1];
   const col = getCol(arr, numbers.length, n);
   const row = getRow(arr, numbers.length, i, j+1);
+  
   return !col.includes(number) && !row.includes(number);
 }
 // need to get row and columns for both elements
@@ -66,6 +67,7 @@ function splPriority(numbers,nextRow,el){
   const numbIdx = numbers.indexOf(el);
   numbers.splice(numbIdx,1);
   const rowIdx = nextRow.indexOf(el);
+
   return nextRow.splice(rowIdx,1)[0];
 }
 
@@ -82,14 +84,6 @@ function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
     } else {
       el = valid[randIdx(valid)];
     }
-    // if (valid.length) {
-    //   el = valid[randIdx(valid)];
-    //   // let idx = nRow.indexOf(el); not needed with priority check
-    //   // nRow.splice(idx,1)[0];
-    // } else {
-    //   let idx = randIdx(nRow);
-    //   el = nRow.splice(idx,1)[0];
-    // }
     if (!nTried.includes(el)) nTried.push(el);
     const numbIdx = numbers.indexOf(el);
     return numbers.splice(numbIdx, 1)[0];
@@ -149,9 +143,9 @@ function getNRow(numbers, arr, len, i, j) {
 }
 
 function legalPos(arr, num, idx, len) {
-  const offset = arr.length - 1 - idx;
-
-  if (getCol(arr, len, offset, num) === num) return false;
+  debugger;
+  // const offset = arr.length - 1 - idx;
+  if (getCol(arr, len, 0, num) === num) return false;
   if (getRow(arr, len, idx, 9).includes(num)) return false;
   if (boxIncl(arr, num, idx)) return false;
 
@@ -169,7 +163,7 @@ function makeSwap(arr,pos1,pos2) {
 }
 
 function findNum(){}
-//getCol? how will
+//getCol? how will it work? Maybe adjust or new version to get elements with their indices?
 
 function boxIncl(arr, num, idx) {
   const start = idx - idx % 9;
@@ -198,13 +192,12 @@ function makeSquares(len = 3) {
       // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       // let test;
-      // if (arr.length === 46) test = getRow(arr,len,2,9);
+      if (arr.length === 46) legalPos(arr, 4, 22, len);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);
         // num = j > -1 ? sampleNext(numbers, nRow, nextCols, row, nTried) : sample(numbers, nTried); //flag
         num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-
         //nTried has all numbers taht arnt in col or row, try to swap the element you must have there based on row up col, will always work?
       }
       arr.push([num, true]);

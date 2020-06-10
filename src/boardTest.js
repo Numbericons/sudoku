@@ -175,16 +175,11 @@ function chkLine(arr, line, num) {
 
 function legalPos(arr, num, idx, len) {
   debugger;
-  // const offset = arr.length - 1 - idx;
-  // const start = getColStart(idx);
-  // if (getRow(arr, len, idx, 9).includes(num)) return false;
-  if (boxInclOrRet(arr, num, idx, true) === true) return false;
-  
   const row = rowByIdx(idx);
   const col = colByIdx(idx);
-  if (chkLine(arr, row, num)) return false;
-  if (chkLine(arr, col, num)) return false;
-  // if (getCol(arr, 1, arr.length - start + 19, 9, num) === num) return false;
+  if (chkLine(arr, row, num) || chkLine(arr, col, num)) return false;
+
+  if (boxInclOrRet(arr, num, idx, true) === true) return false;
 
   return true;
 }

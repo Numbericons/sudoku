@@ -5,7 +5,8 @@ function randIdx(arr) {
 function sample(numbers, nTried) {
   const copy = numbers.slice().filter(el => !nTried.includes(el))
   const idx = randIdx(copy);
-  const num = copy.splice(idx,1)[0];
+  let num = copy.splice(idx,1)[0];
+  if (!num) num = randNum(numbers);
   if (num === undefined) debugger;
   const nIdx = numbers.indexOf(num);
   numbers.splice(nIdx,1);

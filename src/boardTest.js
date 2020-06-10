@@ -6,8 +6,9 @@ function sample(numbers, nTried) {
   const copy = numbers.slice().filter(el => !nTried.includes(el))
   const idx = randIdx(copy);
   const num = copy.splice(idx,1)[0];
+  if (num === undefined) debugger;
   const nIdx = numbers.indexOf(num);
-  numbers.splice(nIdx,1)[0];
+  numbers.splice(nIdx,1);
   if (!nTried.includes(num)) nTried.push(num);
 
   return num;
@@ -40,7 +41,6 @@ function common(cols,row) {
 
 function chkValid(arr, numbers, n, i, j) {
   // const idx = arr.length - 1 + n;
-  debugger;
   const number = numbers[n-1];
   const col = getCol(arr, numbers.length, n);
   const row = getRow(arr, numbers.length, i, j+1);
@@ -51,7 +51,7 @@ function chkValid(arr, numbers, n, i, j) {
 
 //arr length should be a max of 2 since it is sourcing from 2 columns
 function getPriority(numbers, nextRow, arr, i, j) {
-  debugger;
+  debugger
   if (arr.length === 1) return splPriority(numbers, nextRow, arr[0]);
   const validNext = chkValid(arr, numbers, 1, i, j);
   const validNext2 = chkValid(arr, numbers, 2, i, j);
@@ -106,7 +106,6 @@ function getStop(i){
 }
 
 function getRow(arr, len, i, j) {
-  if (arr.length === 46) debugger;
   if (!arr.length) return arr;
   let ret = [];
   const start = (len**2 * i) - 9 + j;
@@ -162,31 +161,35 @@ function colByIdx(idx) {
 function rowByIdx(idx) {
   const rows = {
     1: [0,1,2,9,10,11,18,19,20], 2: [3,4,5,12,13,14,21,22,23], 3: [6,7,8,15,16,17,24,25,26],
-    4: [27,28,29,36,37,37,44,45,46], 5: [30,31,32,39,40,41,48,49,50], 6: [33,34,35,42,43,44,51,52,53],
+    4: [27,28,29,36,37,38,45,46,47], 5: [30,31,32,39,40,41,48,49,50], 6: [33,34,35,42,43,44,51,52,53],
     7: [54,55,56,63,64,65,72,73,74], 8: [57,58,59,66,67,68,75,76,77], 9: [60,61,62,69,70,71,78,79,80]
   }
   return rows[getLine(rows,idx)];
 }
 
-function chkLine(arr, line, num) {
+function lineValid(arr, line) {
+  let count = {};
   for (let z=0;z<line.length;z++) {
-    if (arr[line[z]][0] === num) return true;
+    if (!arr[line[z]]) continue;
+    if (count[arr[line[z]][0]] === 1) return false;
+    count[arr[line[z]][0]] = 1;
   }
+  return true;
 }
 
 function legalPos(arr, num, idx) {
-  debugger;
-  let result = findNum(arr, num, idx);
   const row = rowByIdx(idx);
   const col = colByIdx(idx);
-  if (chkLine(arr, row, num) || chkLine(arr, col, num)) return false;
-  if (boxIncl(arr, num, idx, true) === true) return false;
+  if (!lineValid(arr, row) || !lineValid(arr, col)) return false;
+  if (!boxValid(arr, idx) === true) return false;
 
   return true;
 }
 
-function chkSwap(pos1,pos2,arr,num) {
-  return legalPos(arr, num, pos1) && legalPos(arr, num, pos2);
+function chkSwap(arr, pos1,pos2,num1,num2) {
+  const copy = JSON.parse(JSON.stringify(arr));
+  makeSwap(copy, pos1,pos2);
+  return legalPos(copy, num1, pos2) && legalPos(copy, num2, pos1);
 }
 
 function makeSwap(arr,pos1,pos2) {
@@ -202,6 +205,7 @@ function findNum(arr, num, idx){
   for (let z=start;z<start+3;z++) {
     let col = colByIdx(z);
     for (let y=0; y<col.length;y++) {
+      if (!arr[col[y]]) continue;
       if (arr[col[y]][0] === num) indices.push(arr.indexOf(arr[col[y]]));
     }
   }
@@ -209,10 +213,15 @@ function findNum(arr, num, idx){
 }
 //getCol? how will it work? Maybe adjust or new version to get elements with their indices?
 
-function boxIncl(arr, num, idx) {
+function boxValid(arr, idx) {
+  let count = {};
   const start = idx - idx % 9;
 
-  for (let z = start; z < start + 9; z++) {  if (arr[z][0] === num) return true };
+  for (let z = start; z < start + 9; z++) { 
+    if (count[arr[z][0]] === 1) return false; 
+    count[arr[z][0]] = 1;
+  };
+  return true;
 }
 
 function tried(numbers, row, col) {
@@ -222,31 +231,45 @@ function tried(numbers, row, col) {
   return arr;
 }
 
-function indices(idx) {
-  const pos = indices[z] % 3;
+function getIndices(idx) {
+  const pos = idx % 3;
 
   if (pos === 0) return [1,2];
   if (pos === 1) return [-1,1];
   if (pos === 2) return [-1,-2];
 }
 
-function keyNum(numbers) {
+function randNum(arr) {
+  return arr[Math.floor(arr.length * Math.random())];
+}
 
+function keyNum(arr, numbers) {
+  let numbChk = numbers.slice();
+  let row = rowByIdx(arr.length-1)
+  for (let z=0; z<row.length;z++) { 
+    if (!arr[row[z]]) continue;
+    if (numbers.includes(arr[row[z]][0])) {
+      let idx = numbChk.indexOf(arr[row[z]][0]);
+      numbChk.splice(idx,1);
+    }
+  };
+  return numbChk.length ? randNum(numbChk) : randNum(numbers);
 }
 
 function findSwap(arr, numbers) {
-  debugger
-  const num = keyNum(numbers);
-  const indices = findNum(arr, num, arr.length-1);
+  const num = keyNum(arr, numbers);
+  const indices = findNum(arr, num, arr.length);
   for (let z=0; z<indices.length; z++) {
-    let idxs = indices(idx);
-      for (let y=0; y<idxs.length; y++) {
-        const swap = chkSwap(arr.length-1, arr.length-1+idxs[y], arr, num);
-        if (swap) {
-          makeSwap(arr, arr.length-1, arr.length-1+idxs[y]);
-          return num;
-        }
+    let idxs = getIndices(indices[z]);
+    for (let y=0; y<idxs.length; y++) {
+      let num2 = arr[indices[z] + idxs[y]][0];
+      const swap = chkSwap(arr, indices[z], indices[z] + idxs[y], num, num2);
+      if (swap) {
+        debugger
+        makeSwap(arr, indices[z], indices[z]+idxs[y]);
+        return num;
       }
+    }
   }
 }
 
@@ -261,7 +284,7 @@ function makeSquares(len = 3) {
       nRow = getNRow(numbers, arr, len, i, j);
       //only relevant since others already used in current box
       const nRowCopy = nRow.splice();
-      const col = getCol(arr, numbers.length);
+      let col = getCol(arr, numbers.length);
       const nextCols = getCols(numbers, arr, len);
       let nTried = tried(numbers, row, col);
       // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
@@ -269,7 +292,10 @@ function makeSquares(len = 3) {
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);
-        if (nTried.length + j === 9) nTried.splice(findSwap(arr,numbers),1);
+        if (nTried.length + j >= 8 && (row.includes(num) || col.includes(num))) {
+          nTried.splice(nTried.indexOf(findSwap(arr,numbers)),1);
+          col = getCol(arr, numbers.length+1);
+        }
         num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
         //nTried has all numbers that arnt in col or row, try to swap the element you must have there based on row up col, will always work?
       }

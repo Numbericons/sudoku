@@ -87,7 +87,9 @@ function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
     }
     if (!nTried.includes(el)) nTried.push(el);
     const numbIdx = numbers.indexOf(el);
-    return numbers.splice(numbIdx, 1)[0];
+    let num = numbers.splice(numbIdx, 1)[0];
+    if (num === undefined) debugger;
+    return num;
   } else {
     return sample(numbers, nTried);
   }
@@ -102,8 +104,7 @@ function getStop(i){
     return 54;
   }
 }
-//j might be 8 for most possible
-//i will be the row from the pos we are checking
+
 function getRow(arr, len, i, j) {
   if (arr.length === 46) debugger;
   if (!arr.length) return arr;
@@ -173,19 +174,19 @@ function chkLine(arr, line, num) {
   }
 }
 
-function legalPos(arr, num, idx, len) {
+function legalPos(arr, num, idx) {
   debugger;
+  let result = findNum(arr, num, idx);
   const row = rowByIdx(idx);
   const col = colByIdx(idx);
   if (chkLine(arr, row, num) || chkLine(arr, col, num)) return false;
-
-  if (boxInclOrRet(arr, num, idx, true) === true) return false;
+  if (boxIncl(arr, num, idx, true) === true) return false;
 
   return true;
 }
 
-function chkSwap(pos1,pos2,arr,num,len) {
-  return legalPos(arr, num, pos1, len) && legalPos(arr, num, pos2, len);
+function chkSwap(pos1,pos2,arr,num) {
+  return legalPos(arr, num, pos1) && legalPos(arr, num, pos2);
 }
 
 function makeSwap(arr,pos1,pos2) {
@@ -194,19 +195,59 @@ function makeSwap(arr,pos1,pos2) {
   arr[pos2] = temp;
 }
 
-function findNum(){}
+function findNum(arr, num, idx){
+  let indices = [];
+  let start = colByIdx(idx)[0] - (idx % 3);
+
+  for (let z=start;z<start+3;z++) {
+    let col = colByIdx(z);
+    for (let y=0; y<col.length;y++) {
+      if (arr[col[y]][0] === num) indices.push(arr.indexOf(arr[col[y]]));
+    }
+  }
+  return indices;
+}
 //getCol? how will it work? Maybe adjust or new version to get elements with their indices?
 
-function boxInclOrRet(arr, num, idx, include) {
+function boxIncl(arr, num, idx) {
   const start = idx - idx % 9;
-  let box = [];
 
-  for (let z = start; z < start + 9; z++) {
-    if (include && arr[z][0] === num) return true;
-    box.push(arr[z])
+  for (let z = start; z < start + 9; z++) {  if (arr[z][0] === num) return true };
+}
+
+function tried(numbers, row, col) {
+  let arr = [];
+  numbers.forEach(num => { if (row.includes(num) || col.includes(num)) arr.push(num) });
+
+  return arr;
+}
+
+function indices(idx) {
+  const pos = indices[z] % 3;
+
+  if (pos === 0) return [1,2];
+  if (pos === 1) return [-1,1];
+  if (pos === 2) return [-1,-2];
+}
+
+function keyNum(numbers) {
+
+}
+
+function findSwap(arr, numbers) {
+  debugger
+  const num = keyNum(numbers);
+  const indices = findNum(arr, num, arr.length-1);
+  for (let z=0; z<indices.length; z++) {
+    let idxs = indices(idx);
+      for (let y=0; y<idxs.length; y++) {
+        const swap = chkSwap(arr.length-1, arr.length-1+idxs[y], arr, num);
+        if (swap) {
+          makeSwap(arr, arr.length-1, arr.length-1+idxs[y]);
+          return num;
+        }
+      }
   }
-
-  return box;
 }
 
 function makeSquares(len = 3) {
@@ -222,17 +263,15 @@ function makeSquares(len = 3) {
       const nRowCopy = nRow.splice();
       const col = getCol(arr, numbers.length);
       const nextCols = getCols(numbers, arr, len);
-      let nTried = []; 
+      let nTried = tried(numbers, row, col);
       // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-      // let test;
-      if (arr.length === 64) legalPos(arr, 4, 4, len);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);
-        // num = j > -1 ? sampleNext(numbers, nRow, nextCols, row, nTried) : sample(numbers, nTried); //flag
+        if (nTried.length + j === 9) nTried.splice(findSwap(arr,numbers),1);
         num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-        //nTried has all numbers taht arnt in col or row, try to swap the element you must have there based on row up col, will always work?
+        //nTried has all numbers that arnt in col or row, try to swap the element you must have there based on row up col, will always work?
       }
       arr.push([num, true]);
     }

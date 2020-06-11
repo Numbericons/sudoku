@@ -77,7 +77,6 @@ function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
   const priority = common(nextCols, nRow);
   if (priority) return getPriority(numbers, nRow, priority, i, j);
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el));
-
   if (nRow.length || valid.length) {
     let el;
     if (nRow.length) {
@@ -112,7 +111,9 @@ function getRow(arr, len, i, j) {
   const start = (len**2 * i) - 9 + j;
   const stop = getStop(i);
   for (let x = start; x >= stop; x -= 9) {
-    for (let z=0;z<3;z++) { ret.push(arr[x+z][0]) } 
+    let sub = [];
+    for (let z=0;z<3;z++) { sub.push(arr[x+z][0]) };
+    ret = sub.concat(ret);
   };
   return ret;
 }
@@ -137,7 +138,6 @@ function getCol(arr, len, offset=0, max=null, num=null) {
 }
 
 function getNRow(numbers, arr, len, i, j) {
-  if (numbers.length < 4 || numbers.length > 6) return [];
   let nRow = getRow(arr, len, i, j + 3);
   // if (j === 3) nRow = getRow(arr,len,i,j+3);
   return nRow.filter(el => numbers.includes(el)); //flag
@@ -169,6 +169,7 @@ function rowByIdx(idx) {
 }
 
 function lineValid(arr, line) {
+  if (!line) return true;
   let count = {};
   for (let z=0;z<line.length;z++) {
     if (!arr[line[z]]) continue;
@@ -257,7 +258,7 @@ function keyNum(arr, numbers) {
   return numbChk.length ? randNum(numbChk) : randNum(numbers);
 }
 
-function findSwap(arr, numbers) {
+function findSwap(arr, numbers, row) {
   const num = keyNum(arr, numbers);
   const indices = findNum(arr, num, arr.length);
   for (let z=0; z<indices.length; z++) {
@@ -268,10 +269,19 @@ function findSwap(arr, numbers) {
       if (swap) {
         debugger
         makeSwap(arr, indices[z], indices[z]+idxs[y]);
-        return num;
+        return row.includes(num) ? num2 : num;
+        // return num;
       }
     }
   }
+}
+
+function cellNumbers(numbers, row) {
+  let ret = [];
+  for (let z=0;z<numbers.length;z++) {
+    if (!row.includes(numbers[z])) ret.push(numbers[z]);
+  }
+  return ret;
 }
 
 function makeSquares(len = 3) {
@@ -282,19 +292,19 @@ function makeSquares(len = 3) {
     let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
       if (j % 3 === 0) row = getRow(arr, len, i, j);
-      nRow = getNRow(numbers, arr, len, i, j);
-      //only relevant since others already used in current box
+      if (arr.length === 66) debugger;
+      if (numbers.length > 4 && numbers.length < 6) nRow = getNRow(numbers, arr, len, i, j);
       const nRowCopy = nRow.splice();
       let col = getCol(arr, numbers.length);
       const nextCols = getCols(numbers, arr, len);
       let nTried = tried(numbers, row, col);
-      // let num = j > -1 ? sampleNext(numbers, nRow, nextCols,row, nTried) : sample(numbers, nTried); //flag
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+      let eligible = cellNumbers(numbers, row);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);
-        if (nTried.length + j > 8 && (row.includes(num) || col.includes(num))) {
-          nTried.splice(nTried.indexOf(findSwap(arr,numbers)),1);
+        if (nTried.length + j > 8 || common(nRow,nTried).length === nRow.length) {
+          nTried.splice(nTried.indexOf(findSwap(arr,numbers, row)),1);
           col = getCol(arr, numbers.length+1);
         }
         num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);

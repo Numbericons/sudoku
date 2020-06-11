@@ -292,14 +292,14 @@ function makeSquares(len = 3) {
     let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
       if (j % 3 === 0) row = getRow(arr, len, i, j);
-      if (arr.length === 66) debugger;
-      if (numbers.length > 4 && numbers.length < 6) nRow = getNRow(numbers, arr, len, i, j);
-      const nRowCopy = nRow.splice();
+      if (arr.length === 39) debugger;
+      if (numbers.length > 3 && numbers.length < 7) nRow = getNRow(numbers, arr, len, i, j);
+      const nRowCopy = nRow.slice();
       let col = getCol(arr, numbers.length);
       const nextCols = getCols(numbers, arr, len);
       let nTried = tried(numbers, row, col);
-      let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       let eligible = cellNumbers(numbers, row);
+      let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       while (row.includes(num) || col.includes(num)) {
         numbers.push(num);
         if (nRowCopy.includes(num)) nRow.push(num);

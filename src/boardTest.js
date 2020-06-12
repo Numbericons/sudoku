@@ -10,7 +10,8 @@ function sample(numbers, nTried) {
   if (num === undefined) debugger;
   const nIdx = numbers.indexOf(num);
   numbers.splice(nIdx,1);
-  if (!nTried.includes(num)) nTried.push(num);
+  nTried.push(num);
+  // if (!nTried.includes(num)) nTried.push(num);
 
   return num;
 }
@@ -34,10 +35,10 @@ function getCols(numbers, arr) {
 }
 //when 9,6,3 we want both when 8,5,2 we want 2nd and when 7,4,1 dont want
 
-function common(cols,row) {
+function common(arr1,arr2) {
   let arr = [];
-  for (let z=0;z<cols.length;z++) { if (row.includes(cols[z])) arr.push(cols[z]) };
-  return false;
+  for (let z=0;z<arr1.length;z++) { if (arr2.includes(arr1[z])) arr.push(arr1[z]) };
+  return arr;
 }
 
 function chkValid(arr, numbers, n, i, j) {
@@ -52,7 +53,6 @@ function chkValid(arr, numbers, n, i, j) {
 
 //arr length should be a max of 2 since it is sourcing from 2 columns
 function getPriority(numbers, nextRow, arr, i, j) {
-  debugger
   if (arr.length === 1) return splPriority(numbers, nextRow, arr[0]);
   const validNext = chkValid(arr, numbers, 1, i, j);
   const validNext2 = chkValid(arr, numbers, 2, i, j);
@@ -74,18 +74,21 @@ function splPriority(numbers,nextRow,el){
 }
 
 function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
-  const priority = common(nextCols, nRow);
-  if (priority) return getPriority(numbers, nRow, priority, i, j);
+  // const priority = common(nextCols, nRow);
+  // if (priority) return getPriority(numbers, nRow, priority, i, j);
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el));
   if (nRow.length || valid.length) {
-    let el;
+    let el, idx;
     if (nRow.length) {
-      let idx = randIdx(nRow);
-      el = nRow.splice(idx,1)[0];
+      // if (common(nTried,nRow).length !== nRow.length) {
+        idx = randIdx(nRow);
+        el = nRow.splice(idx,1)[0];
+      // }
     } else {
       el = valid[randIdx(valid)];
     }
-    if (!nTried.includes(el)) nTried.push(el);
+    nTried.push(el);
+    // if (!nTried.includes(el)) nTried.push(el);
     const numbIdx = numbers.indexOf(el);
     let num = numbers.splice(numbIdx, 1)[0];
     if (num === undefined) debugger;
@@ -220,7 +223,7 @@ function boxValid(arr, idx) {
   const start = idx - idx % 9;
 
   for (let z = start; z < start + 9; z++) { 
-    if (count[arr[z][0]] === 1) return false; 
+    if (!arr[z] || count[arr[z][0]] === 1) return false; 
     count[arr[z][0]] = 1;
   };
   return true;
@@ -229,13 +232,11 @@ function boxValid(arr, idx) {
 function tried(numbers, row, col) {
   let arr = [];
   numbers.forEach(num => { if (row.includes(num) || col.includes(num)) arr.push(num) });
-
   return arr;
 }
 
 function getIndices(idx) {
   const pos = idx % 3;
-
   if (pos === 0) return [1,2];
   if (pos === 1) return [-1,1];
   if (pos === 2) return [-1,-2];
@@ -245,35 +246,54 @@ function randNum(arr) {
   return arr[Math.floor(arr.length * Math.random())];
 }
 
-function keyNum(arr, numbers) {
-  let numbChk = numbers.slice();
-  let row = rowByIdx(arr.length-1)
-  for (let z=0; z<row.length;z++) { 
-    if (!arr[row[z]]) continue;
-    if (numbers.includes(arr[row[z]][0])) {
-      let idx = numbChk.indexOf(arr[row[z]][0]);
-      numbChk.splice(idx,1);
-    }
-  };
+function elementsByIdx(arr, indices) {
+  // debugger
+  // return indices.map(idx => arr[idx][0]);
+  let ret = [];
+  for (let m=0;m<indices.length;m++) {
+    if (arr[indices[m]]) ret.push(arr[indices[m]][0]);
+  }
+  return ret;
+}
+
+function keyNum(arr, numbers, nRow) {
+  if (nRow.length) return randNum(nRow);
+  let numbChk = [];
+  // let idx = arr.length % 9 === 0 ? 
+  let row = arr.length % 9 === 0 ? [] : rowByIdx(arr.length-1);
+  row = elementsByIdx(arr,row);
+  for (let z = 0; z < numbers.length;z++) { 
+    if (!row.includes(numbers[z])) numbChk.push(numbers[z]);
+  }
+  // let numbChk = numbers.slice();
+  // for (let z=0; z<row.length;z++) { 
+  //   if (!arr[row[z]]) continue;
+  //   if (numbers.includes(arr[row[z]][0])) {
+  //     let idx = numbChk.indexOf(arr[row[z]][0]);
+  //     numbChk.splice(idx,1);
+  //   }
+  // };
   return numbChk.length ? randNum(numbChk) : randNum(numbers);
 }
 
-function findSwap(arr, numbers, row) {
-  const num = keyNum(arr, numbers);
+function findSwap(arr, numbers, row, nRow, num, swapped) {
+  // const num = keyNum(arr, numbers, nRow);
   const indices = findNum(arr, num, arr.length);
   for (let z=0; z<indices.length; z++) {
     let idxs = getIndices(indices[z]);
     for (let y=0; y<idxs.length; y++) {
+      if (!arr[indices[z] + idxs[y]]) continue;
       let num2 = arr[indices[z] + idxs[y]][0];
       const swap = chkSwap(arr, indices[z], indices[z] + idxs[y], num, num2);
       if (swap) {
         debugger
         makeSwap(arr, indices[z], indices[z]+idxs[y]);
-        return row.includes(num) ? num2 : num;
-        // return num;
+        swapped = true;
+        return row.includes(num) ? [num2, swapped] : [num, swapped];
       }
     }
   }
+  return null;
 }
 
 function cellNumbers(numbers, row) {
@@ -292,24 +312,34 @@ function makeSquares(len = 3) {
     let nRow = [];
     for (let j = 0; j < len ** 2; j++) {
       if (j % 3 === 0) row = getRow(arr, len, i, j);
-      if (arr.length === 39) debugger;
-      if (numbers.length > 3 && numbers.length < 7) nRow = getNRow(numbers, arr, len, i, j);
+      // if (arr.length === 39) debugger;
+      if (j === 3) nRow = getNRow(numbers, arr, len, i, j);
       const nRowCopy = nRow.slice();
       let col = getCol(arr, numbers.length);
       const nextCols = getCols(numbers, arr, len);
       let nTried = tried(numbers, row, col);
-      let eligible = cellNumbers(numbers, row);
+      // let eligible = cellNumbers(numbers, row);
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+      let swapped = false;
       while (row.includes(num) || col.includes(num)) {
-        numbers.push(num);
+        // numbers.push(num);
+        if (!swapped) numbers.push(num);
+        // swapped = false;
         if (nRowCopy.includes(num)) nRow.push(num);
         if (nTried.length + j > 8 || common(nRow,nTried).length === nRow.length) {
-          nTried.splice(nTried.indexOf(findSwap(arr,numbers, row)),1);
+          let found = findSwap(arr, numbers, row, nRow, num, swapped);
+          if (found) {
+            nTried.splice(nTried.indexOf(found[0]),1);
+            swapped = swapped === found[0] ? false : found[0];
+          } else {
+            swapped = false;
+          }
           col = getCol(arr, numbers.length+1);
         }
-        num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-        //nTried has all numbers that arnt in col or row, try to swap the element you must have there based on row up col, will always work?
+        // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+        if (!swapped) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       }
+      if (numbers.includes(num)) numbers.splice(numbers.indexOf(num),1);
       arr.push([num, true]);
     }
   }

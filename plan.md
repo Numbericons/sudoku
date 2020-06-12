@@ -44,6 +44,12 @@
               //convert idx into a box
               //check if element is contained in that range
               // const box = Math.floor(idx / 9); //0-8
+* sampleNext
+  1. If nRow -> see if any elements that havent been tried first
+  2.    If they all have, try to use any elements not in current row
+    1. If all of current row and nRow have been tried, we need to try swaps with nRow elements
+      2. Last need to try elements not in row
+
 
 Test Checklist
   1. boardIncl

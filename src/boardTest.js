@@ -205,6 +205,7 @@ function makeSwap(arr,pos1,pos2) {
 
 function findNum(arr, num, idx){
   let indices = [];
+  if (!colByIdx(idx)) debugger;
   let start = colByIdx(idx)[0] - (idx % 3);
 
   for (let z=start;z<start+3;z++) {
@@ -276,9 +277,9 @@ function keyNum(arr, numbers, nRow) {
   return numbChk.length ? randNum(numbChk) : randNum(numbers);
 }
 
-function findSwap(arr, numbers, row, nRow, num, swapped) {
+function findSwap(arr, row, num, swapped, adjCol=0) {
   // const num = keyNum(arr, numbers, nRow);
-  const indices = findNum(arr, num, arr.length);
+  const indices = findNum(arr, num, arr.length + adjCol);
   for (let z=0; z<indices.length; z++) {
     let idxs = getIndices(indices[z]);
     for (let y=0; y<idxs.length; y++) {
@@ -286,7 +287,6 @@ function findSwap(arr, numbers, row, nRow, num, swapped) {
       let num2 = arr[indices[z] + idxs[y]][0];
       const swap = chkSwap(arr, indices[z], indices[z] + idxs[y], num, num2);
       if (swap) {
-        debugger
         makeSwap(arr, indices[z], indices[z]+idxs[y]);
         swapped = true;
         return row.includes(num) ? [num2, swapped] : [num, swapped];
@@ -303,6 +303,17 @@ function cellNumbers(numbers, row) {
   }
   return ret;
 }
+
+function removeIfEl(arr, el) {
+  if (arr.includes(el)) arr.splice(arr.indexOf(el), 1);
+}
+
+function lastThree(nTried) {
+  let len = nTried.length - 1;
+  return nTried[len] === nTried[len - 1] && nTried[len - 1] === nTried[len - 2];
+}
+
+function retrySquare() {}
 
 function makeSquares(len = 3) {
   let arr = [];
@@ -327,19 +338,20 @@ function makeSquares(len = 3) {
         // swapped = false;
         if (nRowCopy.includes(num)) nRow.push(num);
         if (nTried.length + j > 8 || common(nRow,nTried).length === nRow.length) {
-          let found = findSwap(arr, numbers, row, nRow, num, swapped);
+          let found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
           if (found) {
             nTried.splice(nTried.indexOf(found[0]),1);
             swapped = swapped === found[0] ? false : found[0];
           } else {
             swapped = false;
           }
-          col = getCol(arr, numbers.length+1);
+          let mod = numbers.includes(num) ? 0 : 1;
+          col = getCol(arr, numbers.length + mod);
         }
         // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
         if (!swapped) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       }
-      if (numbers.includes(num)) numbers.splice(numbers.indexOf(num),1);
+      removeIfEl(numbers,num);
       arr.push([num, true]);
     }
   }

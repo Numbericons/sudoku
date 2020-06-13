@@ -236,11 +236,34 @@ function tried(numbers, row, col) {
   return arr;
 }
 
-function getIndices(idx) {
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    let k = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[k]] = [arr[k], arr[i]];
+  }
+  return arr;
+}
+function adjIndices(idx) {
+  const adjPos = idx % 9;
   const pos = idx % 3;
-  if (pos === 0) return [1,2];
-  if (pos === 1) return [-1,1];
-  if (pos === 2) return [-1,-2];
+  const rowColAdj = [[1,2], [-1,1], [-1,-2]][pos];
+  let arr = [];
+  if (adjPos > 5) {
+    arr = [-3, -6];
+  } else {
+    arr = adjPos > 2 ? [-3, 3] : [3, 6];
+  }
+  for (let z = 0; z < rowColAdj.length;z++) {
+    arr.push(rowColAdj[z]+arr[0]);
+    arr.push(rowColAdj[z]+arr[1]);
+  }
+  return shuffle(arr);
+}
+
+function getIndices(idx, adj) {
+  if (adj) return adjIndices(idx);
+  const pos = idx % 3;
+  return [[1,2], [-1,1], [-1,-2]][pos];
 }
 
 function randNum(arr) {
@@ -248,8 +271,6 @@ function randNum(arr) {
 }
 
 function elementsByIdx(arr, indices) {
-  // debugger
-  // return indices.map(idx => arr[idx][0]);
   let ret = [];
   for (let m=0;m<indices.length;m++) {
     if (arr[indices[m]]) ret.push(arr[indices[m]][0]);
@@ -257,31 +278,32 @@ function elementsByIdx(arr, indices) {
   return ret;
 }
 
-function keyNum(arr, numbers, nRow) {
-  if (nRow.length) return randNum(nRow);
-  let numbChk = [];
-  // let idx = arr.length % 9 === 0 ? 
-  let row = arr.length % 9 === 0 ? [] : rowByIdx(arr.length-1);
-  row = elementsByIdx(arr,row);
-  for (let z = 0; z < numbers.length;z++) { 
-    if (!row.includes(numbers[z])) numbChk.push(numbers[z]);
-  }
-  // let numbChk = numbers.slice();
-  // for (let z=0; z<row.length;z++) { 
-  //   if (!arr[row[z]]) continue;
-  //   if (numbers.includes(arr[row[z]][0])) {
-  //     let idx = numbChk.indexOf(arr[row[z]][0]);
-  //     numbChk.splice(idx,1);
-  //   }
-  // };
-  return numbChk.length ? randNum(numbChk) : randNum(numbers);
-}
+// function keyNum(arr, numbers, nRow) {
+//   if (nRow.length) return randNum(nRow);
+//   let numbChk = [];
+//   // let idx = arr.length % 9 === 0 ? 
+//   let row = arr.length % 9 === 0 ? [] : rowByIdx(arr.length-1);
+//   row = elementsByIdx(arr,row);
+//   for (let z = 0; z < numbers.length;z++) { 
+//     if (!row.includes(numbers[z])) numbChk.push(numbers[z]);
+//   }
+//   // let numbChk = numbers.slice();
+//   // for (let z=0; z<row.length;z++) { 
+//   //   if (!arr[row[z]]) continue;
+//   //   if (numbers.includes(arr[row[z]][0])) {
+//   //     let idx = numbChk.indexOf(arr[row[z]][0]);
+//   //     numbChk.splice(idx,1);
+//   //   }
+//   // };
+//   return numbChk.length ? randNum(numbChk) : randNum(numbers);
+// }
 
 function findSwap(arr, row, num, swapped, adjCol=0) {
   // const num = keyNum(arr, numbers, nRow);
+  if (adjCol) debugger;
   const indices = findNum(arr, num, arr.length + adjCol);
   for (let z=0; z<indices.length; z++) {
-    let idxs = getIndices(indices[z]);
+    let idxs = getIndices(indices[z], adjCol);
     for (let y=0; y<idxs.length; y++) {
       if (!arr[indices[z] + idxs[y]]) continue;
       let num2 = arr[indices[z] + idxs[y]][0];
@@ -333,12 +355,19 @@ function makeSquares(len = 3) {
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       let swapped = false;
       while (row.includes(num) || col.includes(num)) {
+        nTried.push(num);
         // numbers.push(num);
         if (!swapped) numbers.push(num);
         // swapped = false;
         if (nRowCopy.includes(num)) nRow.push(num);
         if (nTried.length + j > 8 || common(nRow,nTried).length === nRow.length) {
-          let found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
+          let found;
+          if (lastThree(nTried)) {
+            found = Math.random() > .5 ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
+          } else {
+            found = findSwap(arr, row, num, swapped);
+          }
+          // found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
           if (found) {
             nTried.splice(nTried.indexOf(found[0]),1);
             swapped = swapped === found[0] ? false : found[0];

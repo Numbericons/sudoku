@@ -263,7 +263,7 @@ function adjIndices(idx) {
 function getIndices(idx, adj) {
   if (adj) return adjIndices(idx);
   const pos = idx % 3;
-  return [[1,2], [-1,1], [-1,-2]][pos];
+  return shuffle([[1,2], [-1,1], [-1,-2]][pos]);
 }
 
 function randNum(arr) {
@@ -300,8 +300,13 @@ function elementsByIdx(arr, indices) {
 
 function findSwap(arr, row, num, swapped, adjCol=0) {
   // const num = keyNum(arr, numbers, nRow);
-  if (adjCol) debugger;
-  const indices = findNum(arr, num, arr.length + adjCol);
+  let indices = findNum(arr, num, arr.length + adjCol);
+  let range = arr.length + adjCol -27 >= 0 ? 1 : 0;
+  if (adjCol) {
+    if (arr.length + adjCol - 54 >= 0) range += 1;
+    indices = indices.filter(num => num - (27 * range) >= 0);
+  }
+  indices = shuffle(indices);
   for (let z=0; z<indices.length; z++) {
     let idxs = getIndices(indices[z], adjCol);
     for (let y=0; y<idxs.length; y++) {
@@ -330,12 +335,44 @@ function removeIfEl(arr, el) {
   if (arr.includes(el)) arr.splice(arr.indexOf(el), 1);
 }
 
-function lastThree(nTried) {
-  let len = nTried.length - 1;
-  return nTried[len] === nTried[len - 1] && nTried[len - 1] === nTried[len - 2];
+function lastX(nTried, num) {
+  let target = nTried[nTried.length -1];
+  for (let x=2;x<=num;x++) {
+    if (nTried[nTried.length-x] !== target) return false;
+  }
+  return true;
+  // let len = nTried.length - 1;
+  // return nTried[len] === nTried[len - 1] && nTried[len - 1] === nTried[len - 2];
 }
 
-function retrySquare() {}
+function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j) {
+  while (row.includes(num) || col.includes(num)) {
+    nTried.push(num);
+    if (!swapped) numbers.push(num);
+    if (nRowCopy.includes(num)) nRow.push(num);
+    if (nTried.length + j > 8 || common(nRow, nTried).length === nRow.length) {
+      let found;
+      if (lastX(nTried, 3)) {
+        const adj = Math.random() > .5 ? 0 : -9;
+        found = findSwap(arr, row, num, swapped, adj);
+      } else {
+        found = findSwap(arr, row, num, swapped);
+      }
+      // found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
+      if (found) {
+        nTried.splice(nTried.indexOf(found[0]), 1);
+        swapped = swapped === found[0] ? false : found[0];
+      } else {
+        swapped = false;
+      }
+      let mod = numbers.includes(num) ? 0 : 1;
+      col = getCol(arr, numbers.length + mod);
+    }
+    // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    if (!swapped) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+  }
+  return num;
+}
 
 function makeSquares(len = 3) {
   let arr = [];
@@ -354,32 +391,32 @@ function makeSquares(len = 3) {
       // let eligible = cellNumbers(numbers, row);
       let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
       let swapped = false;
-      while (row.includes(num) || col.includes(num)) {
-        nTried.push(num);
-        // numbers.push(num);
-        if (!swapped) numbers.push(num);
-        // swapped = false;
-        if (nRowCopy.includes(num)) nRow.push(num);
-        if (nTried.length + j > 8 || common(nRow,nTried).length === nRow.length) {
-          let found;
-          if (lastThree(nTried)) {
-            found = Math.random() > .5 ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
-          } else {
-            found = findSwap(arr, row, num, swapped);
-          }
-          // found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
-          if (found) {
-            nTried.splice(nTried.indexOf(found[0]),1);
-            swapped = swapped === found[0] ? false : found[0];
-          } else {
-            swapped = false;
-          }
-          let mod = numbers.includes(num) ? 0 : 1;
-          col = getCol(arr, numbers.length + mod);
-        }
-        // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-        if (!swapped) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-      }
+      if (row.includes(num) || col.includes(num)) num = retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j);
+      // while (row.includes(num) || col.includes(num)) {
+      //   nTried.push(num);
+      //   if (!swapped) numbers.push(num);
+      //   if (nRowCopy.includes(num)) nRow.push(num);
+      //   if (nTried.length + j > 8 || common(nRow,nTried).length === nRow.length) {
+      //     let found;
+      //     if (lastX(nTried,3)) {
+      //       const adj = Math.random() > .5 ? 0 : -9;
+      //       found = findSwap(arr, row, num, swapped, adj);
+      //     } else {
+      //       found = findSwap(arr, row, num, swapped);
+      //     }
+      //     // found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
+      //     if (found) {
+      //       nTried.splice(nTried.indexOf(found[0]),1);
+      //       swapped = swapped === found[0] ? false : found[0];
+      //     } else {
+      //       swapped = false;
+      //     }
+      //     let mod = numbers.includes(num) ? 0 : 1;
+      //     col = getCol(arr, numbers.length + mod);
+      //   }
+      //   // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+      //   if (!swapped) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+      // }
       removeIfEl(numbers,num);
       arr.push([num, true]);
     }

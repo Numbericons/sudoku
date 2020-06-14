@@ -374,52 +374,44 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
   return num;
 }
 
+function makeRow(arr, len, row, numbers, nRow, i) {
+  for (let j = 0; j < len ** 2; j++) {
+    if (j % 3 === 0) row = getRow(arr, len, i, j);
+    if (j === 3) nRow = getNRow(numbers, arr, len, i, j);
+    const nRowCopy = nRow.slice();
+    let col = getCol(arr, numbers.length);
+    const nextCols = getCols(numbers, arr, len);
+    let nTried = tried(numbers, row, col);
+    let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    let swapped = false;
+    if (row.includes(num) || col.includes(num)) num = retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j);
+
+    removeIfEl(numbers, num);
+    arr.push([num, true]);
+  }
+}
+
 function makeSquares(len = 3) {
   let arr = [];
   for (let i = 0; i < len ** 2; i++) {
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     let row;
     let nRow = [];
-    for (let j = 0; j < len ** 2; j++) {
-      if (j % 3 === 0) row = getRow(arr, len, i, j);
-      // if (arr.length === 39) debugger;
-      if (j === 3) nRow = getNRow(numbers, arr, len, i, j);
-      const nRowCopy = nRow.slice();
-      let col = getCol(arr, numbers.length);
-      const nextCols = getCols(numbers, arr, len);
-      let nTried = tried(numbers, row, col);
-      // let eligible = cellNumbers(numbers, row);
-      let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-      let swapped = false;
-      if (row.includes(num) || col.includes(num)) num = retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j);
-      // while (row.includes(num) || col.includes(num)) {
-      //   nTried.push(num);
-      //   if (!swapped) numbers.push(num);
-      //   if (nRowCopy.includes(num)) nRow.push(num);
-      //   if (nTried.length + j > 8 || common(nRow,nTried).length === nRow.length) {
-      //     let found;
-      //     if (lastX(nTried,3)) {
-      //       const adj = Math.random() > .5 ? 0 : -9;
-      //       found = findSwap(arr, row, num, swapped, adj);
-      //     } else {
-      //       found = findSwap(arr, row, num, swapped);
-      //     }
-      //     // found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
-      //     if (found) {
-      //       nTried.splice(nTried.indexOf(found[0]),1);
-      //       swapped = swapped === found[0] ? false : found[0];
-      //     } else {
-      //       swapped = false;
-      //     }
-      //     let mod = numbers.includes(num) ? 0 : 1;
-      //     col = getCol(arr, numbers.length + mod);
-      //   }
-      //   // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-      //   if (!swapped) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-      // }
-      removeIfEl(numbers,num);
-      arr.push([num, true]);
-    }
+    makeRow(arr, len, row, numbers, nRow, i);
+    // for (let j = 0; j < len ** 2; j++) {
+    //   if (j % 3 === 0) row = getRow(arr, len, i, j);
+    //   if (j === 3) nRow = getNRow(numbers, arr, len, i, j);
+    //   const nRowCopy = nRow.slice();
+    //   let col = getCol(arr, numbers.length);
+    //   const nextCols = getCols(numbers, arr, len);
+    //   let nTried = tried(numbers, row, col);
+    //   let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    //   let swapped = false;
+    //   if (row.includes(num) || col.includes(num)) num = retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j);
+      
+    //   removeIfEl(numbers,num);
+    //   arr.push([num, true]);
+    // }
   }
   return arr;
 }

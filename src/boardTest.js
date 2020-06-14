@@ -341,8 +341,6 @@ function lastX(nTried, num) {
     if (nTried[nTried.length-x] !== target) return false;
   }
   return true;
-  // let len = nTried.length - 1;
-  // return nTried[len] === nTried[len - 1] && nTried[len - 1] === nTried[len - 2];
 }
 
 function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j) {
@@ -398,20 +396,6 @@ function makeSquares(len = 3) {
     let row;
     let nRow = [];
     makeRow(arr, len, row, numbers, nRow, i);
-    // for (let j = 0; j < len ** 2; j++) {
-    //   if (j % 3 === 0) row = getRow(arr, len, i, j);
-    //   if (j === 3) nRow = getNRow(numbers, arr, len, i, j);
-    //   const nRowCopy = nRow.slice();
-    //   let col = getCol(arr, numbers.length);
-    //   const nextCols = getCols(numbers, arr, len);
-    //   let nTried = tried(numbers, row, col);
-    //   let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-    //   let swapped = false;
-    //   if (row.includes(num) || col.includes(num)) num = retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j);
-      
-    //   removeIfEl(numbers,num);
-    //   arr.push([num, true]);
-    // }
   }
   return arr;
 }

@@ -217,7 +217,6 @@ function findNum(arr, num, idx){
   }
   return indices;
 }
-//getCol? how will it work? Maybe adjust or new version to get elements with their indices?
 
 function boxValid(arr, idx) {
   let count = {};
@@ -243,6 +242,7 @@ function shuffle(arr) {
   }
   return arr;
 }
+
 function adjIndices(idx) {
   const adjPos = idx % 9;
   const pos = idx % 3;
@@ -277,7 +277,6 @@ function elementsByIdx(arr, indices) {
   }
   return ret;
 }
-
 // function keyNum(arr, numbers, nRow) {
 //   if (nRow.length) return randNum(nRow);
 //   let numbChk = [];
@@ -297,7 +296,6 @@ function elementsByIdx(arr, indices) {
 //   // };
 //   return numbChk.length ? randNum(numbChk) : randNum(numbers);
 // }
-
 function findSwap(arr, row, num, swapped, adjCol=0) {
   // const num = keyNum(arr, numbers, nRow);
   let indices = findNum(arr, num, arr.length + adjCol);

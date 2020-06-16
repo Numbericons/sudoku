@@ -11,7 +11,6 @@ function sample(numbers, nTried) {
   const nIdx = numbers.indexOf(num);
   numbers.splice(nIdx,1);
   nTried.push(num);
-  // if (!nTried.includes(num)) nTried.push(num);
 
   return num;
 }

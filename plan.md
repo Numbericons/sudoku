@@ -44,6 +44,7 @@
               //convert idx into a box
               //check if element is contained in that range
               // const box = Math.floor(idx / 9); //0-8
+  4. Adjust to make sure it doesnt get stuck on placing only 1 tile indefinitely when others are available
 * sampleNext
   1. If nRow -> see if any elements that havent been tried first
   2.    If they all have, try to use any elements not in current row

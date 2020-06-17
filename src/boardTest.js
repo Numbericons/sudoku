@@ -181,7 +181,7 @@ function lineValid(arr, line) {
   return true;
 }
 
-function legalPos(arr, num, idx) {
+function legalPos(arr, idx) {
   const row = rowByIdx(idx);
   const col = colByIdx(idx);
   if (!lineValid(arr, row) || !lineValid(arr, col)) return false;
@@ -190,10 +190,10 @@ function legalPos(arr, num, idx) {
   return true;
 }
 
-function chkSwap(arr, pos1,pos2,num1,num2) {
+function chkSwap(arr, pos1,pos2) {
   const copy = JSON.parse(JSON.stringify(arr));
   makeSwap(copy, pos1,pos2);
-  return legalPos(copy, num1, pos2) && legalPos(copy, num2, pos1);
+  return legalPos(copy, pos2) && legalPos(copy, pos1);
 }
 
 function makeSwap(arr,pos1,pos2) {
@@ -309,7 +309,7 @@ function findSwap(arr, row, num, swapped, adjCol=0) {
     for (let y=0; y<idxs.length; y++) {
       if (!arr[indices[z] + idxs[y]]) continue;
       let num2 = arr[indices[z] + idxs[y]][0];
-      const swap = chkSwap(arr, indices[z], indices[z] + idxs[y], num, num2);
+      const swap = chkSwap(arr, indices[z], indices[z] + idxs[y]);
       if (swap) {
         makeSwap(arr, indices[z], indices[z]+idxs[y]);
         swapped = true;
@@ -353,7 +353,6 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
       } else {
         found = findSwap(arr, row, num, swapped);
       }
-      // found = !lastThree(nTried) ? findSwap(arr, row, num, swapped) : findSwap(arr, row, num, swapped, -9);
       if (found) {
         nTried.splice(nTried.indexOf(found[0]), 1);
         swapped = swapped === found[0] ? false : found[0];

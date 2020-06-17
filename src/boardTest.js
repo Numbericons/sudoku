@@ -19,9 +19,10 @@ function legalNum(arr, numbers, nTried, num) {
   const copy = JSON.parse(JSON.stringify(arr));
   for (let z=0; z<numbers.length;z++) {
     copy.push([numbers[z],true]);
-    if (legalPos(copy, arr.length)) {
+    if (legalPos(copy, copy.length-1, false)) {
       return getNumber(numbers, numbers[z], nTried);
     }
+    copy.pop();
   }
   let rand = randNum(numbers)
   return getNumber(numbers, rand, nTried);
@@ -193,11 +194,11 @@ function lineValid(arr, line) {
   return true;
 }
 
-function legalPos(arr, idx) {
+function legalPos(arr, idx, box=true) {
   const row = rowByIdx(idx);
   const col = colByIdx(idx);
   if (!lineValid(arr, row) || !lineValid(arr, col)) return false;
-  if (!boxValid(arr, idx) === true) return false;
+  if (box && !boxValid(arr, idx) === true) return false;
 
   return true;
 }
@@ -359,38 +360,38 @@ function lastX(nTried, num) {
   return true;
 }
 
-function retrySquare(arr, row, col, numbers, num, nTried, swapOrNext, nRow, nRowCopy, nextCols, i, j) {
+function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j) {
   while (row.includes(num) || col.includes(num)) {
     nTried.push(num);
-    if (!swapOrNext) numbers.push(num);
+    if (!swapped) numbers.push(num);
     if (nRowCopy.includes(num)) nRow.push(num);
+    let found, next;
     if (nTried.length + j > 8 || common(nRow, nTried).length === nRow.length) {
-      let found;
       if (lastX(nTried, 8)) {
         // if (chkPos(arr, arr.length, num)) {
-          temp = legalNum(arr, numbers, nTried, num);
-          if (num !== temp) {
-            num = temp;
-            swapOrNext = true;
-          }
+          num = legalNum(arr, numbers, nTried, num);
+          next = true;
+          // if (num !== temp) {
+          // }
       }
-      if (!swapOrNext && lastX(nTried, 3)) {
+      if (!swapped && !next && lastX(nTried, 3)) {
         const adj = Math.random() > .5 ? 0 : -9;
-        found = findSwap(arr, row, num, swapOrNext, adj);
-      } else if (!swapOrNext) {
-        found = findSwap(arr, row, num, swapOrNext);
+        found = findSwap(arr, row, num, swapped, adj);
+      } else if (!swapped) {
+        found = findSwap(arr, row, num, swapped);
       }
       if (found) {
         nTried.splice(nTried.indexOf(found[0]), 1);
-        swapOrNext = swapOrNext === found[0] ? false : found[0];
+        swapped = swapped === found[0] ? false : found[0];
       } else {
-        swapOrNext = false;
+        swapped = false;
       }
       let mod = numbers.includes(num) ? 0 : 1;
       col = getCol(arr, numbers.length + mod);
     }
     // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-    if (!swapOrNext) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    if (!swapped && !next) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    next = false;
   }
   return num;
 }

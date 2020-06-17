@@ -15,7 +15,7 @@ function sample(numbers, nTried) {
   return num;
 }
 
-function legalNum(arr, numbers, nTried, num) {
+function legalNum(arr, numbers, nTried) {
   const copy = JSON.parse(JSON.stringify(arr));
   for (let z=0; z<numbers.length;z++) {
     copy.push([numbers[z],true]);
@@ -362,6 +362,7 @@ function lastX(nTried, num) {
 
 function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j) {
   while (row.includes(num) || col.includes(num)) {
+    if (arr.length === 75) debugger;
     nTried.push(num);
     if (!swapped) numbers.push(num);
     if (nRowCopy.includes(num)) nRow.push(num);

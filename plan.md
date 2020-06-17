@@ -54,3 +54,11 @@
 
 Test Checklist
   1. boardIncl
+
+
+
+
+  Clean up plan
+    Retry Square check for swap or next
+    Legal Num
+    Check get row calculation

@@ -15,6 +15,18 @@ function sample(numbers, nTried) {
   return num;
 }
 
+function legalNum(arr, numbers, nTried, num) {
+  const copy = JSON.parse(JSON.stringify(arr));
+  for (let z=0; z<numbers.length;z++) {
+    copy.push([numbers[z],true]);
+    if (legalPos(copy, arr.length)) {
+      return getNumber(numbers, numbers[z], nTried);
+    }
+  }
+  let rand = randNum(numbers)
+  return getNumber(numbers, rand, nTried);
+}
+
 function getCols(numbers, arr) {
   let nextCols = [];
   const nLen = numbers.length;
@@ -72,6 +84,12 @@ function splPriority(numbers,nextRow,el){
   return nextRow.splice(rowIdx,1)[0];
 }
 
+function getNumber(numbers, n, nTried) {
+  nTried.push(n);
+  const numbIdx = numbers.indexOf(n);
+  return numbers.splice(numbIdx, 1)[0];
+}
+
 function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
   // const priority = common(nextCols, nRow);
   // if (priority) return getPriority(numbers, nRow, priority, i, j);
@@ -82,16 +100,10 @@ function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
       // if (common(nTried,nRow).length !== nRow.length) {
         idx = randIdx(nRow);
         el = nRow.splice(idx,1)[0];
-      // }
     } else {
       el = valid[randIdx(valid)];
     }
-    nTried.push(el);
-    // if (!nTried.includes(el)) nTried.push(el);
-    const numbIdx = numbers.indexOf(el);
-    let num = numbers.splice(numbIdx, 1)[0];
-    if (num === undefined) debugger;
-    return num;
+    return getNumber(numbers, el, nTried);
   } else {
     return sample(numbers, nTried);
   }
@@ -194,6 +206,13 @@ function chkSwap(arr, pos1,pos2) {
   const copy = JSON.parse(JSON.stringify(arr));
   makeSwap(copy, pos1,pos2);
   return legalPos(copy, pos2) && legalPos(copy, pos1);
+}
+
+function chkPos(arr, pos, num) {
+  const copy = JSON.parse(JSON.stringify(arr));
+  copy.push(10);
+  copy.push(num);
+  return legalPos(copy, pos);
 }
 
 function makeSwap(arr,pos1,pos2) {
@@ -334,36 +353,44 @@ function removeIfEl(arr, el) {
 
 function lastX(nTried, num) {
   let target = nTried[nTried.length -1];
-  for (let x=2;x<=num;x++) {
+  for (let x=1;x<=num;x++) {
     if (nTried[nTried.length-x] !== target) return false;
   }
   return true;
 }
 
-function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j) {
+function retrySquare(arr, row, col, numbers, num, nTried, swapOrNext, nRow, nRowCopy, nextCols, i, j) {
   while (row.includes(num) || col.includes(num)) {
     nTried.push(num);
-    if (!swapped) numbers.push(num);
+    if (!swapOrNext) numbers.push(num);
     if (nRowCopy.includes(num)) nRow.push(num);
     if (nTried.length + j > 8 || common(nRow, nTried).length === nRow.length) {
       let found;
-      if (lastX(nTried, 3)) {
+      if (lastX(nTried, 8)) {
+        // if (chkPos(arr, arr.length, num)) {
+          temp = legalNum(arr, numbers, nTried, num);
+          if (num !== temp) {
+            num = temp;
+            swapOrNext = true;
+          }
+      }
+      if (!swapOrNext && lastX(nTried, 3)) {
         const adj = Math.random() > .5 ? 0 : -9;
-        found = findSwap(arr, row, num, swapped, adj);
-      } else {
-        found = findSwap(arr, row, num, swapped);
+        found = findSwap(arr, row, num, swapOrNext, adj);
+      } else if (!swapOrNext) {
+        found = findSwap(arr, row, num, swapOrNext);
       }
       if (found) {
         nTried.splice(nTried.indexOf(found[0]), 1);
-        swapped = swapped === found[0] ? false : found[0];
+        swapOrNext = swapOrNext === found[0] ? false : found[0];
       } else {
-        swapped = false;
+        swapOrNext = false;
       }
       let mod = numbers.includes(num) ? 0 : 1;
       col = getCol(arr, numbers.length + mod);
     }
     // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
-    if (!swapped) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    if (!swapOrNext) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
   }
   return num;
 }

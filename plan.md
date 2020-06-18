@@ -62,3 +62,4 @@ Test Checklist
     +Retry Square check for swap or next
     +Legal Num
     Check get row calculation
+    getRow

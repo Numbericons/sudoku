@@ -59,6 +59,6 @@ Test Checklist
 
 
   Clean up plan
-    Retry Square check for swap or next
-    Legal Num
+    +Retry Square check for swap or next
+    +Legal Num
     Check get row calculation

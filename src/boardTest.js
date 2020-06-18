@@ -19,9 +19,7 @@ function legalNum(arr, numbers, nTried) {
   const copy = JSON.parse(JSON.stringify(arr));
   for (let z=0; z<numbers.length;z++) {
     copy.push([numbers[z],true]);
-    if (legalPos(copy, copy.length-1, false)) {
-      return getNumber(numbers, numbers[z], nTried);
-    }
+    if (legalPos(copy, copy.length-1, false)) return getNumber(numbers, numbers[z], nTried);
     copy.pop();
   }
   let rand = randNum(numbers)
@@ -368,18 +366,13 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
     if (nRowCopy.includes(num)) nRow.push(num);
     let found, next;
     if (nTried.length + j > 8 || common(nRow, nTried).length === nRow.length) {
-      if (lastX(nTried, 8)) {
-        // if (chkPos(arr, arr.length, num)) {
+      if (lastX(nTried, 12)) {
           num = legalNum(arr, numbers, nTried, num);
           next = true;
-          // if (num !== temp) {
-          // }
       }
-      if (!swapped && !next && lastX(nTried, 3)) {
-        const adj = Math.random() > .5 ? 0 : -9;
+      if (!swapped && !next) {
+        const adj = lastX(nTried, 6) && Math.random() > .5 ? -9 : 0;
         found = findSwap(arr, row, num, swapped, adj);
-      } else if (!swapped) {
-        found = findSwap(arr, row, num, swapped);
       }
       if (found) {
         nTried.splice(nTried.indexOf(found[0]), 1);
@@ -390,7 +383,6 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
       let mod = numbers.includes(num) ? 0 : 1;
       col = getCol(arr, numbers.length + mod);
     }
-    // num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
     if (!swapped && !next) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
     next = false;
   }

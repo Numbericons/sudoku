@@ -120,17 +120,7 @@ function getStop(i){
 
 function getRow(arr) {
   let row = rowByIdx(arr.length);
-  return row.filter(el => arr[el]).map(idx => arr[idx]);
-  // if (!arr.length) return arr;
-  // let ret = [];
-  // const start = (len**2 * i) - 9 + j;
-  // const stop = getStop(i);
-  // for (let x = start; x >= stop; x -= 9) {
-  //   let sub = [];
-  //   for (let z=0;z<3;z++) { sub.push(arr[x+z][0]) };
-  //   ret = sub.concat(ret);
-  // };
-  // return ret;
+  return row.filter(el => arr[el]).map(idx => arr[idx][0]);
 }
 
 function getCol(arr, len, offset=0, max=null, num=null) {
@@ -349,7 +339,7 @@ function getSwap(arr, row, num, swapped, nTried) {
   return findSwap(arr, row, num, swapped, adj);
 }
 
-function getFound(nTried, found) {
+function getFound(nTried, found, swapped) {
   if (found) {
     nTried.splice(nTried.indexOf(found[0]), 1);
     return swapped === found[0] ? false : found[0];
@@ -368,25 +358,11 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
           next = true;
       }
       if (!swapped && !next) found = getSwap(arr, row, num, swapped, nTried);
-      // if (!swapped && !next) {
-      //   const cage = Math.floor(arr.length / 9);
-      //   let adj = (lastX(nTried, 4) && Math.random() > .5) ? -9 : 0;
-
-      //   if (adj && (cage === 5 || cage === 8) && Math.random() > .5) adj -= -18;
-      //   found = findSwap(arr, row, num, swapped, adj);
-      // }
-      // swapped = getFound(nTried, found);
-      if (found) {
-        nTried.splice(nTried.indexOf(found[0]), 1);
-        swapped = swapped === found[0] ? false : found[0];
-      } else {
-        swapped = false;
-      }
+      swapped = getFound(nTried, found, swapped);
       let mod = numbers.includes(num) ? 0 : 1;
       col = getCol(arr, numbers.length + mod);
     }
     row = getRow(arr);
-    // row = rowByIdx(arr.length).map(idx => arr[idx]);
     if (!swapped && !next) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
     next = false;
   }
@@ -395,7 +371,6 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
 
 function makeRow(arr, len, numbers, i) {
   for (let j = 0; j < len ** 2; j++) {
-    if (arr.length === 69) debugger;
     let row = getRow(arr);
     let nRow = j === 3 ? getNRow(numbers, arr, len, i, j) : [];
 

@@ -354,8 +354,9 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
     let found, next;
     if (nTried.length + j > 8 || common(nRow, nTried).length === nRow.length) {
       if (lastX(nTried, 10)) {
-          num = legalNum(arr, numbers, nTried, num);
-          next = true;
+        const copy = num;
+        num = legalNum(arr, numbers, nTried, num);
+        if (num !== copy) next = true;
       }
       if (!swapped && !next) found = getSwap(arr, row, num, swapped, nTried);
       swapped = getFound(nTried, found, swapped);

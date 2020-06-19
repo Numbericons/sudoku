@@ -55,7 +55,7 @@ function chkValid(arr, numbers, n, i, j) {
   // const idx = arr.length - 1 + n;
   const number = numbers[n-1];
   const vert = getCol(arr, numbers.length, n);
-  const horiz = getRow(arr, numbers.length, i, j+1);
+  const horiz = getRow(arr);
 
   return !vert.includes(number) && !horiz.includes(number);
 }
@@ -119,8 +119,8 @@ function getStop(i){
 }
 
 function getRow(arr) {
-  let row = rowByIdx(arr.length);
-  return row.filter(el => arr[el]).map(idx => arr[idx][0]);
+  let line = rowByIdx(arr.length);
+  return line.filter(el => arr[el]).map(idx => arr[idx][0]);
 }
 
 function getCol(arr, len, offset=0, max=null, num=null) {
@@ -335,7 +335,7 @@ function getSwap(arr, row, num, swapped, nTried) {
   const cage = Math.floor(arr.length / 9);
   let adj = (lastX(nTried, 4) && Math.random() > .5) ? -9 : 0;
 
-  if (adj && (cage === 5 || cage === 8) && Math.random() > .5) adj -= -18;
+  if (adj && (cage === 5 || cage === 8) && Math.random() > .5) adj -= 9;
   return findSwap(arr, row, num, swapped, adj);
 }
 

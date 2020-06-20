@@ -116,8 +116,8 @@ function getStop(i){
   }
 }
 
-function getRow(arr) {
-  let line = rowByIdx(arr.length);
+function getRow(arr, offset=0) {
+  let line = rowByIdx(arr.length+offset);
   return line.filter(el => arr[el]).map(idx => arr[idx][0]);
 }
 
@@ -140,8 +140,8 @@ function getCol(arr, len, offset=0, max=null, num=null) {
   return ret;
 }
 
-function getNRow(numbers, arr, len, i, j) {
-  let nRow = getRow(arr, len, i, j + 3);
+function getNRow(numbers, arr) {
+  let nRow = getRow(arr, 3);
   // if (j === 3) nRow = getRow(arr,len,i,j+3);
   return nRow.filter(el => numbers.includes(el)); //flag
 }
@@ -371,7 +371,8 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
 function makeRow(arr, len, numbers, i) {
   for (let j = 0; j < len ** 2; j++) {
     let row = getRow(arr);
-    let nRow = j === 3 ? getNRow(numbers, arr, len, i, j) : [];
+    // if (arr.length === 39) debugger;
+    let nRow = j === 3 ? getNRow(numbers, arr) : [];
 
     const nRowCopy = nRow.slice();
     let col = getCol(arr, numbers.length);

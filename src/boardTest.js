@@ -51,15 +51,13 @@ function common(arr1,arr2) {
   return arr;
 }
 
-function chkValid(arr, numbers, n, i, j) {
-  // const idx = arr.length - 1 + n;
+function chkValid(arr, numbers, n) {
   const number = numbers[n-1];
   const vert = getCol(arr, numbers.length, n);
   const horiz = getRow(arr);
 
   return !vert.includes(number) && !horiz.includes(number);
 }
-// need to get row and columns for both elements
 
 //arr length should be a max of 2 since it is sourcing from 2 columns
 function getPriority(numbers, nextRow, arr, i, j) {

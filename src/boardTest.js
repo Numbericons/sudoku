@@ -22,23 +22,21 @@ function legalNum(arr, numbers, nTried) {
     if (legalPos(copy, copy.length-1, false)) return getNumber(numbers, numbers[z], nTried);
     copy.pop();
   }
-  let rand = randNum(numbers)
+  let rand = randNum(numbers);
   return getNumber(numbers, rand, nTried);
 }
 
 function getCols(numbers, arr) {
   let nextCols = [];
   const nLen = numbers.length;
-  const firstCol = [9,6,3];
-  const secondCol = [8,5,2];
-  const thirdCol = [7,4,1];
+  const cols = [[9, 6, 3], [8, 5, 2], [7, 4, 1]];
 
-  if (firstCol.includes(nLen) || secondCol.includes(nLen)) nextCols = getCol(arr, numbers.length, 1);
-  if (firstCol.includes(nLen)) nextCols = nextCols.concat(getCol(arr, numbers.length, 2));
+  if (cols[0].includes(nLen) || cols[1].includes(nLen)) nextCols = getCol(arr, numbers.length, 1);
+  if (cols[0].includes(nLen)) nextCols = nextCols.concat(getCol(arr, numbers.length, 2));
 
   if (numbers.length > 0) {
-    if (thirdCol.includes(nLen)) nextCols = nextCols.concat(getCol(arr, numbers.length, -1));
-    if (thirdCol.includes(nLen)) nextCols = nextCols.concat(getCol(arr, numbers.length, -2)); //flag
+    if (cols[2].includes(nLen)) nextCols = nextCols.concat(getCol(arr, numbers.length, -1));
+    if (cols[2].includes(nLen)) nextCols = nextCols.concat(getCol(arr, numbers.length, -2)); //flag
   }
 
   return nextCols;
@@ -58,37 +56,13 @@ function chkValid(arr, numbers, n) {
   return !vert.includes(number) && !horiz.includes(number);
 }
 
-//arr length should be a max of 2 since it is sourcing from 2 columns
-// function getPriority(numbers, nextRow, arr, i, j) {
-//   if (arr.length === 1) return splPriority(numbers, nextRow, arr[0]);
-//   const validNext = chkValid(arr, numbers, 1, i, j);
-//   const validNext2 = chkValid(arr, numbers, 2, i, j);
-//   if (validNext && validNext2) {
-//     return Math.random > .5 ? splPriority(numbers, nextRow, arr[0]) : splPriority(numbers, nextRow, arr[1]);
-//   } else if (validNext) {
-//     return splPriority(numbers, nextRow, arr[0]);
-//   } else {
-//     return splPriority(numbers, nextRow, arr[1]);
-//   }
-// }
-
-// function splPriority(numbers,nextRow,el){
-//   const numbIdx = numbers.indexOf(el);
-//   numbers.splice(numbIdx,1);
-//   const rowIdx = nextRow.indexOf(el);
-
-//   return nextRow.splice(rowIdx,1)[0];
-// }
-
 function getNumber(numbers, n, nTried) {
   nTried.push(n);
   const numbIdx = numbers.indexOf(n);
   return numbers.splice(numbIdx, 1)[0];
 }
 
-function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
-  // const priority = common(nextCols, nRow);
-  // if (priority) return getPriority(numbers, nRow, priority, i, j);
+function sampleNext(numbers, nRow, nextCols, row, nTried){
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el));
   if (nRow.length || valid.length) {
     let el, idx;

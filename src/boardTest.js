@@ -94,7 +94,6 @@ function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
   if (nRow.length || valid.length) {
     let el, idx;
     if (nRow.length) {
-      // if (common(nTried,nRow).length !== nRow.length) {
         idx = randIdx(nRow);
         el = nRow.splice(idx,1)[0];
     } else {
@@ -107,13 +106,8 @@ function sampleNext(numbers, nRow, nextCols, row, nTried, i, j){
 }
 
 function getStop(i){
-  if (i < 3) {
-    return 0;
-  } else if (i < 6) {
-    return 27;
-  } else {
-    return 54;
-  }
+  if (i < 3) return 0;
+  return i < 6 ? 27 : 54;
 }
 
 function getRow(arr, offset=0) {
@@ -193,6 +187,7 @@ function legalPos(arr, idx, box=true) {
 function chkSwap(arr, pos1,pos2) {
   const copy = JSON.parse(JSON.stringify(arr));
   makeSwap(copy, pos1,pos2);
+
   return legalPos(copy, pos2) && legalPos(copy, pos1);
 }
 
@@ -200,6 +195,7 @@ function chkPos(arr, pos, num) {
   const copy = JSON.parse(JSON.stringify(arr));
   copy.push(10);
   copy.push(num);
+
   return legalPos(copy, pos);
 }
 
@@ -211,7 +207,6 @@ function makeSwap(arr,pos1,pos2) {
 
 function findNum(arr, num, idx){
   let indices = [];
-  if (!colByIdx(idx)) debugger;
   let start = colByIdx(idx)[0] - (idx % 3);
 
   for (let z=start;z<start+3;z++) {
@@ -254,6 +249,7 @@ function adjIndices(idx) {
   const pos = idx % 3;
   const rowColAdj = [[1,2], [-1,1], [-1,-2]][pos];
   let arr = [];
+
   if (adjPos > 5) {
     arr = [-3, -6];
   } else {
@@ -370,7 +366,6 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
 function makeRow(arr, len, numbers, i) {
   for (let j = 0; j < len ** 2; j++) {
     let row = getRow(arr);
-    // if (arr.length === 39) debugger;
     let nRow = j === 3 ? getNRow(numbers, arr) : [];
 
     const nRowCopy = nRow.slice();

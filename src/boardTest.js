@@ -312,6 +312,12 @@ function getFound(nTried, found, swapped) {
   }
 }
 
+function retryX(arr, numbers, nTried, num) {
+  const copy = num;
+  num = legalNum(arr, numbers, nTried, num);
+  return num !== copy;
+}
+
 function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j, len) {
   while (row.includes(num) || col.includes(num)) {
     nTried.push(num);
@@ -319,12 +325,9 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
     if (nRowCopy.includes(num)) nRow.push(num);
     let found, next;
     if (nTried.length + j > 8 || common(nRow, nTried).length === nRow.length) {
-      if (lastX(nTried, 10)) {
-        const copy = num;
-        num = legalNum(arr, numbers, nTried, num);
-        if (num !== copy) next = true;
-      }
+      if (lastX(nTried, 10)) next = true;
       if (!swapped && !next) found = getSwap(arr, row, num, swapped, nTried);
+      
       swapped = getFound(nTried, found, swapped);
       let mod = numbers.includes(num) ? 0 : 1;
       col = getCol(arr, numbers.length + mod);

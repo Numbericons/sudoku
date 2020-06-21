@@ -142,7 +142,6 @@ function getCol(arr, len, offset=0, max=null, num=null) {
 
 function getNRow(numbers, arr) {
   let nRow = getRow(arr, 3);
-  // if (j === 3) nRow = getRow(arr,len,i,j+3);
   return nRow.filter(el => numbers.includes(el)); //flag
 }
 

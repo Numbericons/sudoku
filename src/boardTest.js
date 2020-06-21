@@ -43,7 +43,6 @@ function getCols(numbers, arr) {
 
   return nextCols;
 }
-//when 9,6,3 we want both when 8,5,2 we want 2nd and when 7,4,1 dont want
 
 function common(arr1,arr2) {
   let arr = [];
@@ -60,26 +59,26 @@ function chkValid(arr, numbers, n) {
 }
 
 //arr length should be a max of 2 since it is sourcing from 2 columns
-function getPriority(numbers, nextRow, arr, i, j) {
-  if (arr.length === 1) return splPriority(numbers, nextRow, arr[0]);
-  const validNext = chkValid(arr, numbers, 1, i, j);
-  const validNext2 = chkValid(arr, numbers, 2, i, j);
-  if (validNext && validNext2) {
-    return Math.random > .5 ? splPriority(numbers, nextRow, arr[0]) : splPriority(numbers, nextRow, arr[1]);
-  } else if (validNext) {
-    return splPriority(numbers, nextRow, arr[0]);
-  } else {
-    return splPriority(numbers, nextRow, arr[1]);
-  }
-}
+// function getPriority(numbers, nextRow, arr, i, j) {
+//   if (arr.length === 1) return splPriority(numbers, nextRow, arr[0]);
+//   const validNext = chkValid(arr, numbers, 1, i, j);
+//   const validNext2 = chkValid(arr, numbers, 2, i, j);
+//   if (validNext && validNext2) {
+//     return Math.random > .5 ? splPriority(numbers, nextRow, arr[0]) : splPriority(numbers, nextRow, arr[1]);
+//   } else if (validNext) {
+//     return splPriority(numbers, nextRow, arr[0]);
+//   } else {
+//     return splPriority(numbers, nextRow, arr[1]);
+//   }
+// }
 
-function splPriority(numbers,nextRow,el){
-  const numbIdx = numbers.indexOf(el);
-  numbers.splice(numbIdx,1);
-  const rowIdx = nextRow.indexOf(el);
+// function splPriority(numbers,nextRow,el){
+//   const numbIdx = numbers.indexOf(el);
+//   numbers.splice(numbIdx,1);
+//   const rowIdx = nextRow.indexOf(el);
 
-  return nextRow.splice(rowIdx,1)[0];
-}
+//   return nextRow.splice(rowIdx,1)[0];
+// }
 
 function getNumber(numbers, n, nTried) {
   nTried.push(n);

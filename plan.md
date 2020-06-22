@@ -53,7 +53,7 @@
 
 
 Test Checklist
-  1. boardIncl
+  1. +boardIncl
 
 
 
@@ -61,5 +61,10 @@ Test Checklist
   Clean up plan
     +Retry Square check for swap or next
     +Legal Num
-    Check get row calculation
-    getRow
+    +Check get row calculation
+    +getRow
+
+
+Multiple Swap
+  After swapping a pair if that makes the board invalid
+    Try to swap the other initial val el as well and look for swaps

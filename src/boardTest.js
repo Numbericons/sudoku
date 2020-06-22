@@ -2,8 +2,9 @@ function randIdx(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 
-function sample(numbers, nTried) {
-  const copy = numbers.slice().filter(el => !nTried.includes(el))
+function sample(arr, numbers, nTried) {
+  // const copy = numbers.slice().filter(el => !nTried.includes(el));
+  const copy = numbers.slice().filter(el => !nTried.includes(el) && chkPos(arr, arr.length, el));
   const idx = randIdx(copy);
   let num = copy.splice(idx,1)[0];
   if (!num) num = randNum(numbers);
@@ -62,7 +63,7 @@ function getNumber(numbers, n, nTried) {
   return numbers.splice(numbIdx, 1)[0];
 }
 
-function sampleNext(numbers, nRow, nextCols, row, nTried){
+function sampleNext(arr, numbers, nRow, nextCols, row, nTried){
   const valid = nextCols.filter(el=> numbers.includes(el) && !row.includes(el));
   if (nRow.length || valid.length) {
     let el, idx;
@@ -74,7 +75,7 @@ function sampleNext(numbers, nRow, nextCols, row, nTried){
     }
     return getNumber(numbers, el, nTried);
   } else {
-    return sample(numbers, nTried);
+    return sample(arr, numbers, nTried);
   }
 }
 
@@ -165,9 +166,8 @@ function chkSwap(arr, pos1,pos2) {
 }
 
 function chkPos(arr, pos, num) {
-  const copy = JSON.parse(JSON.stringify(arr));
-  copy.push(10);
-  copy.push(num);
+  let copy = JSON.parse(JSON.stringify(arr));
+  copy[pos] = [num,true];
 
   return legalPos(copy, pos);
 }
@@ -315,7 +315,7 @@ function getFound(nTried, found, swapped) {
 function retryX(arr, numbers, nTried, num) {
   const copy = num;
   num = legalNum(arr, numbers, nTried, num);
-  return num !== copy;
+  return num;
 }
 
 function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j, len) {
@@ -324,16 +324,17 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
     if (!swapped) numbers.push(num);
     if (nRowCopy.includes(num)) nRow.push(num);
     let found, next;
+
     if (nTried.length + j > 8 || common(nRow, nTried).length === nRow.length) {
-      if (lastX(nTried, 10)) next = true;
+      if (lastX(nTried, 10)) num = retryX(arr, numbers, nTried, num) || num;
       if (!swapped && !next) found = getSwap(arr, row, num, swapped, nTried);
-      
+
       swapped = getFound(nTried, found, swapped);
       let mod = numbers.includes(num) ? 0 : 1;
       col = getCol(arr, numbers.length + mod);
     }
     row = getRow(arr);
-    if (!swapped && !next) num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    if (!swapped && !next) num = sampleNext(arr, numbers, nRow, nextCols, row, nTried, i, j);
     next = false;
   }
   return num;
@@ -349,10 +350,10 @@ function makeRow(arr, len, numbers, i) {
     const nextCols = getCols(numbers, arr, len);
 
     let nTried = tried(numbers, row, col);
-    let num = sampleNext(numbers, nRow, nextCols, row, nTried, i, j);
+    let num = sampleNext(arr, numbers, nRow, nextCols, row, nTried, i, j);
     let swapped = false;
     if (row.includes(num) || col.includes(num)) num = retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j, len);
-
+    if (num === undefined) break;
     removeIfEl(numbers, num);
     arr.push([num, true]);
   }

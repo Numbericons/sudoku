@@ -2,6 +2,10 @@ function randIdx(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 
+function getMissing(arr) {
+
+}
+
 function sample(arr, numbers, nTried) {
   // const copy = numbers.slice().filter(el => !nTried.includes(el));
   const copy = numbers.slice().filter(el => !nTried.includes(el) && chkPos(arr, arr.length, el));
@@ -9,6 +13,7 @@ function sample(arr, numbers, nTried) {
   let num = copy.splice(idx,1)[0];
   if (!num) num = randNum(numbers);
   if (num === undefined) debugger;
+  if (num === undefined) num = getMissing(arr);
   const nIdx = numbers.indexOf(num);
   numbers.splice(nIdx,1);
   nTried.push(num);

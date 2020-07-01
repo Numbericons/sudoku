@@ -2,18 +2,18 @@ function randIdx(arr) {
   return Math.floor(Math.random() * arr.length);
 }
 
-function getMissing(arr) {
-
+function validNumbers(arr) {
+  return [1,2,3,4,5,6,7,8,9].filter(num => !arr.includes(num));
 }
 
-function sample(arr, numbers, nTried) {
+function sample(arr, numbers, nTried, row) {
   // const copy = numbers.slice().filter(el => !nTried.includes(el));
   const copy = numbers.slice().filter(el => !nTried.includes(el) && chkPos(arr, arr.length, el));
   const idx = randIdx(copy);
   let num = copy.splice(idx,1)[0];
   if (!num) num = randNum(numbers);
   if (num === undefined) debugger;
-  if (num === undefined) num = getMissing(arr);
+  // if (num === undefined) numbers = validNumbers(row);
   const nIdx = numbers.indexOf(num);
   numbers.splice(nIdx,1);
   nTried.push(num);
@@ -80,7 +80,7 @@ function sampleNext(arr, numbers, nRow, nextCols, row, nTried){
     }
     return getNumber(numbers, el, nTried);
   } else {
-    return sample(arr, numbers, nTried);
+    return sample(arr, numbers, nTried, row);
   }
 }
 
@@ -170,11 +170,11 @@ function chkSwap(arr, pos1,pos2) {
   return legalPos(copy, pos2) && legalPos(copy, pos1);
 }
 
-function chkPos(arr, pos, num) {
+function chkPos(arr, pos, num, box=true) {
   let copy = JSON.parse(JSON.stringify(arr));
   copy[pos] = [num,true];
 
-  return legalPos(copy, pos);
+  return legalPos(copy, pos, box);
 }
 
 function makeSwap(arr,pos1,pos2) {
@@ -201,8 +201,10 @@ function boxValid(arr, idx) {
   let count = {};
   const start = idx - idx % 9;
 
-  for (let z = start; z < start + 9; z++) { 
-    if (!arr[z] || count[arr[z][0]] === 1) return false; 
+  for (let z = start; z < start + 9; z++) {
+    if (!arr[z]) return true;
+    if (count[arr[z][0]] === 1) return false;
+    
     count[arr[z][0]] = 1;
   };
   return true;
@@ -320,10 +322,11 @@ function getFound(nTried, found, swapped) {
 function retryX(arr, numbers, nTried, num) {
   const copy = num;
   num = legalNum(arr, numbers, nTried, num);
+  if (copy !== num) numbers.push(copy);
   return num;
 }
 
-function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j, len) {
+function retryCage(arr, row, col, numbers, num, nTried, swapped=false, nRow, nRowCopy, nextCols, i, j, len) {
   while (row.includes(num) || col.includes(num)) {
     nTried.push(num);
     if (!swapped) numbers.push(num);
@@ -345,8 +348,10 @@ function retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCop
   return num;
 }
 
-function makeRow(arr, len, numbers, i) {
+function buildCage(arr, len, numbers, i) {
+  let numbsUsed = [];
   for (let j = 0; j < len ** 2; j++) {
+    numbers = validNumbers(numbsUsed);
     let row = getRow(arr);
     let nRow = j === 3 ? getNRow(numbers, arr) : [];
 
@@ -356,24 +361,24 @@ function makeRow(arr, len, numbers, i) {
 
     let nTried = tried(numbers, row, col);
     let num = sampleNext(arr, numbers, nRow, nextCols, row, nTried, i, j);
-    let swapped = false;
-    if (row.includes(num) || col.includes(num)) num = retrySquare(arr, row, col, numbers, num, nTried, swapped, nRow, nRowCopy, nextCols, i, j, len);
+    if (row.includes(num) || col.includes(num)) num = retryCage(arr, row, col, numbers, num, nTried, false, nRow, nRowCopy, nextCols, i, j, len);
     if (num === undefined) break;
     removeIfEl(numbers, num);
+    numbsUsed.push(num);
     arr.push([num, true]);
   }
 }
 
-function makeSquares(len = 3) {
+function buildBoard(len = 3) {
   let arr = [];
   for (let i = 0; i < len ** 2; i++) {
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    makeRow(arr, len, numbers, i);
+    buildCage(arr, len, numbers, i);
   }
   return arr;
 }
 
-let result = makeSquares();
+let result = buildBoard();
 console.log(result);
 
 console.log('');

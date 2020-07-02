@@ -423,3 +423,10 @@ console.log(result.map(el => el[0]).slice(3*20, 3*21).concat(" ")
   .concat(result.map(el => el[0]).slice(3*23, 3*24)).concat(" ")
   .concat(result.map(el => el[0]).slice(3*26, 3*27)).join(" ")
 );
+
+function sample(arr) {
+    const idx = Math.floor(Math.random()*arr.length);
+    return arr.splice(idx,1)[0];
+}
+
+export {sample};

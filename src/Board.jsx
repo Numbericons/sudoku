@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './Square.jsx';
+// import {sample} from './boardBuilder.js';
 
 class Board extends React.Component {
   constructor(props) {

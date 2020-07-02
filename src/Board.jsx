@@ -1,50 +1,59 @@
 import React from 'react';
 import Square from './Square.jsx';
-// import {sample} from './boardBuilder.js';
+import {buildBoard, sampleArr} from './boardBuilder.js';
 
 class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.grid = this.makeSquares(props.len);
+    // this.grid = this.makeSquares(props.len);
+    // this.arr = buildBoard();
+    this.grid = this.getBoard();
   }
 
-  sample(arr) {
-    const idx = Math.floor(Math.random()*arr.length);
-    return arr.splice(idx,1)[0];
+  getBoard() {
+    let grid = buildBoard();
+    while (grid.length < 81) grid = buildBoard();
+
+    return grid;
   }
 
-  getRow(arr, i) {
-    if (!arr.length) return arr;
-    let ret = [];
-    const start = i - 9;
-    for (let x = start; x >= 0; x -= 9) { 
-      ret.push(arr[x][0]) 
-      ret.push(arr[x+1][0]) 
-      ret.push(arr[x+2][0]) 
-    };
-    return ret;
-  }
+  // sample(arr) {
+  //   const idx = Math.floor(Math.random()*arr.length);
+  //   return arr.splice(idx,1)[0];
+  // }
+
+  // getRow(arr, i) {
+  //   if (!arr.length) return arr;
+  //   let ret = [];
+  //   const start = i - 9;
+  //   for (let x = start; x >= 0; x -= 9) { 
+  //     ret.push(arr[x][0]) 
+  //     ret.push(arr[x+1][0]) 
+  //     ret.push(arr[x+2][0]) 
+  //   };
+  //   return ret;
+  // }
   
-  getCol(arr) {
-    if (!arr.length) return arr;
-    let ret = [];
-    const start = arr.length - 9;
-    for (let x = start; x >= 0; x-=9) { 
-      ret.push(arr[x][0]);
-      ret.push(arr[x+3][0]);
-      ret.push(arr[x+6][0]);
-    };
-    return ret;
-  }
+  // getCol(arr) {
+  //   if (!arr.length) return arr;
+  //   let ret = [];
+  //   const start = arr.length - 9;
+  //   for (let x = start; x >= 0; x-=9) { 
+  //     ret.push(arr[x][0]);
+  //     ret.push(arr[x+3][0]);
+  //     ret.push(arr[x+6][0]);
+  //   };
+  //   return ret;
+  // }
 
   makeSquares(len=3) {
     let arr = [];
     for (let i=0;i<len**2;i++) {
       let numbers = [1,2,3,4,5,6,7,8,9];
-      let row = this.getRow(arr,len**2*i);
+      // let row = this.getRow(arr,len**2*i);
       for (let j=0;j<len**2;j++) {
-        let num = this.sample(numbers);
-        let col = this.getCol(arr);
+        let num = sampleArr(numbers);
+        // let col = this.getCol(arr);
         if (i===1) debugger;
         // while (row.includes(num) || col.includes(num)) {
         //   if (!numbers.length) break;

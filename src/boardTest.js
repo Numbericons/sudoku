@@ -7,12 +7,10 @@ function validNumbers(arr) {
 }
 
 function sample(arr, numbers, nTried, row, numbsUsed) {
-  // const copy = numbers.slice().filter(el => !nTried.includes(el));
   const copy = numbers.slice().filter(el => !nTried.includes(el) && chkPos(arr, arr.length, el));
   const idx = randIdx(copy);
   let num = copy.splice(idx,1)[0];
   if (!num) num = randNum(numbers);
-  // if (num === undefined) debugger;
   if (num === undefined) numbers = validNumbers(numbsUsed);
   let nIdx = numbers.indexOf(num);
   if (nIdx === -1) nIdx = randIdx(numbers);

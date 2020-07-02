@@ -424,13 +424,4 @@ console.log(result.map(el => el[0]).slice(3*20, 3*21).concat(" ")
   .concat(result.map(el => el[0]).slice(3*26, 3*27)).join(" ")
 );
 
-function rando(arr) {
-  return Math.floor(Math.random() * arr.length)
-}
-
-function sampleArr(arr) {
-    const idx = rando(arr);
-    return arr.splice(idx,1)[0];
-}
-
-export {buildBoard, sampleArr};
+export {buildBoard};

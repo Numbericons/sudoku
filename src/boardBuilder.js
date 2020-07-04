@@ -349,7 +349,6 @@ function retryCage(arr, row, col, numbers, num, nTried, swapped = false, nRow, n
 
 function buildCage(arr, len, numbers, i) {
   let numbsUsed = [];
-  // if (arr.length === 72) debugger;
   for (let j = 0; j < len ** 2; j++) {
     numbers = validNumbers(numbsUsed);
     let row = getRow(arr);

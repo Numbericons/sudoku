@@ -53,13 +53,13 @@ function common(arr1,arr2) {
   return arr;
 }
 
-function chkValid(arr, numbers, n) {
-  const number = numbers[n-1];
-  const vert = getCol(arr, numbers.length, n);
-  const horiz = getRow(arr);
+// function chkValid(arr, numbers, n) {
+//   const number = numbers[n-1];
+//   const vert = getCol(arr, numbers.length, n);
+//   const horiz = getRow(arr);
 
-  return !vert.includes(number) && !horiz.includes(number);
-}
+//   return !vert.includes(number) && !horiz.includes(number);
+// }
 
 function getNumber(numbers, n, nTried) {
   nTried.push(n);
@@ -83,10 +83,10 @@ function sampleNext(arr, numbers, nRow, nextCols, row, nTried, numbsUsed){
   }
 }
 
-function getStop(i){
-  if (i < 3) return 0;
-  return i < 6 ? 27 : 54;
-}
+// function getStop(i){
+//   if (i < 3) return 0;
+//   return i < 6 ? 27 : 54;
+// }
 
 function getRow(arr, offset=0) {
   let line = rowByIdx(arr.length+offset);
@@ -251,13 +251,13 @@ function randNum(arr) {
   return arr[Math.floor(arr.length * Math.random())];
 }
 
-function elementsByIdx(arr, indices) {
-  let ret = [];
-  for (let m=0;m<indices.length;m++) {
-    if (arr[indices[m]]) ret.push(arr[indices[m]][0]);
-  }
-  return ret;
-}
+// function elementsByIdx(arr, indices) {
+//   let ret = [];
+//   for (let m=0;m<indices.length;m++) {
+//     if (arr[indices[m]]) ret.push(arr[indices[m]][0]);
+//   }
+//   return ret;
+// }
 
 function findSwap(arr, row, num, swapped, adjCol=0) {
   let indices = findNum(arr, num, arr.length + adjCol);
@@ -283,13 +283,13 @@ function findSwap(arr, row, num, swapped, adjCol=0) {
   return null;
 }
 
-function cellNumbers(numbers, row) {
-  let ret = [];
-  for (let z=0;z<numbers.length;z++) {
-    if (!row.includes(numbers[z])) ret.push(numbers[z]);
-  }
-  return ret;
-}
+// function cellNumbers(numbers, row) {
+//   let ret = [];
+//   for (let z=0;z<numbers.length;z++) {
+//     if (!row.includes(numbers[z])) ret.push(numbers[z]);
+//   }
+//   return ret;
+// }
 
 function removeIfEl(arr, el) {
   if (arr.includes(el)) arr.splice(arr.indexOf(el), 1);
@@ -364,7 +364,8 @@ function buildCage(arr, len, numbers, i) {
     if (num === undefined) break;
     removeIfEl(numbers, num);
     numbsUsed.push(num);
-    arr.push([num, true]);
+    let bool = Math.random() > .666;
+    arr.push([num, bool]);
   }
 }
 

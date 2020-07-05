@@ -7,7 +7,10 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.grid = this.getBoard();
-    this.selected = null;
+    this.state = {
+      selected: null
+    }
+    this.select = this.select.bind(this);
   }
 
   getBoard() {
@@ -21,7 +24,7 @@ class Board extends React.Component {
     let squares = [];
 
     for (let i=0;i<3;i++) {
-      squares.push(<Square key={idx+i} attr={this.grid[idx+i]}></Square>)
+      squares.push(<Square key={idx+i} attr={this.grid[idx+i]} selected={this.state.selected}></Square>)
     }
 
     return <div className="box-row">{squares}</div>
@@ -57,11 +60,17 @@ class Board extends React.Component {
     </div>
   }
 
+  select(e) {
+    let val = parseInt(e.target.innerHTML);
+    this.setState({ selected: val})
+  }
+
   numbers() {
     let numbers = [];
 
     for (let z=1;z<10;z++) {
-      numbers.push(<Number value={z}></Number>);
+      let selected = this.state.selected === z;
+      numbers.push(<Number key={z} value={z} select={this.select} selected={selected}></Number>);
     }
 
     return <div className='numb-cont'>{numbers}</div>

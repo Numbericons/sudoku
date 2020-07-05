@@ -13,10 +13,10 @@ class Square extends React.Component {
   }
 
   enterVal() {
-    const numbs = [1,2,3,4,5,6,7,8,9];
-    let response = prompt("Enter a number between 1 and 9:");
-    while (!numbs.includes(parseInt(response))) response = parseInt(prompt("Re-enter a number between 1 and 9:"));
-    this.setState({entered: response});
+    // const numbs = [1,2,3,4,5,6,7,8,9];
+    // let response = prompt("Enter a number between 1 and 9:");
+    // while (!numbs.includes(parseInt(response))) response = parseInt(prompt("Re-enter a number between 1 and 9:"));
+    if (this.props.selected && !this.state.revealed) this.setState({entered: this.props.selected});
   }
 
   render() {

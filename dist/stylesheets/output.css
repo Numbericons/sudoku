@@ -111,9 +111,14 @@ table {
   height: 9vh;
   width: 4.5vw;
 }
-.square-text {
+.square-revealed {
   font-size: 4.5vh;
   font-family: "Open Sans", sans-serif;
+}
+.square-entered {
+  font-size: 4.5vh;
+  font-family: "Open Sans", sans-serif;
+  color: purple;
 }
 
 .square + .square {

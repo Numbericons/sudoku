@@ -53,9 +53,16 @@ class Board extends React.Component {
     </div>
   }
 
+  numbers() {
+    return <div>
+      
+    </div>
+  }
+
   render() {
     return <div className='board'>
       {this.build()}
+      {this.numbers()}
     </div>
   }
 }

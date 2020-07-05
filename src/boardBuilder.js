@@ -364,7 +364,7 @@ function buildCage(arr, len, numbers, i) {
     if (num === undefined) break;
     removeIfEl(numbers, num);
     numbsUsed.push(num);
-    let bool = Math.random() > .666;
+    let bool = Math.random() > .5;
     arr.push([num, bool]);
   }
 }

@@ -16,11 +16,13 @@ class Board extends React.Component {
   }
 
   row(idx) {
-    return <div className="box-row">
-      <Square key={idx} attr={this.grid[idx]}></Square>
-      <Square key={idx+1} attr={this.grid[idx+1]}></Square>
-      <Square key={idx+2} attr={this.grid[idx+2]}></Square>
-    </div>
+    let squares = [];
+
+    for (let i=0;i<3;i++) {
+      squares.push(<Square key={idx+i} attr={this.grid[idx+i]}></Square>)
+    }
+
+    return <div className="box-row">{squares}</div>
   }
 
   box(idx) {
@@ -54,8 +56,13 @@ class Board extends React.Component {
   }
 
   numbers() {
+    let numbers = [];
+    for (let z=1;z<10;z++) {
+      numbers.push(<li>{z}</li>);
+    }
     return <div>
-      
+      {numbers}
+      {/* <Number value=></Number> */}
     </div>
   }
 

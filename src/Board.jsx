@@ -7,6 +7,7 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.grid = this.getBoard();
+    this.selected = null;
   }
 
   getBoard() {
@@ -58,12 +59,12 @@ class Board extends React.Component {
 
   numbers() {
     let numbers = [];
+
     for (let z=1;z<10;z++) {
       numbers.push(<Number value={z}></Number>);
     }
-    return <div>
-      {numbers}
-    </div>
+
+    return <div className='numb-cont'>{numbers}</div>
   }
 
   render() {

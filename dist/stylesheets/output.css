@@ -75,6 +75,7 @@ table {
 
 .board {
   display: flex;
+  height: 80vh;
 }
 
 .grid {
@@ -103,13 +104,14 @@ table {
 }
 
 .square {
+  height: 9vh;
+  width: 4.5vw;
   background-color: white;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 9vh;
-  width: 4.5vw;
 }
 .square-revealed {
   font-size: 4.5vh;
@@ -159,14 +161,23 @@ table {
     transform: rotate(360deg);
   }
 }
+.numb-cont {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .number {
+  height: 7vh;
+  width: 3.5vw;
+  margin: 0.5vh 0vw 2vh 5vw;
+  border: 1px solid black;
+  cursor: pointer;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 9vh;
-  width: 4.5vw;
 }
 .number-text {
   font-size: 4.5vh;

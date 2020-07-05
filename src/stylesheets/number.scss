@@ -1,11 +1,21 @@
+.numb-cont {
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  // align-items: center;
+}
+
 .number {
+  height: 7vh;
+  width: 3.5vw;
+  margin: .5vh 0vw 2vh 5vw;
+  border: 1px solid black;
+  cursor: pointer;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 9vh;
-  width: 4.5vw;
   &-text {
     font-size: 4.5vh;
     font-family: 'Open Sans', sans-serif;

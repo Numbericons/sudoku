@@ -1,11 +1,12 @@
 .square {
+  height: 9vh;
+  width: 4.5vw;
   background-color: white;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 9vh;
-  width: 4.5vw;
   &-revealed {
     font-size: 4.5vh;
     font-family: 'Open Sans', sans-serif;
@@ -20,7 +21,6 @@
 .square + .square {
   border-left: 1.4px solid #bbb;
 }
-
 // .square:nth-of-type(2) {background-color: red};
 
 .App-logo {

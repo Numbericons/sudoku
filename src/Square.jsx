@@ -7,12 +7,14 @@ class Square extends React.Component {
     if (!props.attr) return;
     this.state = {
       value: props.attr[0],
-      revealed: props.attr[1]
+      revealed: props.attr[1],
+      entered: null
     }
   }
-
+  
   render() {
-    const val = this.state.revealed ? this.state.value : "";
+    let val = this.state.revealed ? this.state.value : "";
+    if (this.state.entered) val = this.state.entered;
     
     return <div className='square'>
       {/* <img src={logo} className="App-logo" alt="logo" /> */}

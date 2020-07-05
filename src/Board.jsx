@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './Square.jsx';
+import Number from './Number.jsx';
 import {buildBoard} from './boardBuilder.js';
 
 class Board extends React.Component {
@@ -58,11 +59,10 @@ class Board extends React.Component {
   numbers() {
     let numbers = [];
     for (let z=1;z<10;z++) {
-      numbers.push(<li>{z}</li>);
+      numbers.push(<Number value={z}></Number>);
     }
     return <div>
       {numbers}
-      {/* <Number value=></Number> */}
     </div>
   }
 

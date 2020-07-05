@@ -4,7 +4,6 @@ import React from 'react';
 class Square extends React.Component {
   constructor(props) {
     super(props);
-    if (!props.attr) return;
     this.state = {
       value: props.attr[0],
       revealed: props.attr[1],

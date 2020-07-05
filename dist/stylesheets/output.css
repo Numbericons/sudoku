@@ -159,5 +159,18 @@ table {
     transform: rotate(360deg);
   }
 }
+.number {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 9vh;
+  width: 4.5vw;
+}
+.number-text {
+  font-size: 4.5vh;
+  font-family: "Open Sans", sans-serif;
+}
 
 /*# sourceMappingURL=output.css.map */

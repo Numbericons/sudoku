@@ -76,6 +76,12 @@ class Board extends React.Component {
     return <div className='numb-cont'>{numbers}</div>
   }
 
+  checkWin() {}
+
+  componentDidUpdate() {
+    if (this.checkWin()) alert('You have won!');
+  }
+
   render() {
     return <div className='board'>
       {this.build()}

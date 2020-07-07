@@ -12,8 +12,6 @@ class Board extends React.Component {
     }
     this.select = this.select.bind(this);
     this.changeVal = this.changeVal.bind(this);
-    // this.winCond = this.winCond.bind(this);
-    this.wrong = [];
   }
 
   changeVal(e,idx) {
@@ -98,9 +96,9 @@ class Board extends React.Component {
     return <div className='numb-cont'>{numbers}</div>
   }
 
-  // componentDidUpdate() {
-    // if (!this.winCond.length) alert('You have won!');
-  // }
+  componentDidUpdate() {
+    if (this.win()) alert('You have won!');
+  }
 
   render() {
     return <div className='board'>

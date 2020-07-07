@@ -12,7 +12,6 @@ class Square extends React.Component {
   }
 
   enterVal(e) {
-    // if (this.props.selected && !this.state.revealed) this.setState({entered: this.props.selected});
     this.props.change(e, this.props.idx)
   }
 

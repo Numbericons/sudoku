@@ -162,14 +162,14 @@ table {
   }
 }
 .numb-cont {
-  height: 100%;
+  height: 80vh;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .number {
-  height: 7vh;
-  width: 3.5vw;
+  height: 6vh;
+  width: 3vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
   cursor: pointer;
@@ -185,8 +185,8 @@ table {
 }
 
 .selected {
-  height: 7vh;
-  width: 3.5vw;
+  height: 6vh;
+  width: 3vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
   cursor: pointer;

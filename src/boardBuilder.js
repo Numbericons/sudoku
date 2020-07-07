@@ -347,7 +347,7 @@ function retryCage(arr, row, col, numbers, num, nTried, swapped = false, nRow, n
   return num;
 }
 
-function buildCage(arr, len, numbers, i) {
+function buildCage(arr, len, numbers, i, revealNum) {
   let numbsUsed = [];
   for (let j = 0; j < len ** 2; j++) {
     numbers = validNumbers(numbsUsed);
@@ -364,16 +364,16 @@ function buildCage(arr, len, numbers, i) {
     if (num === undefined) break;
     removeIfEl(numbers, num);
     numbsUsed.push(num);
-    let bool = Math.random() > .5;
+    let bool = Math.random() > revealNum;
     arr.push([num, bool]);
   }
 }
 
-function buildBoard(len = 3) {
+function buildBoard(len = 3, revealNum = .5) {
   let arr = [];
   for (let i = 0; i < len ** 2; i++) {
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    buildCage(arr, len, numbers, i);
+    buildCage(arr, len, numbers, i, revealNum);
   }
   return arr;
 }

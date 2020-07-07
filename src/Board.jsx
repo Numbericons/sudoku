@@ -16,7 +16,7 @@ class Board extends React.Component {
 
   changeVal(e,idx) {
     let newGrid = JSON.parse(JSON.stringify(this.state.grid));
-    newGrid[idx][2] = this.state.selected;
+    newGrid[idx][2] = this.state.selected === 'eraser' ? "" : this.state.selected;
     this.setState({grid: newGrid});
   }
 
@@ -83,12 +83,9 @@ class Board extends React.Component {
       numbers.push(<Number key={z} value={z} select={this.select} selected={selected}></Number>);
     }
 
-    const eraser = <Number key='eraser' value={<i className="fa fa-eraser"></i>} select={this.select} 
+    numbers.push(<Number key='eraser' value={<i className="fa fa-eraser"></i>} select={this.select} 
                            selected={this.state.selected === 'eraser'}>
-    </ Number>;
-    numbers.push(eraser)
-    // <button className='number'><i className="fa fa-eraser"></i></button>)
-    // numbers.push(<button className='number'><i className="fa fa-eraser"></i></button>)
+    </ Number>);
 
     return <div className='numb-cont'>{numbers}</div>
   }

@@ -71,7 +71,7 @@ class Board extends React.Component {
   }
 
   select(e) {
-    let val = parseInt(e.target.innerHTML);
+    let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
     this.setState({ selected: val})
   }
 
@@ -83,6 +83,13 @@ class Board extends React.Component {
       numbers.push(<Number key={z} value={z} select={this.select} selected={selected}></Number>);
     }
 
+    const eraser = <Number key='eraser' value={<i className="fa fa-eraser"></i>} select={this.select} 
+                           selected={this.state.selected === 'eraser'}>
+    </ Number>;
+    numbers.push(eraser)
+    // <button className='number'><i className="fa fa-eraser"></i></button>)
+    // numbers.push(<button className='number'><i className="fa fa-eraser"></i></button>)
+
     return <div className='numb-cont'>{numbers}</div>
   }
 
@@ -93,7 +100,7 @@ class Board extends React.Component {
     }
     return true;
   }
-  
+
   componentDidUpdate() {
     if (this.win()) alert('You have won!');
   }

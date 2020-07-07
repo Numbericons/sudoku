@@ -6,12 +6,31 @@ import {buildBoard} from './boardBuilder.js';
 class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.grid = this.getBoard();
     this.state = {
-      selected: null
+      selected: null,
+      grid: this.getBoard()
     }
     this.select = this.select.bind(this);
+    this.changeVal = this.changeVal.bind(this);
+    // this.winCond = this.winCond.bind(this);
+    this.wrong = [];
   }
+
+  changeVal(e,idx) {
+    let newGrid = JSON.parse(JSON.stringify(this.state.grid));
+    newGrid[idx][2] = this.state.selected;
+    debugger
+    this.setState({grid: newGrid});
+    // this.state.grid
+    // this.grid[idx][2] = this.state.selected;
+  }
+
+  // winCond(val,entered) {
+  //   if (val === entered) {
+  //     let idx = this.wrong.indexOf(val);
+  //     this.wrong.slice()
+  //   }
+  // }
 
   getBoard() {
     let grid = buildBoard();
@@ -24,7 +43,10 @@ class Board extends React.Component {
     let squares = [];
 
     for (let i=0;i<3;i++) {
-      squares.push(<Square key={idx+i} attr={this.grid[idx+i]} selected={this.state.selected}></Square>)
+      let square = <Square key={idx + i} idx={idx + i} attr={this.state.grid[idx + i]} 
+                           selected={this.state.selected} change={this.changeVal}></Square>;
+
+      squares.push(square);
     }
 
     return <div className="box-row">{squares}</div>
@@ -76,11 +98,9 @@ class Board extends React.Component {
     return <div className='numb-cont'>{numbers}</div>
   }
 
-  checkWin() {}
-
-  componentDidUpdate() {
-    if (this.checkWin()) alert('You have won!');
-  }
+  // componentDidUpdate() {
+    // if (!this.winCond.length) alert('You have won!');
+  // }
 
   render() {
     return <div className='board'>

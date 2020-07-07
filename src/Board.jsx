@@ -17,18 +17,8 @@ class Board extends React.Component {
   changeVal(e,idx) {
     let newGrid = JSON.parse(JSON.stringify(this.state.grid));
     newGrid[idx][2] = this.state.selected;
-    debugger
     this.setState({grid: newGrid});
-    // this.state.grid
-    // this.grid[idx][2] = this.state.selected;
   }
-
-  // winCond(val,entered) {
-  //   if (val === entered) {
-  //     let idx = this.wrong.indexOf(val);
-  //     this.wrong.slice()
-  //   }
-  // }
 
   getBoard() {
     let grid = buildBoard();
@@ -96,6 +86,14 @@ class Board extends React.Component {
     return <div className='numb-cont'>{numbers}</div>
   }
 
+  win() {
+    for (let z=0;z<this.state.grid.length;z++) {
+      let arr = this.state.grid[z];
+      if (!arr[1] && arr[0] !== arr[2]) return false;
+    }
+    return true;
+  }
+  
   componentDidUpdate() {
     if (this.win()) alert('You have won!');
   }

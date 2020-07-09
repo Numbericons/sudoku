@@ -5,6 +5,11 @@ import './stylesheets/input.scss';
 
 
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.val = prompt("Choose difficulty, enter 1 for easy, 2 for medium and 3 for hard:")
+  }
+
   gameOver(){}
   chkBoard(){}
   play(){}

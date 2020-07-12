@@ -22,7 +22,8 @@ class Board extends React.Component {
   }
 
   getBoard(len = 3, revealNum = .5) {
-    let grid = buildBoard();
+    // let grid = buildBoard();
+    let grid = buildBoard(this.props.difficulty);
     while (grid.length < 81) grid = buildBoard(len, revealNum);
 
     return grid;

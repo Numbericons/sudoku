@@ -9,6 +9,9 @@ class Game extends React.Component {
     super(props);
     this.val = prompt("Choose difficulty, enter 1 for easy, 2 for medium and 3 for hard:")
   }
+  // componentDidMount() {
+  //   this.val = prompt("Enter a number between 0 and 100:")
+  // }
 
   gameOver(){}
   chkBoard(){}
@@ -21,7 +24,8 @@ class Game extends React.Component {
       </div>
       <div className='main-body'>
         <div></div>
-        <Board ></Board>
+        <Board></Board>
+        {/* <Board difficulty={this.val}></Board> */}
         <div></div>
       </div>
       <div className="hide">Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

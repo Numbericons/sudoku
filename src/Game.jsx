@@ -5,12 +5,12 @@ import './stylesheets/input.scss';
 
 
 class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.val = prompt("Choose difficulty, enter 1 for easy, 2 for medium and 3 for hard:")
-  }
+  // constructor(props) {
+    // super(props);
+    // this.val = prompt("Choose difficulty, enter 1 for easy, 2 for medium and 3 for hard:")
+  // }
   // componentDidMount() {
-  //   this.val = prompt("Enter a number between 0 and 100:")
+  //   this.val = prompt("Choose difficulty between 1 to 100 larger numbers are harder:")
   // }
 
   gameOver(){}
@@ -24,8 +24,8 @@ class Game extends React.Component {
       </div>
       <div className='main-body'>
         <div></div>
-        <Board></Board>
-        {/* <Board difficulty={this.val}></Board> */}
+        {/* <Board difficulty={50}></Board> */}
+        <Board difficulty={this.val}></Board>
         <div></div>
       </div>
       <div className="hide">Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

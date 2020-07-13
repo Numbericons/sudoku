@@ -379,11 +379,11 @@ function buildBoard(len = 3, revealNum = 50) {
   return arr;
 }
 
-let result = buildBoard();
+// let result = buildBoard();
 
-while (result.length !== 81) {
-  result = buildBoard();
-}
+// while (result.length !== 81) {
+//   result = buildBoard();
+// }
 
 // console.log('');
 // console.log(result.map(el => el[0]).slice(3*0, 3*1).concat(" ")

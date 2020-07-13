@@ -21,10 +21,10 @@ class Board extends React.Component {
     this.setState({grid: newGrid});
   }
 
-  getBoard(len = 3, revealNum = 50) {
-    let grid = buildBoard(len, revealNum);
-    // let grid = buildBoard(this.props.difficulty);
-    while (grid.length < 81) grid = buildBoard(len, revealNum);
+  getBoard(len = 3) {
+    const val = prompt("Choose difficulty between 1 to 100 larger numbers are harder:");
+    let grid = buildBoard(len, val);
+    while (grid.length < 81) grid = buildBoard(len, val);
 
     return grid;
   }

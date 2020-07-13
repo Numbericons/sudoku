@@ -8,7 +8,7 @@ class Board extends React.Component {
     super(props);
     this.state = {
       selected: null,
-      grid: this.getBoard(3,50)
+      grid: this.getBoard()
     }
     this.won = false;
     this.select = this.select.bind(this);

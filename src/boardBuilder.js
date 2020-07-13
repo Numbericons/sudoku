@@ -371,7 +371,6 @@ function buildCage(arr, len, numbers, i, revealNum) {
 }
 
 function buildBoard(len = 3, revealNum = 50) {
-// function buildBoard(revealNum = 50, len = 3) {
   let arr = [];
   for (let i = 0; i < len ** 2; i++) {
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];

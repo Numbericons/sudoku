@@ -1,14 +1,13 @@
 import React from 'react';
 import Board from './Board.jsx';
-// import logo from './logo.svg';
 import './stylesheets/input.scss';
-
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.loads = 1;
   }
+  
   gameOver(){}
   chkBoard(){}
   play(){}
@@ -16,13 +15,7 @@ class Game extends React.Component {
   render() {
     let val;
     if (this.loads === 1) val = prompt("Choose difficulty between 1 to 100 larger numbers are harder:");
-    debugger;
     this.loads += 1;
-    // debugger
-    // if (this.firstLoad) {
-    //   this.firstLoad = false;
-    //   return null;
-    // }
     return <div className='main'>
       <div className='main-head'>
         <h1 className='main-head-text'>Sudoku</h1>

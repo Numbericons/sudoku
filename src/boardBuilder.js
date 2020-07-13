@@ -364,13 +364,13 @@ function buildCage(arr, len, numbers, i, revealNum) {
     if (num === undefined) break;
     removeIfEl(numbers, num);
     numbsUsed.push(num);
-    // let bool = Math.random() > revealNum / 100;
-    let bool = Math.random() > revealNum;
+    let bool = Math.random() > revealNum / 100;
+    // let bool = Math.random() > revealNum;
     arr.push([num, bool]);
   }
 }
 
-function buildBoard(len = 3, revealNum = .5) {
+function buildBoard(len = 3, revealNum = 50) {
 // function buildBoard(revealNum = 50, len = 3) {
   let arr = [];
   for (let i = 0; i < len ** 2; i++) {

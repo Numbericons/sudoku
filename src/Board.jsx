@@ -8,7 +8,7 @@ class Board extends React.Component {
     super(props);
     this.state = {
       selected: null,
-      grid: this.getBoard(3,.01)
+      grid: this.getBoard(3,50)
     }
     this.won = false;
     this.select = this.select.bind(this);
@@ -21,9 +21,9 @@ class Board extends React.Component {
     this.setState({grid: newGrid});
   }
 
-  getBoard(len = 3, revealNum = .5) {
-    // let grid = buildBoard();
-    let grid = buildBoard(this.props.difficulty);
+  getBoard(len = 3, revealNum = 50) {
+    let grid = buildBoard(len, revealNum);
+    // let grid = buildBoard(this.props.difficulty);
     while (grid.length < 81) grid = buildBoard(len, revealNum);
 
     return grid;

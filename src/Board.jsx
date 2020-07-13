@@ -5,6 +5,7 @@ import {buildBoard} from './boardBuilder.js';
 
 class Board extends React.Component {
   constructor(props) {
+    debugger
     super(props);
     this.state = {
       selected: null,
@@ -22,9 +23,9 @@ class Board extends React.Component {
   }
 
   getBoard(len = 3) {
-    const val = prompt("Choose difficulty between 1 to 100 larger numbers are harder:");
-    let grid = buildBoard(len, val);
-    while (grid.length < 81) grid = buildBoard(len, val);
+    // const val = prompt("Choose difficulty between 1 to 100 larger numbers are harder:");
+    let grid = buildBoard(len, this.props.val);
+    while (grid.length < 81) grid = buildBoard(len, this.props.val);
 
     return grid;
   }

@@ -14,7 +14,7 @@ class Game extends React.Component {
 
   render() {
     let val;
-    if (this.loads === 1) val = prompt("Choose difficulty between 1 to 100 larger numbers are harder:");
+    if (this.loads === 1) val = prompt("Choose difficulty between 1 to 100 for the percentage of squares you want hidden:");
     this.loads += 1;
     return <div className='main'>
       <div className='main-head'>

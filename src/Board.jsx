@@ -5,7 +5,6 @@ import {buildBoard} from './boardBuilder.js';
 
 class Board extends React.Component {
   constructor(props) {
-    debugger
     super(props);
     this.state = {
       selected: null,

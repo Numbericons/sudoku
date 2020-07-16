@@ -67,6 +67,7 @@ table {
   color: white;
   font-size: 8vh;
   font-family: "Open Sans", sans-serif;
+  font-weight: 600;
 }
 .main-body {
   display: flex;

@@ -87,7 +87,7 @@ class Board extends React.Component {
 
     numbers.push(<Number key='eraser' value={<i className="fa fa-eraser"></i>} select={this.select} 
                            selected={this.state.selected === 'eraser'}>
-    </ Number>);
+                 </ Number>);
 
     return <div className='numb-cont'>{numbers}</div>
   }

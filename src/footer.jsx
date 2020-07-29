@@ -1,3 +1,7 @@
+export default function footer() {
+
+}
+
 // <a href="https://github.com/Numbericons/JS_Heads_Up_HoldEm">
 //   <i class="fab fa-github-square"></i>
 // </a>

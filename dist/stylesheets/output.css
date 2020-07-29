@@ -55,7 +55,7 @@ table {
 .main {
   height: 100vh;
   width: 100vw;
-  background-color: darkblue;
+  background-color: #3030ca;
   display: flex;
   flex-direction: column;
   text-align: center;

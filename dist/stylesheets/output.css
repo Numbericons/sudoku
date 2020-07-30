@@ -170,8 +170,8 @@ table {
 }
 
 .number {
-  height: 6vh;
-  width: 3vw;
+  height: 5vh;
+  width: 2.75vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
   cursor: pointer;

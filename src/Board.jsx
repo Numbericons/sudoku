@@ -88,7 +88,7 @@ class Board extends React.Component {
                            selected={this.state.selected === 'eraser'}>
                  </ Number>);
 
-    numbers.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>}></ Number>);
+    numbers.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} refresh={true}></ Number>);
 
     return <div className='numb-cont'>{numbers}</div>
   }

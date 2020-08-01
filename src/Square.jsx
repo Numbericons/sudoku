@@ -15,6 +15,14 @@ class Square extends React.Component {
     this.props.change(e, this.props.idx)
   }
 
+  renderFixed() {
+    return <div className='square'>
+      <h3 className={textClass}>
+        {val}
+      </h3>
+    </div>
+  }
+
   render() {
     let val = this.state.revealed ? this.state.value : "";
     if (this.props.attr[2]) val = this.props.attr[2];

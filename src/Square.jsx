@@ -17,16 +17,19 @@ class Square extends React.Component {
 
   renderFixed() {
     return <div className='square'>
-      <h3 className={textClass}>
-        {val}
+      <h3 className='square-revealed'>
+        {this.state.value}
       </h3>
     </div>
   }
 
   render() {
-    let val = this.state.revealed ? this.state.value : "";
+    if (this.state.revealed) return this.renderFixed();
+    let val = "";
+    // let val = this.state.revealed ? this.state.value : "";
     if (this.props.attr[2]) val = this.props.attr[2];
-    let textClass = this.state.revealed ? 'square-revealed' : 'square-entered';
+    let textClass = 'square-entered';
+    // let textClass = this.state.revealed ? 'square-revealed' : 'square-entered';
     
     return <div className='square' onClick={this.enterVal}>
       <h3 className={textClass}>

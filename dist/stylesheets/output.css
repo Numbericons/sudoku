@@ -83,6 +83,7 @@ table {
   display: flex;
   flex-direction: column;
   border: 1.5px solid black;
+  height: 24vh;
 }
 .grid-row {
   display: flex;
@@ -105,8 +106,8 @@ table {
 }
 
 .square {
-  height: 8.65vh;
-  width: 4.5vw;
+  height: 8vh;
+  width: 4vw;
   background-color: white;
   cursor: pointer;
   display: flex;
@@ -115,11 +116,11 @@ table {
   align-items: center;
 }
 .square-revealed {
-  font-size: 4.5vh;
+  font-size: 4vh;
   font-family: "Open Sans", sans-serif;
 }
 .square-entered {
-  font-size: 4.5vh;
+  font-size: 4vh;
   font-family: "Open Sans", sans-serif;
   color: purple;
 }
@@ -182,7 +183,7 @@ table {
   align-items: center;
 }
 .number-text {
-  font-size: 4.5vh;
+  font-size: 4vh;
   font-family: "Open Sans", sans-serif;
 }
 

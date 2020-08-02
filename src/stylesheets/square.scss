@@ -1,6 +1,6 @@
 .square {
-  height: 8.65vh;
-  width: 4.5vw;
+  height: 8vh;
+  width: 4vw;
   background-color: white;
   cursor: pointer;
   display: flex;
@@ -8,11 +8,11 @@
   justify-content: center;
   align-items: center;
   &-revealed {
-    font-size: 4.5vh;
+    font-size: 4vh;
     font-family: 'Open Sans', sans-serif;
   }
   &-entered {
-    font-size: 4.5vh;
+    font-size: 4vh;
     font-family: 'Open Sans', sans-serif;
     color: purple;
   }

@@ -19,7 +19,7 @@
 
 This project has a simple and intuitive interface with minimal styling.
 
-This Sudoku implementation uses a functional style within the boardBuilder.js file to create an accurate board. All relevant data is passed into each function call, as below:
+This Sudoku implementation uses a functional style within the boardBuilder.js file to create an accurate board. All relevant data is passed into each function call, as below. This logic was worked out from scratch with little to no reference as an added challenge.
 
 ``` javsacript
   function sampleNext(arr, numbers, nRow, nextCols, row, nTried, numbsUsed){

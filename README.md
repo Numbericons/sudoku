@@ -1,6 +1,7 @@
 ### Sudoku App Built from scratch with React
 
 [Live Link](https://react-sudoku-24b70.web.app//)
+
 ![Alt text](screenshots/ui/8.4.2020v2.png)
 
 ### Local Installation

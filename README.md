@@ -1,6 +1,7 @@
 ### Sudoku App Built from scratch with React
 
 [Live Link](https://react-sudoku-24b70.web.app//)
+![Alt text](screenshots/ui/8.4.2020.png)
 
 ### Local Installation
  1. Enter 'NPM install' in the root directory

@@ -105,6 +105,17 @@ table {
   border-top: 1.4px solid #bbb;
 }
 
+.timer {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 2vh;
+  font-family: "Open Sans", sans-serif;
+}
+.timer-text {
+  margin-right: 0.25vw;
+}
+
 .square {
   height: 8vh;
   width: 4vw;

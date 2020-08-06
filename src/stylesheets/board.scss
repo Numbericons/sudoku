@@ -28,3 +28,14 @@
 .box-row + .box-row {
   border-top: 1.4px solid #bbb;
 }
+
+.timer {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 2vh;
+  font-family: 'Open Sans', sans-serif;
+  &-text {
+    margin-right: .25vw;
+  }
+}

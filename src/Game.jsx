@@ -21,11 +21,11 @@ class Game extends React.Component {
       <div className='main-head'>
         <h1 className='main-head-text'>Sudoku</h1>
         <div className='timer'>
-          <h4>Time Elapsed: </h4>
+          <h4 className='timer-text'>Time:</h4>
           <Timer formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}>
-            <Timer.Hours formatValue={value => `${value} hours. `} />
-            <Timer.Minutes formatValue={value => `${value} mins. `}/>
-            <Timer.Seconds formatValue={value => `${value} seconds`} />
+            <Timer.Hours formatValue={value => value === 0 ? '00:' : `${(value < 10 ? `0${value}` : value)}:`} />
+            <Timer.Minutes formatValue={value => value === 0 ? '00:' : `${(value < 10 ? `0${value}` : value)}:`}/>
+            <Timer.Seconds formatValue={value => value === 0 ? '00' : `${(value < 10 ? `0${value}` : value)}`}/>
           </Timer>
         </div>
       </div>

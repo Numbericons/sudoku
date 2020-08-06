@@ -1,6 +1,7 @@
 import React from 'react';
 import Board from './Board.jsx';
 import './stylesheets/input.scss';
+import Timer from 'react-compound-timer';
 
 class Game extends React.Component {
   constructor(props) {
@@ -19,6 +20,14 @@ class Game extends React.Component {
     return <div className='main'>
       <div className='main-head'>
         <h1 className='main-head-text'>Sudoku</h1>
+        <div className='timer'>
+          <h4>Time Elapsed: </h4>
+          <Timer formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}>
+            <Timer.Hours formatValue={value => `${value} hours. `} />
+            <Timer.Minutes formatValue={value => `${value} mins. `}/>
+            <Timer.Seconds formatValue={value => `${value} seconds`} />
+          </Timer>
+        </div>
       </div>
       <div className='main-body'>
         <div></div>

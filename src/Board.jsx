@@ -119,7 +119,7 @@ class Board extends React.Component {
   componentDidUpdate() {
     if (!this.won && this.win()) {
       this.won = true;
-      alert('You have won!');
+      alert('Congratulations, you have won!');
     }
   }
 

@@ -157,7 +157,7 @@ function legalPos(arr, idx, box=true) {
   const row2 = rowByIdx(idx);
   const col2 = colByIdx(idx);
   if (!lineValid(arr, row2) || !lineValid(arr, col2)) return false;
-  if (box && !boxValid(arr, idx) === true) return false;
+  if (box && boxValid(arr, idx) !== true) return false;
 
   return true;
 }

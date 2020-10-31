@@ -104,7 +104,6 @@ class Board extends React.Component {
   win() {
     let numbers;
     for (let z=0;z<this.state.grid.length;z++) {
-      debugger;
       if (z % 9 === 0) numbers = [1,2,3,4,5,6,7,8,9];
 
       const arr = this.state.grid[z];

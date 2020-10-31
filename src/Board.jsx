@@ -93,10 +93,26 @@ class Board extends React.Component {
     return <div className='numb-cont'>{numbers}</div>
   }
 
+  // win() {
+  //   for (let z=0;z<this.state.grid.length;z++) {
+  //     let arr = this.state.grid[z];
+  //     if (!arr[1] && arr[0] !== arr[2]) return false;
+  //   }
+  //   return true;
+  // }
+
   win() {
+    let numbers;
     for (let z=0;z<this.state.grid.length;z++) {
-      let arr = this.state.grid[z];
-      if (!arr[1] && arr[0] !== arr[2]) return false;
+      debugger;
+      if (z % 9 === 0) numbers = [1,2,3,4,5,6,7,8,9];
+
+      const arr = this.state.grid[z];
+      const num = arr[1] ? arr[0] : arr[2];
+      const idx = numbers.indexOf(num);
+      
+      if (idx === -1) return false;
+      numbers.splice(idx,1);
     }
     return true;
   }

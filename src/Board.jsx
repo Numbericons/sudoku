@@ -101,19 +101,48 @@ class Board extends React.Component {
   //   return true;
   // }
 
-  win() {
+
+
+  chkCages() {
     let numbers;
-    for (let z=0;z<this.state.grid.length;z++) {
-      if (z % 9 === 0) numbers = [1,2,3,4,5,6,7,8,9];
+    for (let z = 0; z < this.state.grid.length; z++) {
+      if (z % 9 === 0) numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
       const arr = this.state.grid[z];
       const num = arr[1] ? arr[0] : arr[2];
       const idx = numbers.indexOf(num);
-      
+
       if (idx === -1) return false;
-      numbers.splice(idx,1);
+      numbers.splice(idx, 1);
     }
     return true;
+  }
+
+  colByIdx(idx) {
+    const columns = {
+      1: [60, 57, 54, 33, 30, 27, 6, 3, 0], 2: [61, 58, 55, 34, 31, 28, 7, 4, 1], 3: [62, 59, 56, 35, 32, 29, 8, 5, 2],
+      4: [69, 66, 63, 42, 39, 36, 15, 12, 9], 5: [70, 67, 64, 43, 40, 37, 16, 13, 10], 6: [71, 68, 65, 44, 41, 38, 17, 14, 11],
+      7: [78, 75, 72, 51, 48, 45, 24, 21, 18], 8: [79, 76, 73, 52, 49, 46, 25, 22, 19], 9: [80, 77, 74, 53, 50, 47, 26, 23, 20]
+    }
+    return columns[getLine(columns, idx)];
+  }
+
+  rowByIdx(idx) {
+    const rows = {
+      1: [0, 1, 2, 9, 10, 11, 18, 19, 20], 2: [3, 4, 5, 12, 13, 14, 21, 22, 23], 3: [6, 7, 8, 15, 16, 17, 24, 25, 26],
+      4: [27, 28, 29, 36, 37, 38, 45, 46, 47], 5: [30, 31, 32, 39, 40, 41, 48, 49, 50], 6: [33, 34, 35, 42, 43, 44, 51, 52, 53],
+      7: [54, 55, 56, 63, 64, 65, 72, 73, 74], 8: [57, 58, 59, 66, 67, 68, 75, 76, 77], 9: [60, 61, 62, 69, 70, 71, 78, 79, 80]
+    }
+    return rows[getLine(rows, idx)] || [];
+  }
+
+  //provide helper with object with keys 1-9
+  //each value in the object corresponds to a set of indexes to check
+
+  win() {
+    const cages = this.chkCages();
+
+    return cages;
   }
 
   componentDidUpdate() {

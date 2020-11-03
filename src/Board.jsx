@@ -111,9 +111,6 @@ class Board extends React.Component {
     return true;
   }
 
-  //provide helper with object with keys 1-9
-  //each value in the object corresponds to a set of indexes to check
-
   win() {
     const cages = {
       1: [0, 1, 2, 3, 4, 5, 6, 7, 8], 2: [9, 10, 11, 12, 13, 14, 15, 16, 17], 3: [18, 19, 20, 21, 22, 23, 24, 25, 26],
@@ -133,12 +130,6 @@ class Board extends React.Component {
 
     return this.chkIndices(cages) && this.chkIndices(rows) && this.chkIndices(columns);
   }
-
-  // win() {
-  //   const cages = this.chkCages();
-
-  //   return cages;
-  // }
 
   componentDidUpdate() {
     if (!this.won && this.win()) {

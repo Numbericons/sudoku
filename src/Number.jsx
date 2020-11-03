@@ -2,7 +2,7 @@ import React from 'react';
 
 class Number extends React.Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       value: props.value
     }

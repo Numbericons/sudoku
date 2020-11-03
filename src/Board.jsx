@@ -13,6 +13,7 @@ class Board extends React.Component {
     this.won = false;
     this.select = this.select.bind(this);
     this.changeVal = this.changeVal.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   changeVal(e,idx) {
@@ -76,16 +77,30 @@ class Board extends React.Component {
     this.setState({ selected: val})
   }
 
+  // componentDidMount() {
+  //   $(document.body).on('keydown', this.props.onKeyDown);
+  // }
+
+  // componentDidMount() {
+  //   document.addEventListener(“keydown”, this.handleKeyDown.bind(this))
+  // }
+
+  handleKeyDown(e) {
+    debugger;
+    let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
+    this.setState({ selected: val})
+  }
+
   numbers() {
     let numbers = [];
 
     for (let z=1;z<10;z++) {
       let selected = this.state.selected === z;
-      numbers.push(<Number key={z} value={z} select={this.select} selected={selected}></Number>);
+      numbers.push(<Number key={z} value={z} select={this.select} selected={selected} onKeyDown={this.handleKeyDown}></Number>);
     }
 
     numbers.push(<Number key='eraser' value={<i className="fa fa-eraser"></i>} select={this.select} 
-                           selected={this.state.selected === 'eraser'}>
+                  selected={this.state.selected === 'eraser'} onKeyPress={this.handleKeyDown}>
                  </ Number>);
 
     numbers.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} refresh={true}></ Number>);

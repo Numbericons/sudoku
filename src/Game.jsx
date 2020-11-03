@@ -4,8 +4,8 @@ import './stylesheets/input.scss';
 import Timer from 'react-compound-timer';
 
 class Game extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.loads = 1;
   }
   

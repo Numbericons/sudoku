@@ -130,11 +130,20 @@ table {
 .square-revealed {
   font-size: 4vh;
   font-family: "Open Sans", sans-serif;
+  margin-bottom: 1vh;
 }
 .square-entered {
+  height: 4vh;
+  width: 2vw;
   font-size: 4vh;
   font-family: "Open Sans", sans-serif;
   color: purple;
+}
+.square-input {
+  font-size: 2vh;
+  height: 1.2vh;
+  width: 3.1vw;
+  margin-bottom: -1.1vh;
 }
 
 .square + .square {

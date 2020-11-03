@@ -20,21 +20,18 @@ class Square extends React.Component {
       <h3 className='square-revealed'>
         {this.state.value}
       </h3>
+        {/* <input className="square-input" type="text" /> */}
     </div>
   }
 
   render() {
     if (this.state.revealed) return this.renderFixed();
-    let val = "";
-    // let val = this.state.revealed ? this.state.value : "";
+    let val = " ";
     if (this.props.attr[2]) val = this.props.attr[2];
-    let textClass = 'square-entered';
-    // let textClass = this.state.revealed ? 'square-revealed' : 'square-entered';
     
     return <div className='square' onClick={this.enterVal}>
-      <h3 className={textClass}>
-        {val}
-      </h3>
+      <h3 className="square-entered">{val}</h3>
+      <input className="square-input" type="text"/>
     </div>
   }
 }

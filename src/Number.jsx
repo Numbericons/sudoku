@@ -28,7 +28,7 @@ class Number extends React.Component {
 
   render() {
     if (this.props.refresh) return this.refresh();
-    if (this.props.notes) return this.notes();
+    if (this.props.isNotes) return this.notes();
     let container = this.props.selected ? 'selected' : 'number';
     return <div className={container} onClick={this.props.select}>
       <h1 className='number-text'>{this.state.value}</h1>

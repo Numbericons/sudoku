@@ -8,12 +8,12 @@ class Board extends React.Component {
     super(props);
     this.state = {
       selected: null,
-      notes: false,
+      showNotes: false,
       grid: this.getBoard()
     }
     this.won = false;
     this.select = this.select.bind(this);
-    this.notes = this.notes.bind(this);
+    this.setNotes = this.setNotes.bind(this);
     this.changeVal = this.changeVal.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
@@ -36,7 +36,7 @@ class Board extends React.Component {
 
     for (let i=0;i<3;i++) {
       let square = <Square key={idx + i} idx={idx + i} attr={this.state.grid[idx + i]} 
-                           selected={this.state.selected}  notes={this.state.notes} change={this.changeVal}></Square>;
+                           selected={this.state.selected}  showNotes={this.state.showNotes} change={this.changeVal}></Square>;
 
       squares.push(square);
     }
@@ -74,16 +74,6 @@ class Board extends React.Component {
     </div>
   }
 
-  select(e) {
-    let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
-    this.setState({ selected: val})
-  }
-
-  notes(e) {
-    debugger;
-    this.setState({ notes: !this.state.notes});
-  }
-
   // componentDidMount() {
   //   $(document.body).on('keydown', this.props.onKeyDown);
   // }
@@ -91,6 +81,16 @@ class Board extends React.Component {
   // componentDidMount() {
   //   document.addEventListener(“keydown”, this.handleKeyDown.bind(this))
   // }
+
+  select(e) {
+    let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
+    this.setState({ selected: val})
+  }
+
+  setNotes(e) {
+    debugger;
+    this.setState({ showNotes: !this.state.showNotes});
+  }
 
   handleKeyDown(e) {
     debugger;
@@ -111,8 +111,7 @@ class Board extends React.Component {
                  </ Number>);
 
     numbers.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} refresh={true}></ Number>);
-    
-    numbers.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.notes} notes={this.state.notes}></ Number>);
+    numbers.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} isNotes={true}></ Number>);
 
     return <div className='numb-cont'>{numbers}</div>
   }

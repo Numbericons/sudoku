@@ -6,8 +6,7 @@ class Square extends React.Component {
     this.state = {
       value: props.attr[0],
       revealed: props.attr[1],
-      entered: props.attr[2],
-      notes: props.notes
+      entered: props.attr[2]
     }
     this.enterVal = this.enterVal.bind(this);
   }
@@ -38,8 +37,8 @@ class Square extends React.Component {
     
     let val = " ";
     if (this.props.attr[2]) val = this.props.attr[2];
-
-    if (this.state.notes) return this.renderNotes(val);
+    
+    if (this.props.showNotes) return this.renderNotes(val);
     
     return <div className='square' onClick={this.enterVal}>
       <h3 className="square-entered">{val}</h3>

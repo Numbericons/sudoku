@@ -53,14 +53,6 @@ function common(arr1,arr2) {
   return arr;
 }
 
-// function chkValid(arr, numbers, n) {
-//   const number = numbers[n-1];
-//   const vert = getCol(arr, numbers.length, n);
-//   const horiz = getRow(arr);
-
-//   return !vert.includes(number) && !horiz.includes(number);
-// }
-
 function getNumber(numbers, n, nTried) {
   nTried.push(n);
   const numbIdx = numbers.indexOf(n);

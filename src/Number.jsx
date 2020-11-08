@@ -6,6 +6,7 @@ class Number extends React.Component {
     this.state = {
       value: props.value
     }
+    this.notes = this.notes.bind(this);
   }
 
   reload() {
@@ -18,8 +19,16 @@ class Number extends React.Component {
     </div>
   }
 
+  notes() {
+    debugger;
+    return <div className='number' onClick={this.props.setNotes}>
+      <h1 className='number-text'>{this.state.value}</h1>
+    </div>
+  }
+
   render() {
     if (this.props.refresh) return this.refresh();
+    if (this.props.notes) return this.notes();
     let container = this.props.selected ? 'selected' : 'number';
     return <div className={container} onClick={this.props.select}>
       <h1 className='number-text'>{this.state.value}</h1>

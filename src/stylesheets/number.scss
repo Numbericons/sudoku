@@ -6,8 +6,8 @@
 }
 
 .number {
-  height: 5vh;
-  width: 2.75vw;
+  height: 4vh;
+  width: 2.1vw;
   margin: .5vh 0vw 2vh 5vw;
   border: 1px solid black;
   cursor: pointer;
@@ -17,14 +17,14 @@
   justify-content: center;
   align-items: center;
   &-text {
-    font-size: 4vh;
+    font-size: 3vh;
     font-family: 'Open Sans', sans-serif;
   }
 }
 
 .selected {
-  height: 5vh;
-  width: 2.75vw;
+  height: 4vh;
+  width: 2.1vw;
   margin: .5vh 0vw 2vh 5vw;
   border: 1px solid black;
   cursor: pointer;

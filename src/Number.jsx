@@ -20,7 +20,6 @@ class Number extends React.Component {
   }
 
   notes() {
-    debugger;
     return <div className='number' onClick={this.props.setNotes}>
       <h1 className='number-text'>{this.state.value}</h1>
     </div>

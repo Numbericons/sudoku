@@ -25,7 +25,6 @@ class Square extends React.Component {
   }
 
   renderNotes(val) {
-    debugger;
     return <div className='square'>
       <h3 className="square-entered" onClick={this.enterVal}>{val}</h3>
       <input className="square-input" type="text" />
@@ -38,7 +37,11 @@ class Square extends React.Component {
     let val = " ";
     if (this.props.attr[2]) val = this.props.attr[2];
 
-    if (this.props.showNotes) return this.renderNotes(val);
+    if (this.props.showNotes && !this.props.attr[2]) return this.renderNotes(val);
+    // if (this.props.showNotes) {
+    //   debugger;
+    //   return this.renderNotes(val);
+    // }
     
     return <div className='square' onClick={this.enterVal}>
       <h3 className="square-entered">{val}</h3>

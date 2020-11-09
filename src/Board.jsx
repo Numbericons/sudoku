@@ -88,12 +88,10 @@ class Board extends React.Component {
   }
 
   setNotes(e) {
-    debugger;
     this.setState({ showNotes: !this.state.showNotes});
   }
 
   handleKeyDown(e) {
-    debugger;
     let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
     this.setState({ selected: val})
   }

@@ -133,11 +133,10 @@ table {
   margin-bottom: 1vh;
 }
 .square-entered {
-  height: 4vh;
-  width: 2vw;
   font-size: 4vh;
   font-family: "Open Sans", sans-serif;
   color: purple;
+  margin-bottom: 1vh;
 }
 .square-input {
   font-size: 2vh;

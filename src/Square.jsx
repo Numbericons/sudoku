@@ -38,10 +38,6 @@ class Square extends React.Component {
     if (this.props.attr[2]) val = this.props.attr[2];
 
     if (this.props.showNotes && !this.props.attr[2]) return this.renderNotes(val);
-    // if (this.props.showNotes) {
-    //   debugger;
-    //   return this.renderNotes(val);
-    // }
     
     return <div className='square' onClick={this.enterVal}>
       <h3 className="square-entered">{val}</h3>

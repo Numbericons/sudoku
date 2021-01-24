@@ -9,11 +9,13 @@ class Board extends React.Component {
     this.state = {
       selected: null,
       showNotes: false,
+      check: false,
       grid: this.getBoard()
     }
     this.won = false;
     this.select = this.select.bind(this);
     this.setNotes = this.setNotes.bind(this);
+    this.setCheck = this.setCheck.bind(this);
     this.changeVal = this.changeVal.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
@@ -36,7 +38,9 @@ class Board extends React.Component {
 
     for (let i=0;i<3;i++) {
       let square = <Square key={idx + i} idx={idx + i} attr={this.state.grid[idx + i]} 
-                           selected={this.state.selected}  showNotes={this.state.showNotes} change={this.changeVal}></Square>;
+                           showNotes={this.state.showNotes} change={this.changeVal}
+                           check={this.state.check}
+                   ></Square>;
 
       squares.push(square);
     }
@@ -91,6 +95,10 @@ class Board extends React.Component {
     this.setState({ showNotes: !this.state.showNotes});
   }
 
+  setCheck(e) {
+    this.setState({ check: !this.state.check});
+  }
+
   handleKeyDown(e) {
     let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
     this.setState({ selected: val})
@@ -110,6 +118,7 @@ class Board extends React.Component {
 
     numbers.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} refresh={true}></ Number>);
     numbers.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} isNotes={true}></ Number>);
+    numbers.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true}></ Number>);
 
     return <div className='numb-cont'>{numbers}</div>
   }

@@ -116,9 +116,9 @@ class Board extends React.Component {
                   selected={this.state.selected === 'eraser'} onKeyPress={this.handleKeyDown}>
                  </ Number>);
 
-    numbers.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} refresh={true}></ Number>);
-    numbers.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} isNotes={true}></ Number>);
-    numbers.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true}></ Number>);
+    numbers.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} isRefresh={true}></ Number>);
+    numbers.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} isNotes={true} notesOn={this.state.showNotes}></ Number>);
+    numbers.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true} checkOn={this.state.check}></ Number>);
 
     return <div className='numb-cont'>{numbers}</div>
   }

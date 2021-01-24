@@ -22,6 +22,19 @@
   }
 }
 
+.btn-on {
+  height: 4vh;
+  width: 2.1vw;
+  margin: .5vh 0vw 2vh 5vw;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: #e639d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .selected {
   height: 4vh;
   width: 2.1vw;

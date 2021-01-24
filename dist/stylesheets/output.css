@@ -147,7 +147,38 @@ table {
   margin-bottom: -1.1vh;
 }
 
+.chk-square {
+  height: 7.7vh;
+  width: 4vw;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.chk-square-entered {
+  height: 4vh;
+  width: 2vw;
+  font-size: 4vh;
+  font-family: "Open Sans", sans-serif;
+  color: purple;
+  margin-bottom: 1vh;
+}
+
 .square + .square {
+  border-left: 1.4px solid #bbb;
+}
+
+.chk-square + .chk-square {
+  border-left: 1.4px solid #bbb;
+}
+
+.square + .chk-square {
+  border-left: 1.4px solid #bbb;
+}
+
+.chk-square + .square {
   border-left: 1.4px solid #bbb;
 }
 
@@ -207,6 +238,19 @@ table {
 .number-text {
   font-size: 3vh;
   font-family: "Open Sans", sans-serif;
+}
+
+.btn-on {
+  height: 4vh;
+  width: 2.1vw;
+  margin: 0.5vh 0vw 2vh 5vw;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: #e639d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .selected {

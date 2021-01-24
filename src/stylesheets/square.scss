@@ -7,7 +7,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // border: 1.4px solid #bbb;
   &-revealed {
     font-size: 4vh;
     font-family: 'Open Sans', sans-serif;
@@ -32,13 +31,12 @@
 .chk-square {
   height: 7.7vh;
   width: 4vw;
-  background-color: white;
+  background-color: #f57070;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // border: 1.4px solid #bbb;
   &-entered {
     height: 4vh;
     width: 2vw;

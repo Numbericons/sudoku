@@ -30,6 +30,11 @@ class Square extends React.Component {
     </div >
   }
  
+  isIncorrect(){
+    //attr[0] is the actual value and attr[2] is the entered value
+    return this.props.check && this.props.attr[2] && this.props.attr[2] !== this.props.attr[0];
+  }
+
   render() {
     if (this.state.revealed) return this.renderFixed();
     
@@ -38,8 +43,9 @@ class Square extends React.Component {
     
     if (this.props.showNotes && !this.props.attr[2]) return this.renderNotes(val);
 
-    const border = this.props.check ? 'chk-square' : 'square';
-    const text = this.props.check ? 'chk-square-entered' : 'square-entered';
+    const incorrect = this.isIncorrect();
+    const border = incorrect ? 'chk-square' : 'square';
+    const text = incorrect ? 'chk-square-entered' : 'square-entered';
     
     return <div className={border} onClick={this.enterVal}>
       <h3 className={text}>{val}</h3>

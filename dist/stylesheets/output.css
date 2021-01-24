@@ -150,7 +150,7 @@ table {
 .chk-square {
   height: 7.7vh;
   width: 4vw;
-  background-color: white;
+  background-color: #f57070;
   cursor: pointer;
   display: flex;
   flex-direction: column;

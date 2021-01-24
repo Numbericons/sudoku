@@ -19,8 +19,8 @@ class Number extends React.Component {
   }
 
   btnOn() {
-    let border = this.props.notesOn ? 'btn-on' : 'number';
-    if (this.props.checkOn) border = 'btn-on';
+    let border = this.props.notesOn ? 'btn-notes' : 'number';
+    if (this.props.checkOn) border = 'btn-check';
     let click = this.props.setNotes || this.props.setCheck;
 
     return <div className={border} onClick={click}>
@@ -33,7 +33,7 @@ class Number extends React.Component {
     if (this.props.isNotes || this.props.checkVal) return this.btnOn();
 
     let container = this.props.selected ? 'selected' : 'number';
-    
+
     return <div className={container} onClick={this.props.select}>
       <h1 className='number-text'>{this.state.value}</h1>
     </div>

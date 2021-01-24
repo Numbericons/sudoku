@@ -22,13 +22,26 @@
   }
 }
 
-.btn-on {
+.btn-check {
   height: 4vh;
   width: 2.1vw;
   margin: .5vh 0vw 2vh 5vw;
   border: 1px solid black;
   cursor: pointer;
-  background-color: #e639d9;
+  background-color: $check-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-notes {
+  height: 4vh;
+  width: 2.1vw;
+  margin: .5vh 0vw 2vh 5vw;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: #e4c424f7;
   display: flex;
   flex-direction: column;
   justify-content: center;

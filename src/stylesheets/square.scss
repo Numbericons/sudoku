@@ -1,3 +1,5 @@
+$check-color: #e03d3d;
+
 .square {
   height: 7.7vh;
   width: 4vw;
@@ -31,7 +33,7 @@
 .chk-square {
   height: 7.7vh;
   width: 4vw;
-  background-color: #f57070;
+  background-color: $check-color;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -42,7 +44,7 @@
     width: 2vw;
     font-size: 4vh;
     font-family: 'Open Sans', sans-serif;
-    color: purple;
+    color: rgb(0, 0, 0);
     margin-bottom: 1vh;
   }
 }

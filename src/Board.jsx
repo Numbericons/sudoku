@@ -114,11 +114,31 @@ class Board extends React.Component {
     return <div className='btn-cont'>{buttons}</div>
   }
 
+  usedNumbers(){
+    const numbers = [1,2,3,4,5,6,7,8,9];
+    let count = {};
+
+    for (let i=0; i<this.state.grid.length; i++){
+      const cell = this.state.grid[i];
+      let num = cell[1] ? cell[0] : cell[2];
+      
+      if (num) {
+        count[num] = count[num] ? count[num] + 1 : 1;
+      }
+    }
+    debugger;
+    return numbers.filter(num=> {
+      return count[num] > 8
+    });
+  }
 
   numbers() {
     let numbers = [];
+    const used = this.usedNumbers();
 
     for (let z=1;z<10;z++) {
+      if (used.includes(z)) continue;
+
       let selected = this.state.selected === z;
       numbers.push(<Number key={z} value={z} select={this.select} selected={selected} onKeyDown={this.handleKeyDown}></Number>);
     }

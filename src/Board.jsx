@@ -126,7 +126,6 @@ class Board extends React.Component {
         count[num] = count[num] ? count[num] + 1 : 1;
       }
     }
-    debugger;
     return numbers.filter(num=> {
       return count[num] > 8
     });

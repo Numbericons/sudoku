@@ -42,4 +42,4 @@ This Sudoku implementation uses a functional style within the boardBuilder.js fi
 ### Site Features:
 
 * Responsive buttons and react lifecycle methods
-* Creates a unique board each time the website is refreshed
+* Creates a unique board each time the website is refreshed.

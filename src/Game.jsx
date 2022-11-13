@@ -17,7 +17,7 @@ class Game extends React.Component {
     let val;
     if (this.loads === 1) val = prompt("Choose a difficulty between 1 and 100 to set the percentage of squares you want hidden:","50");
     this.loads += 1;
-    return <div className='main'>
+    return <div className='main' style={{backgroundImage: "url(backgroundImg.png)"}} >
       <div className='main-head'>
         <h1 className='main-head-text'>Sudoku</h1>
         <div className='timer'>

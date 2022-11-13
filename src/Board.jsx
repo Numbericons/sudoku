@@ -9,7 +9,7 @@ class Board extends React.Component {
     this.state = {
       selected: null,
       showNotes: false,
-      check: false,
+      check: true,
       grid: this.getBoard()
     }
     this.won = false;

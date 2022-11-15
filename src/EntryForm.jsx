@@ -17,7 +17,7 @@ class EntryForm extends React.Component {
   handleClick(event) {
     this.props.setDifficulty(event, this.state.value);
   }
-  //backgroundImg.png
+  
   render() {
     return <div className='entry' style={{ backgroundImage: "url(backgroundImg.png)", backgroundSize: 'cover' }}>
       <div className='entry-header'>

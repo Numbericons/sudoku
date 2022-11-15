@@ -1,5 +1,5 @@
 import React from 'react';
-import gif from './blue_lotus.gif'
+import gif from './blue_lotus.gif';
 
 class EntryForm extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class EntryForm extends React.Component {
   handleClick(event) {
     this.props.setDifficulty(event, this.state.value);
   }
-
+  //backgroundImg.png
   render() {
     return <div className='entry' style={{ backgroundImage: "url(backgroundImg.png)", backgroundSize: 'cover' }}>
       <div className='entry-header'>

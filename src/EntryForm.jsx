@@ -1,4 +1,5 @@
 import React from 'react';
+import gif from './blue_lotus.gif'
 
 class EntryForm extends React.Component {
   constructor(props) {
@@ -18,21 +19,25 @@ class EntryForm extends React.Component {
   }
 
   render() {
-    return <div className='entry'>
+    return <div className='entry' style={{ backgroundImage: "url(backgroundImg.png)", backgroundSize: 'cover' }}>
       <div className='entry-header'>
         <div className='entry-header-text'>
           Welcome to Sudoku!
         </div>
       </div>
+
       <div className='entry-prompt'>
-        Choose a difficulty between 1 and 100<br/>
-        which sets the percentage of squares to hide
+        Choose a difficulty between 1 and 100,<br/>
+        which sets the percentage of hidden squares
       </div>
       <div className='entry-form'>
-        <input type="text" value={this.state.value} onChange={this.handleChange}/>
-        <button onClick={this.handleClick}>
+        <input className='entry-form-input' type="text" value={this.state.value} onChange={this.handleChange}/>
+        <button className='entry-form-submit' onClick={this.handleClick}>
           Submit
         </button>
+      </div>
+      <div className='entry-animation'>
+        <img src={gif} alt='loading'/>
       </div>
     </div>
   }

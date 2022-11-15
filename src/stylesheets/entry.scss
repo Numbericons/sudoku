@@ -6,8 +6,8 @@
   text-align: center;
   &-header{
     &-text {
-      color: black;
-      font-size: 6vh;
+      color: white;
+      font-size: 8vh;
       font-family: 'Open Sans', sans-serif;
       font-weight: 600;
       margin: 4vh 0vw 10vh 0vw;
@@ -16,11 +16,21 @@
   &-form{
     display: flex;
     justify-content: center;
+    margin-bottom: 4vh;
+    &-input{
+      height: 3vh;
+      width: 4vw;
+      font-size: 2vh;
+    }
+    &-submit{
+      font-size: 2vh;
+    }
   }
   &-prompt{
-    color: black;
-    font-size: 2vh;
+    color: white;
+    font-size: 4vh;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
     margin-bottom: 2vh;
   }
 }

@@ -22,14 +22,12 @@ class Game extends React.Component {
   }
 
   render() {
-    // let val;
-    // if (this.loads === 1) val = prompt("Choose a difficulty between 1 and 100 inlusive to set the percentage of squares you want hidden:","50");
     if (!this.state.difficulty) {
       return <div>
         <EntryForm setDifficulty={this.setDifficulty}></EntryForm>
       </div>
     }
-    return <div className='main' style={{backgroundImage: "url(backgroundImg.png)"}} >
+    return <div className='main' style={{backgroundImage: "url(backgroundImg.png)", backgroundSize: 'cover'}} >
       <div className='main-head'>
         <h1 className='main-head-text'>Sudoku</h1>
         <div className='timer'>

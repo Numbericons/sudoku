@@ -223,8 +223,8 @@ table {
   text-align: center;
 }
 .entry-header-text {
-  color: black;
-  font-size: 6vh;
+  color: white;
+  font-size: 8vh;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
   margin: 4vh 0vw 10vh 0vw;
@@ -232,11 +232,21 @@ table {
 .entry-form {
   display: flex;
   justify-content: center;
+  margin-bottom: 4vh;
+}
+.entry-form-input {
+  height: 3vh;
+  width: 4vw;
+  font-size: 2vh;
+}
+.entry-form-submit {
+  font-size: 2vh;
 }
 .entry-prompt {
-  color: black;
-  font-size: 2vh;
+  color: white;
+  font-size: 4vh;
   font-family: "Open Sans", sans-serif;
+  font-weight: 500;
   margin-bottom: 2vh;
 }
 

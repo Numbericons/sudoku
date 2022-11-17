@@ -1,5 +1,8 @@
 import React from 'react';
-import gif from './blue_lotus.gif';
+import gif from './pond_wide.gif';
+// import gif from 'url(https://drive.google.com/file/d/1Tu-H8HQTmlESBEkFuswPs77r6FeUUaxl)';
+// './blue_lotus.gif'
+// './red_pond.gif'
 
 class EntryForm extends React.Component {
   constructor(props) {
@@ -17,15 +20,19 @@ class EntryForm extends React.Component {
   handleClick(event) {
     this.props.setDifficulty(event, this.state.value);
   }
-  
+
   render() {
     return <div className='entry' style={{ backgroundImage: "url(backgroundImg.png)", backgroundSize: 'cover' }}>
       <div className='entry-header'>
         <div className='entry-header-text'>
-          Welcome to Sudoku!
+          Welcome to Sudoku
         </div>
       </div>
 
+      {/* <div className='entry-prompt'>
+        Choose a difficulty 1 to 100,<br/>
+          i.e. the % of hidden squares
+      </div> */}
       <div className='entry-prompt'>
         Choose a difficulty between 1 and 100,<br/>
         which sets the percentage of hidden squares

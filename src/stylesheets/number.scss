@@ -28,6 +28,18 @@
     font-size: 3vh;
     font-family: 'Open Sans', sans-serif;
   }
+  &-background-on {
+    height: 4vh;
+    width: 2.1vw;
+    margin: .5vh 0vw 2vh 5vw;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: #b130b1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .btn-check {
@@ -41,6 +53,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.background {
+  &-selected{
+    background-color: #e4c424f7;
+  }
 }
 
 .btn-notes {

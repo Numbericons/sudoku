@@ -227,7 +227,7 @@ table {
   font-size: 8vh;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  margin: 4vh 0vw 10vh 0vw;
+  margin: 4vh 0vw 8vh 0vw;
 }
 .entry-form {
   display: flex;
@@ -247,7 +247,7 @@ table {
   font-size: 4vh;
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
-  margin-bottom: 2vh;
+  margin-bottom: 5vh;
 }
 
 .numb-cont {
@@ -281,6 +281,18 @@ table {
   font-size: 3vh;
   font-family: "Open Sans", sans-serif;
 }
+.number-background-on {
+  height: 4vh;
+  width: 2.1vw;
+  margin: 0.5vh 0vw 2vh 5vw;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: #b130b1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .btn-check {
   height: 4vh;
@@ -293,6 +305,10 @@ table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.background-selected {
+  background-color: rgba(228, 196, 36, 0.968627451);
 }
 
 .btn-notes {

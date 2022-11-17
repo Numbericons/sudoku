@@ -28,9 +28,18 @@ class Number extends React.Component {
     </div>
   }
 
+  background() {
+    const backgroundClass = this.props.backgroundOn ? 'number-background-on' : 'number';
+
+    return <div className={backgroundClass} onClick={this.props.setBackground}>
+      <h1 className='number-text'>B{this.props.backgroundNum}</h1>
+    </div>
+  }
+
   render() {
     if (this.props.isRefresh) return this.refresh();
     if (this.props.isNotes || this.props.checkVal) return this.btnOn();
+    if (this.props.isBackground) return this.background();
 
     let container = this.props.selected ? 'selected' : 'number';
 

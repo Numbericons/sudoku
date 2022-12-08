@@ -124,6 +124,8 @@ class Board extends React.Component {
     buttons.push(<Number key='background3' backgroundNum={3} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 3}></ Number>);
     buttons.push(<Number key='background4' backgroundNum={4} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 4}></ Number>);
     buttons.push(<Number key='background5' backgroundNum={5} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 5}></ Number>);
+    buttons.push(<Number key='background6' backgroundNum={6} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 6}></ Number>);
+    buttons.push(<Number key='background7' backgroundNum={7} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 7}></ Number>);
 
     return <div className='btn-cont'>{buttons}</div>
   }

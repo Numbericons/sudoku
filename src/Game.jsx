@@ -31,7 +31,7 @@ class Game extends React.Component {
       1: 'midjourney3.png',
       2: 'midjourney6.png',
       3: 'midjourney8.png',
-      4: 'midjourney5.png',
+      4: 'midjourney5.jpg',
       5: 'midjourney9.png',
       6: 'midjourney12.png',
       7: 'midjourney7.png'

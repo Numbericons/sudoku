@@ -85,9 +85,9 @@ class Board extends React.Component {
   //   $(document.body).on('keydown', this.props.onKeyDown);
   // }
 
-  // componentDidMount() {
-  //   document.addEventListener(“keydown”, this.handleKeyDown.bind(this))
-  // }
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown.bind(this))
+  }
 
   select(e) {
     let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
@@ -109,8 +109,14 @@ class Board extends React.Component {
   }
 
   handleKeyDown(e) {
-    let val = e.target.innerHTML ? parseInt(e.target.innerHTML) : 'eraser';
-    this.setState({ selected: val})
+    const nums = '123456789';
+    let val = e.key;
+
+    if (nums.includes(val)) this.setState({ selected: parseInt(val) })
+
+    if (val === 'e') this.setState({ selected: 'eraser' });
+
+    if (val === 'n') this.setNotes();
   }
 
   buttons(){

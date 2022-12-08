@@ -29,10 +29,10 @@ class Game extends React.Component {
   getBackground() {
     const backgroundRef = {
       1: 'midjourney3.png',
-      2: 'backgroundRedSand.jpg',
-      3: 'pink-tree.png',
-      5: 'midjourney4.png',
-      4: 'backgroundImg.png'
+      2: 'midjourney6.png',
+      3: 'midjourney8.png',
+      4: 'midjourney5.png',
+      5: 'backgroundRedSand.jpg'
     }
 
     let name = backgroundRef[this.state.background];
@@ -49,7 +49,7 @@ class Game extends React.Component {
 
     const backgroundUrl = this.getBackground();
 
-    return <div className='main' style={{ backgroundImage: backgroundUrl, backgroundSize: 'cover'}} >
+    return <div className='main' style={{ backgroundImage: backgroundUrl, backgroundSize: 'auto'}} >
       <div className='main-head'>
         <h1 className='main-head-text'>Sudoku</h1>
         <div className='timer'>

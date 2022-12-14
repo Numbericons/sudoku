@@ -2,6 +2,7 @@ import React from 'react';
 import Square from './Square.jsx';
 import Number from './Number.jsx';
 import {buildBoard} from './boardBuilder.js';
+import WinModal from "./WinModal.jsx";
 
 class Board extends React.Component {
   constructor(props) {
@@ -11,16 +12,17 @@ class Board extends React.Component {
       showNotes: false,
       check: true,
       background: 1,
-      grid: this.getBoard()
+      grid: this.getBoard(),
+      won: false,
+      showModal: false
     }
-    this.won = false;
     this.select = this.select.bind(this);
     this.setNotes = this.setNotes.bind(this);
-    this.setCheck = this.setCheck.bind(this);
     this.setCheck = this.setCheck.bind(this);
     this.changeVal = this.changeVal.bind(this);
     this.setBackground = this.setBackground.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   changeVal(e,idx) {
@@ -81,10 +83,6 @@ class Board extends React.Component {
     </div>
   }
 
-  // componentDidMount() {
-  //   $(document.body).on('keydown', this.props.onKeyDown);
-  // }
-
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown.bind(this))
   }
@@ -125,13 +123,10 @@ class Board extends React.Component {
     buttons.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} isNotes={true} notesOn={this.state.showNotes}></ Number>);
     buttons.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} isRefresh={true}></ Number>);
     buttons.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true} checkOn={this.state.check}></ Number>);
-    buttons.push(<Number key='background1' backgroundNum={1} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 1}></ Number>);
-    buttons.push(<Number key='background2' backgroundNum={2} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 2}></ Number>);
-    buttons.push(<Number key='background3' backgroundNum={3} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 3}></ Number>);
-    buttons.push(<Number key='background4' backgroundNum={4} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 4}></ Number>);
-    buttons.push(<Number key='background5' backgroundNum={5} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 5}></ Number>);
-    buttons.push(<Number key='background6' backgroundNum={6} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 6}></ Number>);
-    buttons.push(<Number key='background7' backgroundNum={7} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === 7}></ Number>);
+
+    for (let i=1; i<7; i++){
+      buttons.push(<Number key={`background${i}`} backgroundNum={i} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === i}></ Number>);
+    }
 
     return <div className='btn-cont'>{buttons}</div>
   }
@@ -167,8 +162,6 @@ class Board extends React.Component {
     numbers.push(<Number key='eraser' value={<i className="fa fa-eraser"></i>} select={this.select} 
                   selected={this.state.selected === 'eraser'} onKeyPress={this.handleKeyDown}>
                  </ Number>);
-
-
 
     return <div className='numb-cont'>{numbers}</div>
   }
@@ -211,11 +204,17 @@ class Board extends React.Component {
     return this.chkIndices(cages) && this.chkIndices(rows) && this.chkIndices(columns);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     if (!this.won && this.win()) {
-      this.won = true;
-      alert('Congratulations, you have won!');
+
+      if (!this.state.won) {
+        this.setState({ won: true, showModal: true })
+      }
     }
+  }
+
+  toggleModal(e) {
+    this.setState({ showModal: !this.state.showModal })
   }
 
   render() {
@@ -223,6 +222,7 @@ class Board extends React.Component {
       {this.build()}
       {this.buttons()}
       {this.numbers()}
+      <WinModal onClose={this.toggleModal} show={this.state.showModal}/>
     </div>
   }
 }

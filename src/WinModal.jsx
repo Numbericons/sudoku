@@ -21,7 +21,7 @@ export default class WinModal extends React.Component {
 
     return (
       <div className="modal" id="modal">
-        <h2>Well done, board complete!</h2>
+        <h2>Board Complete</h2>
         <div className="content">
           <img className ='modal-lotus' src={lotus} alt='lotus'></img>
         </div>

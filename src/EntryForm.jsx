@@ -25,7 +25,7 @@ class EntryForm extends React.Component {
     return <div className='entry' style={{ backgroundImage: "url(midjourney3.png)", backgroundSize: 'cover' }}>
       <div className='entry-header'>
         <div className='entry-header-text'>
-          Welcome to Sudoku
+          Sudoku
         </div>
       </div>
 

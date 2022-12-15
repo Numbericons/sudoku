@@ -20,37 +20,43 @@ export default class InfoModal extends React.Component {
                 <div className='number'>
                   <h1 className='number-text'>{<i className="fa fa-file-text-o"></i>}</h1>
                 </div>
-                <h3 className='info-line-text'>Notes button - Toggles showing text inputs in each empty cell</h3>
+                <h3 className='info-line-text-bold'>Notes button:</h3>
+                <h3 className='info-line-text'>Toggles showing text inputs in empty cells</h3>
               </div>
               <div className='info-line'>
                 <div className='number'>
                   <h1 className='number-text'>{<i className="fa fa-refresh"></i>}</h1>
                 </div>
-                <h3 className='info-line-text'>Refresh button - Refreshes the current page</h3>
+                <h3 className='info-line-text-bold'>Refresh button:</h3>
+                <h3 className='info-line-text'>Refreshes the current page</h3>
               </div>
               <div className='info-line'>
                 <div className='number'>
                   <h1 className='number-text'>{<i className="fa fa-check-square-o"></i>}</h1>
                 </div>
-                <h3 className='info-line-text'>Check square button - Highlights cells with incorrect numbers in red</h3>
+                <h3 className='info-line-text-bold'>Check square button:</h3>
+                <h3 className='info-line-text'>Highlights cells with incorrect numbers red</h3>
               </div>
               <div className='info-line'>
                 <div className='number'>
                   <h1 className='number-text'>B1</h1>
                 </div>
-                <h3 className='info-line-text'>B1 to B6 buttons - Selects custom backgrounds</h3>
+                <h3 className='info-line-text-bold'>B1 to B6 buttons:</h3>
+                <h3 className='info-line-text'>Selects custom backgrounds</h3>
               </div>
               <div className='info-line'>
                 <div className='number'>
                   <h1 className='number-text'>1</h1>
                 </div>
-                <h3 className='info-line-text'>1 to 9 buttons - Selects numbers to enter into cells</h3>
+                <h3 className='info-line-text-bold'>1 to 9 buttons:</h3>
+                <h3 className='info-line-text'>Selects numbers to enter into cells</h3>
               </div>
               <div className='info-line'>
                 <div className='number'>
                   <h1 className='number-text'>{<i className="fa fa-eraser"></i>}</h1>
                 </div>
-                <h3 className='info-line-text'>Eraser button - Removes a number from cells</h3>
+                <h3 className='info-line-text-bold'>Eraser button:</h3>
+                <h3 className='info-line-text'>Removes numbers from cells</h3>
               </div>
             </div>
           </div>

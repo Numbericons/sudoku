@@ -12,7 +12,7 @@ body {
 
 .modal {
   width: 80vw;
-  height: 80vh;
+  height: 77vh;
   translate: -20vw;
   position: absolute;
   background: antiquewhite;
@@ -64,6 +64,7 @@ body {
     padding: 1rem;
     margin: 0;
     font-size: 5vh;
+    font-weight: 600;
   }
 
   .content {
@@ -71,7 +72,7 @@ body {
   }
 
   .actions {
-    margin-top: 7vh;
+    // margin-top: 7vh;
     border-top: 1px solid #ccc;
     background: antiquewhite;
     padding: 0.5rem 1rem;
@@ -101,7 +102,7 @@ body {
   &-container {
     display: flex;
     margin-left: 20vw;
-    margin-top: 8vh;
+    margin-top: 4vh;
     margin-bottom: 2vh;
   }
 
@@ -126,13 +127,20 @@ body {
 
   &-line {
     display: flex;
-
     &-text {
       font-family: 'Open Sans', sans-serif;
       margin-top: 1.5vh;
       margin-left: 1vw;
       color: #5d3e02;
       font-size: 2vh;
+    }
+    &-text-bold{
+      font-family: 'Open Sans', sans-serif;
+      margin-top: 1.5vh;
+      margin-left: 1vw;
+      color: #5d3e02;
+      font-size: 2vh;
+      font-weight: 700;
     }
   }
 }

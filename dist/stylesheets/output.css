@@ -227,7 +227,7 @@ table {
   font-size: 8vh;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  margin: 2vh 0vw 8vh 0vw;
+  margin: 2vh 0vw 1vh 0vw;
 }
 .entry-form {
   display: flex;
@@ -235,19 +235,59 @@ table {
   margin-bottom: 4vh;
 }
 .entry-form-input {
-  height: 3vh;
-  width: 4vw;
+  height: 2vh;
+  width: 2.5vw;
   font-size: 2vh;
+  margin-right: 2vw;
 }
 .entry-form-submit {
+  border: 0;
+  background: #0ed44a;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-top: 1.5vh;
+}
+.entry-radio-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vh;
+}
+.entry-radio-form {
+  display: flex;
+  flex-direction: column;
+  width: 22vw;
+  height: 30vh;
   font-size: 2vh;
+  background-color: white;
+  border: solid black 1px;
+}
+.entry-radio-text {
+  font-family: "Open Sans", sans-serif;
+  color: #5d3e02;
+  font-size: 2vh;
+  margin-left: 1.5vw;
+}
+.entry-radio-text-container {
+  margin-top: 0.75vh;
+  display: flex;
+  justify-content: space-between;
+}
+.entry-radio-input {
+  margin-right: 2vw;
 }
 .entry-prompt {
-  color: white;
-  font-size: 4vh;
+  color: #5d3e02;
+  font-size: 2.5vh;
   font-family: "Open Sans", sans-serif;
-  font-weight: 500;
-  margin-bottom: 5vh;
+  font-weight: 700;
+  margin-bottom: 1.5vh;
+  margin-top: 1.5vh;
+}
+.entry-animation-image {
+  height: 52vh;
+  width: 52vw;
 }
 
 .numb-cont {
@@ -351,7 +391,7 @@ body {
 
 .modal {
   width: 80vw;
-  height: 80vh;
+  height: 77vh;
   translate: -20vw;
   position: absolute;
   background: antiquewhite;
@@ -397,12 +437,12 @@ body {
   padding: 1rem;
   margin: 0;
   font-size: 5vh;
+  font-weight: 600;
 }
 .modal .content {
   padding: 1rem;
 }
 .modal .actions {
-  margin-top: 7vh;
   border-top: 1px solid #ccc;
   background: antiquewhite;
   padding: 0.5rem 1rem;
@@ -429,7 +469,7 @@ body {
 .info-container {
   display: flex;
   margin-left: 20vw;
-  margin-top: 8vh;
+  margin-top: 4vh;
   margin-bottom: 2vh;
 }
 .info-header {
@@ -457,6 +497,14 @@ body {
   margin-left: 1vw;
   color: #5d3e02;
   font-size: 2vh;
+}
+.info-line-text-bold {
+  font-family: "Open Sans", sans-serif;
+  margin-top: 1.5vh;
+  margin-left: 1vw;
+  color: #5d3e02;
+  font-size: 2vh;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=output.css.map */

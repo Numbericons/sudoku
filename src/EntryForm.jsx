@@ -1,16 +1,14 @@
 import React from 'react';
 import gif from './pond_wide.gif';
-// import gif from 'url(https://drive.google.com/file/d/1Tu-H8HQTmlESBEkFuswPs77r6FeUUaxl)';
-// './blue_lotus.gif'
-// './red_pond.gif'
 
 class EntryForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: '50'};
+    this.state = {value: '50', difficulty: 'medium'};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleChange(event) {
@@ -21,6 +19,14 @@ class EntryForm extends React.Component {
     this.props.setDifficulty(event, this.state.value);
   }
 
+  handleInputChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleDifficultySubmit(event) {
+    this.props.setDifficulty(event, this.state.value);
+  }
+
   render() {
     return <div className='entry' style={{ backgroundImage: "url(midjourney3.png)", backgroundSize: 'cover' }}>
       <div className='entry-header'>
@@ -28,23 +34,70 @@ class EntryForm extends React.Component {
           Sudoku
         </div>
       </div>
-
-      {/* <div className='entry-prompt'>
-        Choose a difficulty 1 to 100,<br/>
-          i.e. the % of hidden squares
-      </div> */}
-      <div className='entry-prompt'>
-        Choose a difficulty between 1 and 100,<br/>
-        which sets the percentage of hidden squares
-      </div>
-      <div className='entry-form'>
-        <input className='entry-form-input' type="text" value={this.state.value} onChange={this.handleChange}/>
-        <button className='entry-form-submit' onClick={this.handleClick}>
-          Submit
-        </button>
+      <div className='entry-radio-container'>
+        <div></div>
+        <div className='entry-radio-form'>
+          <div className='entry-prompt'>
+            Difficulty<br/>
+            (% hidden cells)
+          </div>
+          <div className='entry-radio-text-container'>
+            <label className='entry-radio-text'>Easy (40%)</label>
+            <input name="difficulty"
+              type="radio"
+              className="entry-radio-input"
+              value="40"
+              checked={this.state.value === '40'}
+              onChange={this.handleInputChange} 
+              />
+          </div>
+          <div className='entry-radio-text-container'>
+            <label className='entry-radio-text'>Medium (50%)</label>
+            <input
+              name="difficulty"
+              type="radio"
+              className="entry-radio-input"
+              value='50'
+              checked={this.state.value === '50'}
+              onChange={this.handleInputChange} 
+              />
+          </div>
+          <div className='entry-radio-text-container'>
+            <label className='entry-radio-text'>Hard (60%)</label>
+            <input
+              name="difficulty"
+              type="radio"
+              className="entry-radio-input"
+              value='60'
+              checked={this.state.value === '60'}
+              onChange={this.handleInputChange} 
+            />
+          </div>
+          <div className='entry-radio-text-container'>
+            <label className='entry-radio-text'>Very Hard (65%)</label>
+            <input
+              name="difficulty"
+              type="radio"
+              className="entry-radio-input"
+              value='65'
+              checked={this.state.value === '65'}
+              onChange={this.handleInputChange} 
+            />
+          </div>
+          <div className='entry-radio-text-container'>
+            <label className='entry-radio-text'>Custom (%) </label>
+            <input className='entry-form-input' type="text" onChange={this.handleChange} />
+          </div>
+          <div>
+            <button className='entry-form-submit' onClick={this.handleClick}>
+              Play
+            </button>
+          </div>
+        </div>
+        <div></div>
       </div>
       <div className='entry-animation'>
-        <img src={gif} alt='loading'/>
+        <img className='entry-animation-image' src={gif} alt='loading'/>
       </div>
     </div>
   }

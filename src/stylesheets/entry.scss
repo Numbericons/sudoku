@@ -33,33 +33,36 @@
       margin-top: 1.5vh;
     }
   }
-  &-radio-container{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2vh;
-  }
-  &-radio-form{
-    display: flex;
-    flex-direction: column;
-    width: 22vw;
-    height: 30vh;
-    font-size: 2vh;
-    background-color: white;
-    border: solid black 1px;
-  }
-  &-radio-text{
-    font-family: 'Open Sans', sans-serif;
-    color: #5d3e02;
-    font-size: 2vh;
-    margin-left: 1.5vw;
+  &-radio{
     &-container{
-      margin-top: .75vh;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      margin-bottom: 2vh;
     }
-  }
-  &-radio-input {
-    margin-right: 2vw;
+    &-input{
+      margin-right: 2vw;
+    }
+    &-form{
+      display: flex;
+      flex-direction: column;
+      width: 22vw;
+      height: 30vh;
+      font-size: 2vh;
+      background-color: white;
+      border: solid black 1.5px;
+    }
+    &-text{
+      font-family: 'Open Sans', sans-serif;
+      color: #5d3e02;
+      font-size: 2vh;
+      margin-left: 1.5vw;
+    
+      &-container {
+        margin-top: .75vh;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
   }
   &-prompt{
     color: #5d3e02;

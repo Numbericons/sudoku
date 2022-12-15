@@ -254,6 +254,9 @@ table {
   justify-content: center;
   margin-bottom: 2vh;
 }
+.entry-radio-input {
+  margin-right: 2vw;
+}
 .entry-radio-form {
   display: flex;
   flex-direction: column;
@@ -261,7 +264,7 @@ table {
   height: 30vh;
   font-size: 2vh;
   background-color: white;
-  border: solid black 1px;
+  border: solid black 1.5px;
 }
 .entry-radio-text {
   font-family: "Open Sans", sans-serif;
@@ -273,9 +276,6 @@ table {
   margin-top: 0.75vh;
   display: flex;
   justify-content: space-between;
-}
-.entry-radio-input {
-  margin-right: 2vw;
 }
 .entry-prompt {
   color: #5d3e02;

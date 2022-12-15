@@ -36,10 +36,17 @@ class Number extends React.Component {
     </div>
   }
 
+  info() {
+    return <div className='number' onClick={this.props.showInfo}>
+      <h1 className='number-text'>{this.state.value}</h1>
+    </div>
+  }
+
   render() {
     if (this.props.isRefresh) return this.refresh();
     if (this.props.isNotes || this.props.checkVal) return this.btnOn();
     if (this.props.isBackground) return this.background();
+    if (this.props.isInfo) return this.info();
 
     let container = this.props.selected ? 'selected' : 'number';
 

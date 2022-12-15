@@ -3,6 +3,7 @@ import Square from './Square.jsx';
 import Number from './Number.jsx';
 import {buildBoard} from './boardBuilder.js';
 import WinModal from "./WinModal.jsx";
+import InfoModal from "./InfoModal.jsx";
 
 class Board extends React.Component {
   constructor(props) {
@@ -13,8 +14,8 @@ class Board extends React.Component {
       check: true,
       background: 1,
       grid: this.getBoard(),
-      won: false,
-      showModal: false
+      showWinModal: false,
+      showInfoModal: false
     }
     this.select = this.select.bind(this);
     this.setNotes = this.setNotes.bind(this);
@@ -22,7 +23,8 @@ class Board extends React.Component {
     this.changeVal = this.changeVal.bind(this);
     this.setBackground = this.setBackground.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleWinModal = this.toggleWinModal.bind(this);
+    this.toggleInfoModal = this.toggleInfoModal.bind(this);
   }
 
   changeVal(e,idx) {
@@ -84,7 +86,8 @@ class Board extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown.bind(this))
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    this.setState({ showWinModal: this.win() });
   }
 
   select(e) {
@@ -119,14 +122,15 @@ class Board extends React.Component {
 
   buttons(){
     let buttons = [];
-
     buttons.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} isNotes={true} notesOn={this.state.showNotes}></ Number>);
     buttons.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} isRefresh={true}></ Number>);
     buttons.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true} checkOn={this.state.check}></ Number>);
-
+    
     for (let i=1; i<7; i++){
       buttons.push(<Number key={`background${i}`} backgroundNum={i} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === i}></ Number>);
     }
+    
+    buttons.push(<Number key='info' value={<i className="fa fa-info-circle"></i>} isInfo={true} showInfo={this.toggleInfoModal}></ Number>);
 
     return <div className='btn-cont'>{buttons}</div>
   }
@@ -204,17 +208,21 @@ class Board extends React.Component {
     return this.chkIndices(cages) && this.chkIndices(rows) && this.chkIndices(columns);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     if (!this.won && this.win()) {
 
       if (!this.state.won) {
-        this.setState({ won: true, showModal: true })
+        this.setState({ won: true, showWinModal: true })
       }
     }
   }
 
-  toggleModal(e) {
-    this.setState({ showModal: !this.state.showModal })
+  toggleWinModal(e) {
+    this.setState({ showWinModal: !this.state.showWinModal, closedWinModal: this })
+  }
+
+  toggleInfoModal(e) {
+    this.setState({ showInfoModal: !this.state.showInfoModal })
   }
 
   render() {
@@ -222,7 +230,8 @@ class Board extends React.Component {
       {this.build()}
       {this.buttons()}
       {this.numbers()}
-      <WinModal onClose={this.toggleModal} show={this.state.showModal}/>
+      <WinModal onClose={this.toggleWinModal} show={this.state.showWinModal}/>
+      <InfoModal onClose={this.toggleInfoModal} show={this.state.showInfoModal}/>
     </div>
   }
 }

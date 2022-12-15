@@ -409,7 +409,7 @@ body {
 }
 .modal .actions button {
   border: 0;
-  background: #78f89f;
+  background: #35cb62;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
@@ -424,6 +424,39 @@ body {
 
 #centered-toggle-button {
   position: absolute;
+}
+
+.info-container {
+  display: flex;
+  margin-left: 20vw;
+  margin-top: 8vh;
+  margin-bottom: 2vh;
+}
+.info-header {
+  font-family: "Open Sans", sans-serif;
+  color: #5d3e02;
+  font-size: 4vh;
+}
+.info-image {
+  height: 50vh;
+  width: 10vw;
+}
+.info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 5vw;
+  margin-top: 3vh;
+}
+.info-line {
+  display: flex;
+}
+.info-line-text {
+  font-family: "Open Sans", sans-serif;
+  margin-top: 1.5vh;
+  margin-left: 1vw;
+  color: #5d3e02;
+  font-size: 2vh;
 }
 
 /*# sourceMappingURL=output.css.map */

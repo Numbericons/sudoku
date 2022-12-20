@@ -18,6 +18,7 @@
   width: 2.1vw;
   margin: .5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: white;
   display: flex;
@@ -25,14 +26,15 @@
   justify-content: center;
   align-items: center;
   &-text {
-    font-size: 3vh;
-    font-family: 'Open Sans', sans-serif;
+    font-size: 3.3vh;
+    font-family: monspace;
   }
   &-background-on {
     height: 4vh;
     width: 2.1vw;
     margin: .5vh 0vw 2vh 5vw;
     border: 1px solid black;
+    border-radius: 5px;
     cursor: pointer;
     background-color: #b130b1;
     display: flex;
@@ -47,6 +49,7 @@
   width: 2.1vw;
   margin: .5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: $check-color;
   display: flex;
@@ -66,6 +69,7 @@
   width: 2.1vw;
   margin: .5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #e4c424f7;
   display: flex;
@@ -79,6 +83,7 @@
   width: 2.1vw;
   margin: .5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #e67039;
   display: flex;

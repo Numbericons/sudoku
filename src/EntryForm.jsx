@@ -1,5 +1,5 @@
 import React from 'react';
-import gif from './pond_wide.gif';
+import gif from './pond_wide_small.gif';
 
 class EntryForm extends React.Component {
   constructor(props) {
@@ -28,11 +28,9 @@ class EntryForm extends React.Component {
   }
 
   render() {
-    return <div className='entry' style={{ backgroundImage: "url(midjourney3.png)", backgroundSize: 'cover' }}>
+    return <div className='entry' style={{ backgroundImage: "url(background1.webp)", backgroundSize: 'cover' }}>
       <div className='entry-header'>
-        <div className='entry-header-text'>
-          Sudoku
-        </div>
+        <h4 className='entry-header-text'>Sudoku</h4>
       </div>
       <div className='entry-radio-container'>
         <div></div>

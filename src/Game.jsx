@@ -28,12 +28,12 @@ class Game extends React.Component {
 
   getBackground() {
     const backgroundRef = {
-      1: 'midjourney3.png',
-      2: 'midjourney12.png',
-      3: 'midjourney6.png',
-      4: 'midjourney8.png',
-      5: 'midjourney5.jpg',
-      6: 'midjourney9.png'
+      1: 'background1.webp',
+      2: 'background2.webp',
+      3: 'background3.webp',
+      4: 'background4.webp',
+      5: 'background5.webp',
+      6: 'background6.webp'
     }
 
     let name = backgroundRef[this.state.background];

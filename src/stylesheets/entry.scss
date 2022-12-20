@@ -8,9 +8,13 @@
     &-text {
       color: white;
       font-size: 8vh;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Merienda', cursive;
       font-weight: 600;
       margin: 2vh 0vw 1vh 0vw;
+      text-shadow: -1px 1px 2px #000,
+                    1px 1px 2px #000,
+                    1px -1px 0 #000,
+                    -1px -1px 0 #000;
     }
   }
   &-form{
@@ -25,12 +29,12 @@
     }
     &-submit{
       border: 0;
-      background: #0ed44a;
+      background: #13be47;
       border-radius: 5px;
       padding: 0.5rem 1rem;
       font-size: 1.2rem;
       line-height: 1;
-      margin-top: 1.5vh;
+      font-family: monospace;
     }
   }
   &-radio{
@@ -49,10 +53,10 @@
       height: 30vh;
       font-size: 2vh;
       background-color: white;
-      border: solid black 1.5px;
+      border: solid black 2.5px;
     }
     &-text{
-      font-family: 'Open Sans', sans-serif;
+      font-family: monospace;
       color: #5d3e02;
       font-size: 2vh;
       margin-left: 1.5vw;
@@ -67,7 +71,7 @@
   &-prompt{
     color: #5d3e02;
     font-size: 2.5vh;
-    font-family: 'Open Sans', sans-serif;
+    font-family: monospace;
     font-weight: 700;
     margin-bottom: 1.5vh;
     margin-top: 1.5vh;
@@ -76,6 +80,7 @@
     &-image{
       height: 52vh;
       width: 52vw;
+      border: 2.5px solid black;
     }
   }
 }

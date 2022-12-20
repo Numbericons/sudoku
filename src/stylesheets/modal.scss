@@ -72,18 +72,18 @@ body {
   }
 
   .actions {
-    // margin-top: 7vh;
     border-top: 1px solid #ccc;
     background: antiquewhite;
     padding: 0.5rem 1rem;
 
     button {
       border: 0;
-      background: #35cb62;
+      background: #13be47;
       border-radius: 5px;
       padding: 0.5rem 1rem;
       font-size: 1.2rem;
       line-height: 1;
+      font-family: monospace;
     }
   }
 }
@@ -92,6 +92,15 @@ body {
   margin-top: 5vh;
   width: 30vw;
   height: 50vh;
+  &-header{
+    color: #5d3e02;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem;
+    margin: 0;
+    font-size: 5vh;
+    font-weight: 600;
+    font-family: 'Merienda', sans-serif;
+  }
 }
 
 #centered-toggle-button {
@@ -107,9 +116,11 @@ body {
   }
 
   &-header {
-    font-family: 'Open Sans', sans-serif;
+    font-family: monospace;
     color: #5d3e02;
     font-size: 4vh;
+    font-weight: 600;
+    font-family: 'Merienda', sans-serif;
   }
 
   &-image {
@@ -128,14 +139,14 @@ body {
   &-line {
     display: flex;
     &-text {
-      font-family: 'Open Sans', sans-serif;
+      font-family: monospace;
       margin-top: 1.5vh;
       margin-left: 1vw;
       color: #5d3e02;
       font-size: 2vh;
     }
     &-text-bold{
-      font-family: 'Open Sans', sans-serif;
+      font-family: monospace;
       margin-top: 1.5vh;
       margin-left: 1vw;
       color: #5d3e02;

@@ -8,7 +8,7 @@ export default class WinModal extends React.Component {
   };
 
   randomLotus() {
-    const lotuses = ['lotus1.png', 'lotus2.png', 'lotus3.png'];
+    const lotuses = ['lotus1.webp', 'lotus2.webp', 'lotus3.webp'];
     const randIdx = Math.floor(Math.random() * 3);
 
     return lotuses[randIdx];
@@ -21,7 +21,7 @@ export default class WinModal extends React.Component {
 
     return (
       <div className="modal" id="modal">
-        <h2>Board Complete</h2>
+        <h2 className="modal-lotus-header">Board Complete</h2>
         <div className="content">
           <img className ='modal-lotus' src={lotus} alt='lotus'></img>
         </div>

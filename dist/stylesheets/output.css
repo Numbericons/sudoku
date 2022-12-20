@@ -65,9 +65,10 @@ table {
 .main-head-text {
   color: white;
   font-size: 8vh;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merienda", sans-serif;
   font-weight: 600;
   margin-bottom: 1vh;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
 }
 .main-body {
   display: flex;
@@ -82,7 +83,6 @@ table {
 .grid {
   display: flex;
   flex-direction: column;
-  border: 1.5px solid black;
   height: 24vh;
 }
 .grid-row {
@@ -95,7 +95,7 @@ table {
 .box {
   display: flex;
   flex-direction: column;
-  border: 1.5px solid black;
+  border: 2px solid black;
 }
 .box-row {
   display: flex;
@@ -110,7 +110,8 @@ table {
   justify-content: center;
   color: white;
   font-size: 2vh;
-  font-family: "Open Sans", sans-serif;
+  font-family: monospace;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
 }
 .timer-text {
   margin-right: 0.25vw;
@@ -127,20 +128,24 @@ table {
   align-items: center;
 }
 .square-revealed {
-  font-size: 4vh;
-  font-family: "Open Sans", sans-serif;
+  font-size: 4.7vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: black;
   margin-bottom: 1vh;
 }
 .square-entered {
   height: 4vh;
   width: 2vw;
-  font-size: 4vh;
-  font-family: "Open Sans", sans-serif;
+  font-size: 4.7vh;
+  font-family: monospace;
   color: purple;
   margin-bottom: 1vh;
 }
 .square-input {
   font-size: 2vh;
+  font-family: monospace;
   height: 1.2vh;
   width: 3.1vw;
   margin-bottom: -1.1vh;
@@ -159,8 +164,8 @@ table {
 .chk-square-entered {
   height: 4vh;
   width: 2vw;
-  font-size: 4vh;
-  font-family: "Open Sans", sans-serif;
+  font-size: 4.7vh;
+  font-family: monospace;
   color: rgb(0, 0, 0);
   margin-bottom: 1vh;
 }
@@ -225,9 +230,10 @@ table {
 .entry-header-text {
   color: white;
   font-size: 8vh;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Merienda", cursive;
   font-weight: 600;
   margin: 2vh 0vw 1vh 0vw;
+  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
 }
 .entry-form {
   display: flex;
@@ -242,12 +248,12 @@ table {
 }
 .entry-form-submit {
   border: 0;
-  background: #0ed44a;
+  background: #13be47;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   line-height: 1;
-  margin-top: 1.5vh;
+  font-family: monospace;
 }
 .entry-radio-container {
   display: flex;
@@ -264,10 +270,10 @@ table {
   height: 30vh;
   font-size: 2vh;
   background-color: white;
-  border: solid black 1.5px;
+  border: solid black 2.5px;
 }
 .entry-radio-text {
-  font-family: "Open Sans", sans-serif;
+  font-family: monospace;
   color: #5d3e02;
   font-size: 2vh;
   margin-left: 1.5vw;
@@ -280,7 +286,7 @@ table {
 .entry-prompt {
   color: #5d3e02;
   font-size: 2.5vh;
-  font-family: "Open Sans", sans-serif;
+  font-family: monospace;
   font-weight: 700;
   margin-bottom: 1.5vh;
   margin-top: 1.5vh;
@@ -288,6 +294,7 @@ table {
 .entry-animation-image {
   height: 52vh;
   width: 52vw;
+  border: 2.5px solid black;
 }
 
 .numb-cont {
@@ -310,6 +317,7 @@ table {
   width: 2.1vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: white;
   display: flex;
@@ -318,14 +326,15 @@ table {
   align-items: center;
 }
 .number-text {
-  font-size: 3vh;
-  font-family: "Open Sans", sans-serif;
+  font-size: 3.3vh;
+  font-family: monspace;
 }
 .number-background-on {
   height: 4vh;
   width: 2.1vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #b130b1;
   display: flex;
@@ -339,6 +348,7 @@ table {
   width: 2.1vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #e03d3d;
   display: flex;
@@ -356,6 +366,7 @@ table {
   width: 2.1vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: rgba(228, 196, 36, 0.968627451);
   display: flex;
@@ -369,6 +380,7 @@ table {
   width: 2.1vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   background-color: #e67039;
   display: flex;
@@ -449,17 +461,27 @@ body {
 }
 .modal .actions button {
   border: 0;
-  background: #35cb62;
+  background: #13be47;
   border-radius: 5px;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   line-height: 1;
+  font-family: monospace;
 }
 
 .modal-lotus {
   margin-top: 5vh;
   width: 30vw;
   height: 50vh;
+}
+.modal-lotus-header {
+  color: #5d3e02;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0;
+  font-size: 5vh;
+  font-weight: 600;
+  font-family: "Merienda", sans-serif;
 }
 
 #centered-toggle-button {
@@ -473,9 +495,11 @@ body {
   margin-bottom: 2vh;
 }
 .info-header {
-  font-family: "Open Sans", sans-serif;
+  font-family: monospace;
   color: #5d3e02;
   font-size: 4vh;
+  font-weight: 600;
+  font-family: "Merienda", sans-serif;
 }
 .info-image {
   height: 50vh;
@@ -492,14 +516,14 @@ body {
   display: flex;
 }
 .info-line-text {
-  font-family: "Open Sans", sans-serif;
+  font-family: monospace;
   margin-top: 1.5vh;
   margin-left: 1vw;
   color: #5d3e02;
   font-size: 2vh;
 }
 .info-line-text-bold {
-  font-family: "Open Sans", sans-serif;
+  font-family: monospace;
   margin-top: 1.5vh;
   margin-left: 1vw;
   color: #5d3e02;

@@ -86,7 +86,7 @@ class EntryForm extends React.Component {
             <label className='entry-radio-text'>Custom (%) </label>
             <input className='entry-form-input' type="text" onChange={this.handleChange} />
           </div>
-          <div>
+          <div className='entry-radio-button'>
             <button className='entry-form-submit' onClick={this.handleClick}>
               Play
             </button>

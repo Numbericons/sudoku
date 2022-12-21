@@ -313,8 +313,8 @@ table {
 }
 
 .number {
-  height: 4vh;
-  width: 2.1vw;
+  height: 4.4vh;
+  width: 2.31vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
   border-radius: 5px;
@@ -326,11 +326,11 @@ table {
   align-items: center;
 }
 .number-text {
-  font-size: 3.3vh;
+  font-size: 3.8vh;
   font-family: monspace;
 }
 .number-background-on {
-  height: 4vh;
+  height: 4.4vh;
   width: 2.1vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
@@ -344,8 +344,8 @@ table {
 }
 
 .btn-check {
-  height: 4vh;
-  width: 2.1vw;
+  height: 4.4vh;
+  width: 2.31vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
   border-radius: 5px;

@@ -2,7 +2,7 @@
 
 [Live Link](https://react-sudoku-24b70.web.app//)
 
-![Alt text](screenshots/ui/12.20.22.png)
+![Alt text](screenshots/ui/12.20.22_2.png)
 
 ### Local Installation
  1. Enter 'NPM install' in the root directory

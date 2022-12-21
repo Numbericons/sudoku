@@ -14,7 +14,7 @@ export default class InfoModal extends React.Component {
         <h2 className='info-header'>Information</h2>
         <div className="content">
           <div className='info-container'>
-            <img className='info-image' src={'Information_on_icons.png'} alt='Info Buttons'></img>
+            <img className='info-image' src={'Information_on_icons_2.png'} alt='Info Buttons'></img>
             <div className='info-text'>
               <div className='info-line'>
                 <div className='number'>

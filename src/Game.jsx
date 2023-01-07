@@ -28,8 +28,8 @@ class Game extends React.Component {
 
   getBackground() {
     const backgroundRef = {
-      1: 'background2.webp',
-      2: 'background1.webp',
+      1: 'background1.webp',
+      2: 'background2.webp',
       3: 'background3.webp',
       4: 'background4.webp',
       5: 'background5.webp',

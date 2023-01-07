@@ -252,7 +252,7 @@ table {
   background: #13be47;
   border-radius: 5px;
   padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1;
   font-family: monospace;
 }
@@ -285,7 +285,7 @@ table {
   justify-content: space-between;
 }
 .entry-radio-button {
-  margin-top: 0.7vh;
+  margin-top: 2.7vh;
 }
 .entry-prompt {
   color: #5d3e02;
@@ -408,7 +408,7 @@ body {
 .modal {
   width: 80vw;
   height: 77vh;
-  translate: -20vw;
+  translate: -60vw;
   position: absolute;
   background: antiquewhite;
   border: 1px solid #ccc;
@@ -422,6 +422,12 @@ body {
 .modal.red {
   background: black;
   color: red;
+}
+.modal-backdrop {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  translate: -70vw -15vh;
 }
 .modal.blue {
   background: blue;
@@ -462,6 +468,7 @@ body {
   border-top: 1px solid #ccc;
   background: antiquewhite;
   padding: 0.5rem 1rem;
+  margin-top: 2.5vh;
 }
 .modal .actions button {
   border: 0;

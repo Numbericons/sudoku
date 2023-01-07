@@ -218,7 +218,7 @@ class Board extends React.Component {
   }
 
   toggleWinModal(e) {
-    this.setState({ showWinModal: !this.state.showWinModal, closedWinModal: this })
+    this.setState({ showWinModal: !this.state.showWinModal })
   }
 
   toggleInfoModal(e) {

@@ -13,7 +13,7 @@ body {
 .modal {
   width: 80vw;
   height: 77vh;
-  translate: -20vw;
+  translate: -60vw;
   position: absolute;
   background: antiquewhite;
   border: 1px solid #ccc;
@@ -27,6 +27,13 @@ body {
   &.red {
     background: black;
     color: red;
+  }
+
+  &-backdrop {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    translate: -70vw -15vh;
   }
 
   &.blue {
@@ -75,6 +82,7 @@ body {
     border-top: 1px solid #ccc;
     background: antiquewhite;
     padding: 0.5rem 1rem;
+    margin-top: 2.5vh;
 
     button {
       border: 0;

@@ -272,6 +272,7 @@ table {
   font-size: 2vh;
   background-color: white;
   border: solid black 2.5px;
+  border-radius: 20px;
 }
 .entry-radio-text {
   font-family: monospace;
@@ -296,9 +297,11 @@ table {
   margin-top: 1.5vh;
 }
 .entry-animation-image {
-  height: 52vh;
-  width: 52vw;
+  height: 45vh;
+  width: 49vw;
   border: 2.5px solid black;
+  border-radius: 15px;
+  margin-top: 3vh;
 }
 
 .numb-cont {

@@ -33,12 +33,12 @@ class Game extends React.Component {
 
   getBackground() {
     const backgroundRef = {
-      1: 'background1.webp',
-      2: 'background2.webp',
-      3: 'background3.webp',
-      4: 'background4.webp',
-      5: 'background5.webp',
-      6: 'background6.webp'
+      1: 'bckgrnd1.webp',
+      2: 'bckgrnd2.webp',
+      3: 'bckgrnd3.webp',
+      4: 'bckgrnd4.webp',
+      5: 'bckgrnd6.1.webp',
+      6: 'bckgrnd7.webp'
     }
 
     let name = backgroundRef[this.state.background];

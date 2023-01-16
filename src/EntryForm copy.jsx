@@ -28,7 +28,7 @@ class EntryForm extends React.Component {
   }
 
   render() {
-    return <div className='entry' style={{ backgroundImage: "url(bckgrnd1.webp)", backgroundSize: 'cover' }}>
+    return <div className='entry' style={{ backgroundImage: "url(background2.webp)", backgroundSize: 'cover' }}>
       <div className='entry-header'>
         <h4 className='entry-header-text'>Sudoku</h4>
       </div>
@@ -37,19 +37,8 @@ class EntryForm extends React.Component {
         <div className='entry-radio-form'>
           <div className='entry-prompt'>
             Difficulty<br/>
-            (% Hidden)
+            (% Hidden Cells)
           </div>
-
-          {/* <button className='button-difficulty' onClick={this.handleClick}>
-            Easy (40%)
-          </button>
-          <button className='button-difficulty' onClick={this.handleClick}>
-            Medium (50%)
-          </button>
-          <button className='button-difficulty' onClick={this.handleClick}>
-            Hard (60%)
-          </button> */}
-
           <div className='entry-radio-text-container'>
             <label className='entry-radio-text'>EASY (40%)</label>
             <input name="difficulty"

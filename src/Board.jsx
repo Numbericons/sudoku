@@ -126,7 +126,7 @@ class Board extends React.Component {
     buttons.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} isRefresh={true}></ Number>);
     buttons.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true} checkOn={this.state.check}></ Number>);
     
-    for (let i=1; i<7; i++){
+    for (let i=1; i<9; i++){
       buttons.push(<Number key={`background${i}`} backgroundNum={i} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === i}></ Number>);
     }
     

@@ -4,27 +4,30 @@ import gif from './pond_wide_small.gif';
 class EntryForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: '50', difficulty: 'medium'};
+    this.state = { difficulty: 'medium' };
 
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+  // handleChange(event) {
+  //   this.setState({value: event.target.value});
+  // }
+
+  
+
+  // handleInputChange(event) {
+  //   this.setState({ value: event.target.value });
+  // }
+
+  // handleDifficultySubmit(event) {
+  //   this.props.setDifficulty(event, this.state.value);
+  // }
 
   handleClick(event) {
-    this.props.setDifficulty(event, this.state.value);
-  }
-
-  handleInputChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleDifficultySubmit(event) {
-    this.props.setDifficulty(event, this.state.value);
+    const value = event.target.attributes.value.value;
+    this.props.setDifficulty(event, value);
   }
 
   render() {
@@ -36,21 +39,19 @@ class EntryForm extends React.Component {
         <div></div>
         <div className='entry-radio-form'>
           <div className='entry-prompt'>
-            Difficulty<br/>
-            (% Hidden)
+            Difficulty<br />
+            (x% Hidden)
           </div>
-
-          {/* <button className='button-difficulty' onClick={this.handleClick}>
+          <button className='entry-radio-button' onClick={this.handleClick} value={40}>
             Easy (40%)
           </button>
-          <button className='button-difficulty' onClick={this.handleClick}>
+          <button className='entry-radio-button' onClick={this.handleClick} value={50}>
             Medium (50%)
           </button>
-          <button className='button-difficulty' onClick={this.handleClick}>
+          <button className='entry-radio-button' onClick={this.handleClick} value={60}>
             Hard (60%)
-          </button> */}
-
-          <div className='entry-radio-text-container'>
+          </button>
+          {/* <div className='entry-radio-text-container'>
             <label className='entry-radio-text'>EASY (40%)</label>
             <input name="difficulty"
               type="radio"
@@ -85,12 +86,12 @@ class EntryForm extends React.Component {
           <div className='entry-radio-text-container'>
             <label className='entry-radio-text'>CUSTOM (%)</label>
             <input className='entry-form-input' type="text" onChange={this.handleChange} />
-          </div>
-          <div className='entry-radio-button'>
+          </div> */}
+          {/* <div className='entry-radio-button'>
             <button className='entry-form-submit' onClick={this.handleClick}>
               Play
             </button>
-          </div>
+          </div> */}
         </div>
         <div></div>
       </div>

@@ -94,6 +94,43 @@ body {
       font-family: monospace;
     }
   }
+
+  &-background {
+    &-img {
+      height: 14vh;
+      width: 12vw;
+      margin-left: 5vw;
+      cursor: pointer;
+      border: 1.5px solid black;
+    }
+
+    &-cont {
+      display: flex;
+      flex-direction: column;
+
+      &-inner {
+        display: flex;
+        margin: 5vh 0vw 0vh 5vw;
+      }
+    }
+    
+    &-footer {
+      border-top: 1px solid #ccc;
+      background: antiquewhite;
+      padding: 0.5rem 1rem;
+      margin-top: 4vh;
+
+      button {
+        border: 0;
+        background: #13be47;
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+        line-height: 1;
+        font-family: monospace;
+      }
+    }
+  }
 }
 
 .modal-lotus {

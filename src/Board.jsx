@@ -4,6 +4,7 @@ import Number from './Number.jsx';
 import {buildBoard} from './boardBuilder.js';
 import WinModal from "./WinModal.jsx";
 import InfoModal from "./InfoModal.jsx";
+import BackgroundModal from "./BackgroundModal.jsx";
 
 class Board extends React.Component {
   constructor(props) {
@@ -15,7 +16,9 @@ class Board extends React.Component {
       background: 1,
       grid: this.getBoard(),
       showWinModal: false,
-      showInfoModal: false
+      showInfoModal: false,
+      showBackgroundModal: true,
+      darkmode: false
     }
     this.select = this.select.bind(this);
     this.setNotes = this.setNotes.bind(this);
@@ -25,6 +28,8 @@ class Board extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.toggleWinModal = this.toggleWinModal.bind(this);
     this.toggleInfoModal = this.toggleInfoModal.bind(this);
+    this.toggleBackgroundModal = this.toggleBackgroundModal.bind(this);
+    this.toggleDarkmode = this.toggleDarkmode.bind(this);
   }
 
   changeVal(e,idx) {
@@ -103,12 +108,6 @@ class Board extends React.Component {
     this.setState({ check: !this.state.check});
   }
 
-  setBackground(e) {
-    const backgroundNum = e.target.innerHTML.slice(1);
-    this.setState({ background: parseInt(backgroundNum) });
-    this.props.setBackground(backgroundNum);
-  }
-
   handleKeyDown(e) {
     const nums = '123456789';
     let val = e.key;
@@ -126,10 +125,8 @@ class Board extends React.Component {
     buttons.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} isRefresh={true}></ Number>);
     buttons.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true} checkOn={this.state.check}></ Number>);
     
-    for (let i=1; i<9; i++){
-      buttons.push(<Number key={`background${i}`} backgroundNum={i} setBackground={this.setBackground} isBackground={true} backgroundOn={this.state.background === i}></ Number>);
-    }
-    
+    // buttons.push(<Number key='darkmode' value={<img className="number-darkmode-img" src={'yin-yang.png'}></img>} darkmode={true} toggleDarkmode={this.toggleDarkmode}></ Number>);
+    buttons.push(<Number key='backgroundModal' value={<i className="fa fa-picture-o"></i>} backgroundModal={true} showBackgroundModal={this.toggleBackgroundModal}></ Number>);
     buttons.push(<Number key='info' value={<i className="fa fa-info-circle"></i>} isInfo={true} showInfo={this.toggleInfoModal}></ Number>);
 
     return <div className='btn-cont'>{buttons}</div>
@@ -225,6 +222,21 @@ class Board extends React.Component {
     this.setState({ showInfoModal: !this.state.showInfoModal })
   }
 
+  toggleDarkmode(e) {
+    this.setState({ darkmode: !this.state.darkmode })
+  }
+
+  toggleBackgroundModal(e) {
+    this.setState({ showBackgroundModal: !this.state.showBackgroundModal })
+  }
+
+  setBackground(e) {
+    const background = e.target.attributes.value.value || null;
+
+    this.setState({ background: background, showBackgroundModal: false });
+    this.props.setBackground(background);
+  }
+
   render() {
     return <div className='board'>
       {this.build()}
@@ -232,6 +244,7 @@ class Board extends React.Component {
       {this.numbers()}
       <WinModal onClose={this.toggleWinModal} show={this.state.showWinModal}/>
       <InfoModal onClose={this.toggleInfoModal} show={this.state.showInfoModal}/>
+      <BackgroundModal onClose={this.toggleBackgroundModal} show={this.state.showBackgroundModal} setBackground={this.setBackground}/>
     </div>
   }
 }

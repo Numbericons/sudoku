@@ -32,7 +32,13 @@ class Number extends React.Component {
     const backgroundClass = this.props.backgroundOn ? 'number-background-on' : 'number';
 
     return <div className={backgroundClass} onClick={this.props.setBackground}>
-      <h1 className='number-text'>B{this.props.backgroundNum}</h1>
+      <h1 className='number-text'>{this.props.backgroundNum}</h1>
+    </div>
+  }
+
+  backgroundModal() {
+    return <div className='number' onClick={this.props.showBackgroundModal}>
+      <h1 className='number-text'>{this.state.value}</h1>
     </div>
   }
 
@@ -42,11 +48,19 @@ class Number extends React.Component {
     </div>
   }
 
+  darkmode() {
+    return <div className='number' onClick={this.props.toggleDarkmode}>
+      <h1 className='number-text'>{this.state.value}</h1>
+    </div>
+  }
+
   render() {
     if (this.props.isRefresh) return this.refresh();
     if (this.props.isNotes || this.props.checkVal) return this.btnOn();
+    if (this.props.backgroundModal) return this.backgroundModal();
     if (this.props.isBackground) return this.background();
     if (this.props.isInfo) return this.info();
+    if (this.props.darkmode) return this.darkmode();
 
     let container = this.props.selected ? 'selected' : 'number';
 

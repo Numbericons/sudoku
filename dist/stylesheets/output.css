@@ -383,6 +383,10 @@ table {
   justify-content: center;
   align-items: center;
 }
+.number-darkmode-img {
+  height: 3.8vh;
+  margin-top: 0.7vh;
+}
 
 .btn-check {
   height: 4.4vh;
@@ -508,6 +512,36 @@ body {
   margin-top: 2.5vh;
 }
 .modal .actions button {
+  border: 0;
+  background: #13be47;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  font-family: monospace;
+}
+.modal-background-img {
+  height: 14vh;
+  width: 12vw;
+  margin-left: 5vw;
+  cursor: pointer;
+  border: 1.5px solid black;
+}
+.modal-background-cont {
+  display: flex;
+  flex-direction: column;
+}
+.modal-background-cont-inner {
+  display: flex;
+  margin: 5vh 0vw 0vh 5vw;
+}
+.modal-background-footer {
+  border-top: 1px solid #ccc;
+  background: antiquewhite;
+  padding: 0.5rem 1rem;
+  margin-top: 4vh;
+}
+.modal-background-footer button {
   border: 0;
   background: #13be47;
   border-radius: 5px;

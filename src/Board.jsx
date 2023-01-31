@@ -17,8 +17,7 @@ class Board extends React.Component {
       grid: this.getBoard(),
       showWinModal: false,
       showInfoModal: false,
-      showBackgroundModal: true,
-      darkmode: false
+      showBackgroundModal: true
     }
     this.select = this.select.bind(this);
     this.setNotes = this.setNotes.bind(this);
@@ -29,7 +28,6 @@ class Board extends React.Component {
     this.toggleWinModal = this.toggleWinModal.bind(this);
     this.toggleInfoModal = this.toggleInfoModal.bind(this);
     this.toggleBackgroundModal = this.toggleBackgroundModal.bind(this);
-    this.toggleDarkmode = this.toggleDarkmode.bind(this);
   }
 
   changeVal(e,idx) {
@@ -51,17 +49,17 @@ class Board extends React.Component {
     for (let i=0;i<3;i++) {
       let square = <Square key={idx + i} idx={idx + i} attr={this.state.grid[idx + i]} 
                            showNotes={this.state.showNotes} change={this.changeVal}
-                           check={this.state.check}
-                   ></Square>;
+                           check={this.state.check} darkmodeOn={this.props.darkmodeOn}>
+                   </Square>;
 
       squares.push(square);
     }
 
-    return <div className="box-row">{squares}</div>
+    return <div className={this.props.darkmodeOn ? "box-row-dark" : "box-row"}>{squares}</div>
   }
 
   box(idx) {
-    return <div className="box">
+    return <div className={this.props.darkmodeOn ? "box-dark" : "box"}>
       {this.row(idx)}
       {this.row(idx+3)}
       {this.row(idx+6)}
@@ -121,13 +119,17 @@ class Board extends React.Component {
 
   buttons(){
     let buttons = [];
-    buttons.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} isNotes={true} notesOn={this.state.showNotes}></ Number>);
-    buttons.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} isRefresh={true}></ Number>);
-    buttons.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck} checkVal={true} checkOn={this.state.check}></ Number>);
+    buttons.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} 
+                         isNotes={true} notesOn={this.state.showNotes} darkmodeOn={this.props.darkmodeOn}></ Number>);
+    buttons.push(<Number key='refresh' value={<i className="fa fa-refresh"></i>} isRefresh={true} darkmodeOn={this.props.darkmodeOn}></ Number>);
+    buttons.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck}
+                         checkVal={true} checkOn={this.state.check} darkmodeOn={this.props.darkmodeOn}></ Number>);
     
-    // buttons.push(<Number key='darkmode' value={<img className="number-darkmode-img" src={'yin-yang.png'}></img>} darkmode={true} toggleDarkmode={this.toggleDarkmode}></ Number>);
-    buttons.push(<Number key='backgroundModal' value={<i className="fa fa-picture-o"></i>} backgroundModal={true} showBackgroundModal={this.toggleBackgroundModal}></ Number>);
-    buttons.push(<Number key='info' value={<i className="fa fa-info-circle"></i>} isInfo={true} showInfo={this.toggleInfoModal}></ Number>);
+    buttons.push(<Number key='darkmode' value={<i className="number-darkmode" href={'Yin_yang.svg'}></i>} darkmode={true}
+                         darkmodeOn={this.props.darkmodeOn}  toggleDarkmode={this.props.toggleDarkmode}></ Number>);
+    buttons.push(<Number key='backgroundModal' value={<i className="fa fa-picture-o"></i>} backgroundModal={true}
+                         showBackgroundModal={this.toggleBackgroundModal} darkmodeOn={this.props.darkmodeOn}></ Number>);
+    buttons.push(<Number key='info' value={<i className="fa fa-info-circle"></i>} isInfo={true} showInfo={this.toggleInfoModal} darkmodeOn={this.props.darkmodeOn}></ Number>);
 
     return <div className='btn-cont'>{buttons}</div>
   }
@@ -157,11 +159,12 @@ class Board extends React.Component {
       if (used.includes(z)) continue;
 
       let selected = this.state.selected === z;
-      numbers.push(<Number key={z} value={z} select={this.select} selected={selected} onKeyDown={this.handleKeyDown}></Number>);
+      numbers.push(<Number key={z} value={z} select={this.select} selected={selected} 
+        onKeyDown={this.handleKeyDown} darkmodeOn={this.props.darkmodeOn}></Number>);
     }
 
     numbers.push(<Number key='eraser' value={<i className="fa fa-eraser"></i>} select={this.select} 
-                  selected={this.state.selected === 'eraser'} onKeyPress={this.handleKeyDown}>
+                         selected={this.state.selected === 'eraser'} onKeyPress={this.handleKeyDown} darkmodeOn={this.props.darkmodeOn}>
                  </ Number>);
 
     return <div className='numb-cont'>{numbers}</div>
@@ -220,10 +223,6 @@ class Board extends React.Component {
 
   toggleInfoModal(e) {
     this.setState({ showInfoModal: !this.state.showInfoModal })
-  }
-
-  toggleDarkmode(e) {
-    this.setState({ darkmode: !this.state.darkmode })
   }
 
   toggleBackgroundModal(e) {

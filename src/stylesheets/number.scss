@@ -1,3 +1,33 @@
+@mixin number($border, $background) {
+  height: 4.4vh;
+  width: 2.31vw;
+  margin: .5vh 0vw 2vh 5vw;
+  border: 1px solid $border;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: $background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin number-text($color) {
+  font-size: 3.8vh;
+  font-family: monspace;
+  color: $color;
+}
+
+@mixin number-darkmode($border, $background) {
+  height: 4vh;
+  width: 2.1vw;
+  // border: 1px solid $border;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: $background;
+  display: flex;
+}
+
 .numb-cont {
   height: 80vh;
   flex-direction: column;
@@ -14,35 +44,28 @@
 }
 
 .number {
-  height: 4.4vh;
-  width: 2.31vw;
-  margin: .5vh 0vw 2vh 5vw;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include number(black,white);
+  &-dark {
+    @include number(white, black);
+  }
   &-text {
-    font-size: 3.8vh;
-    font-family: monspace;
+    @include number-text(black);
+    &-dark {
+      @include number-text(white);
+    }
   }
   &-background-on {
-    height: 4.4vh;
-    width: 2.31vw;
-    margin: .5vh 0vw 2vh 5vw;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #b130b1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include number(black, #b130b1);
+    &-dark {
+      @include number(white, #b130b1);
+    }
   }
   &-darkmode {
+    @include number-darkmode(black, white);
+    
+    &-dark {
+      @include number-darkmode(white, black);
+    }
     &-img{
       height: 3.8vh;
       margin-top: 0.7vh;
@@ -51,17 +74,7 @@
 }
 
 .btn-check {
-  height: 4.4vh;
-  width: 2.31vw;
-  margin: .5vh 0vw 2vh 5vw;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: $check-color;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include number(black, $check-color)
 }
 
 .background {
@@ -71,29 +84,12 @@
 }
 
 .btn-notes {
-  height: 4.4vh;
-  width: 2.31vw;
-  margin: .5vh 0vw 2vh 5vw;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #e4c424f7;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include number(black, #e4c424f7);
 }
 
 .selected {
-  height: 4.4vh;
-  width: 2.31vw;
-  margin: .5vh 0vw 2vh 5vw;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #e67039;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include number(black, #e67039);
+  &-dark {
+    @include number(white, #e67039);
+  }
 }

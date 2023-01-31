@@ -68,7 +68,15 @@ table {
   font-family: "Merienda", sans-serif;
   font-weight: 600;
   margin-bottom: 1vh;
-  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 black;
+}
+.main-head-text-dark {
+  color: black;
+  font-size: 8vh;
+  font-family: "Merienda", sans-serif;
+  font-weight: 600;
+  margin-bottom: 1vh;
+  text-shadow: -1px 1px 2px white, 1px 1px 2px white, 1px -1px 0 white, -1px -1px 0 white;
 }
 .main-body {
   display: flex;
@@ -97,12 +105,26 @@ table {
   flex-direction: column;
   border: 2px solid black;
 }
+.box-dark {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+}
 .box-row {
   display: flex;
+  color: white;
+}
+.box-row-dark {
+  display: flex;
+  color: black;
 }
 
 .box-row + .box-row {
   border-top: 1.4px solid #bbb;
+}
+
+.box-row-dark + .box-row-dark {
+  border-top: 1.4px solid rgb(252, 252, 252);
 }
 
 .timer {
@@ -111,9 +133,20 @@ table {
   color: white;
   font-size: 2vh;
   font-family: monospace;
-  text-shadow: -1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px black, 1px 1px 2px black, 1px -1px 0 black, -1px -1px 0 black;
 }
 .timer-text {
+  margin-right: 0.25vw;
+}
+.timer-dark {
+  display: flex;
+  justify-content: center;
+  color: black;
+  font-size: 2vh;
+  font-family: monospace;
+  text-shadow: -1px 1px 2px white, 1px 1px 2px white, 1px -1px 0 white, -1px -1px 0 white;
+}
+.timer-dark-text {
   margin-right: 0.25vw;
 }
 
@@ -127,6 +160,16 @@ table {
   justify-content: center;
   align-items: center;
 }
+.square-dark {
+  height: 7.7vh;
+  width: 4vw;
+  background-color: black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .square-revealed {
   font-size: 4.7vh;
   font-family: monospace;
@@ -134,14 +177,34 @@ table {
   width: 2vw;
   color: black;
   margin-bottom: 1vh;
+  background-color: white;
 }
-.square-entered {
-  height: 4vh;
-  width: 2vw;
+.square-revealed-dark {
   font-size: 4.7vh;
   font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: white;
+  margin-bottom: 1vh;
+  background-color: black;
+}
+.square-entered {
+  font-size: 4.7vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
   color: purple;
   margin-bottom: 1vh;
+  background-color: white;
+}
+.square-entered-dark {
+  font-size: 4.7vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: #fa29dc;
+  margin-bottom: 1vh;
+  background-color: black;
 }
 .square-input {
   font-size: 2vh;
@@ -161,13 +224,33 @@ table {
   justify-content: center;
   align-items: center;
 }
+.chk-square-dark {
+  height: 7.7vh;
+  width: 4vw;
+  background-color: #e03d3d;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .chk-square-entered {
-  height: 4vh;
-  width: 2vw;
   font-size: 4.7vh;
   font-family: monospace;
-  color: rgb(0, 0, 0);
+  height: 4vh;
+  width: 2vw;
+  color: black;
   margin-bottom: 1vh;
+  background-color: #e03d3d;
+}
+.chk-square-entered-dark {
+  font-size: 4.7vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: white;
+  margin-bottom: 1vh;
+  background-color: #e03d3d;
 }
 
 .square + .square {
@@ -186,40 +269,22 @@ table {
   border-left: 1.4px solid #bbb;
 }
 
-.App-logo {
-  height: 60%;
-  width: 60%;
-  pointer-events: none;
+.square-dark + .square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-.App-header {
-  background-color: darkblue;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.chk-square-dark + .chk-square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
 
-.App-link {
-  color: #61dafb;
+.square-dark + .chk-square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chk-square-dark + .square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
+
 .entry {
   height: 100vh;
   width: 100vw;
@@ -366,9 +431,28 @@ table {
   justify-content: center;
   align-items: center;
 }
+.number-dark {
+  height: 4.4vh;
+  width: 2.31vw;
+  margin: 0.5vh 0vw 2vh 5vw;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .number-text {
   font-size: 3.8vh;
   font-family: monspace;
+  color: black;
+}
+.number-text-dark {
+  font-size: 3.8vh;
+  font-family: monspace;
+  color: white;
 }
 .number-background-on {
   height: 4.4vh;
@@ -382,6 +466,35 @@ table {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.number-background-on-dark {
+  height: 4.4vh;
+  width: 2.31vw;
+  margin: 0.5vh 0vw 2vh 5vw;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #b130b1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.number-darkmode {
+  height: 4vh;
+  width: 2.1vw;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  display: flex;
+}
+.number-darkmode-dark {
+  height: 4vh;
+  width: 2.1vw;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: black;
+  display: flex;
 }
 .number-darkmode-img {
   height: 3.8vh;
@@ -425,6 +538,19 @@ table {
   width: 2.31vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e67039;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.selected-dark {
+  height: 4.4vh;
+  width: 2.31vw;
+  margin: 0.5vh 0vw 2vh 5vw;
+  border: 1px solid white;
   border-radius: 5px;
   cursor: pointer;
   background-color: #e67039;

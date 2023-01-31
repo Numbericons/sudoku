@@ -1,3 +1,15 @@
+@mixin main-text($color, $shadow-color) {
+  color: $color;
+    font-size: 8vh;
+    font-family: 'Merienda', sans-serif;
+    font-weight: 600;
+    margin-bottom: 1vh;
+    text-shadow: -1px 1px 2px $shadow-color,
+      1px 1px 2px $shadow-color,
+      1px -1px 0 $shadow-color,
+      -1px -1px 0 $shadow-color;
+}
+
 .hide {
   display: none;
 }
@@ -11,15 +23,10 @@
   &-head{
     margin: 2vh 0vw 2vh 0vw;
     &-text {
-      color: white;
-      font-size: 8vh;
-      font-family: 'Merienda', sans-serif;
-      font-weight: 600;
-      margin-bottom: 1vh;
-      text-shadow: -1px 1px 2px #000,
-                    1px 1px 2px #000,
-                    1px -1px 0 #000,
-                    -1px -1px 0 #000;
+      @include main-text(white, black);
+      &-dark {
+        @include main-text(black, white);
+      }
     }
   }
   &-body{

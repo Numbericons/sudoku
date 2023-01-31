@@ -39,59 +39,18 @@ class EntryForm extends React.Component {
         <div></div>
         <div className='entry-radio-form'>
           <div className='entry-prompt'>
-            Difficulty<br />
-            (x% Hidden)
+            Difficulty - Hidden %<br />
+            {/* (x% Hidden) */}
           </div>
           <button className='entry-radio-button' onClick={this.handleClick} value={40}>
-            Easy (40%)
+            EASY - 40%
           </button>
           <button className='entry-radio-button' onClick={this.handleClick} value={50}>
-            Medium (50%)
+            MEDIUM - 50%
           </button>
           <button className='entry-radio-button' onClick={this.handleClick} value={60}>
-            Hard (60%)
+            HARD - 60%
           </button>
-          {/* <div className='entry-radio-text-container'>
-            <label className='entry-radio-text'>EASY (40%)</label>
-            <input name="difficulty"
-              type="radio"
-              className="entry-radio-input"
-              value="40"
-              checked={this.state.value === '40'}
-              onChange={this.handleInputChange} 
-              />
-          </div>
-          <div className='entry-radio-text-container'>
-            <label className='entry-radio-text'>MEDIUM (50%)</label>
-            <input
-              name="difficulty"
-              type="radio"
-              className="entry-radio-input"
-              value='50'
-              checked={this.state.value === '50'}
-              onChange={this.handleInputChange} 
-              />
-          </div>
-          <div className='entry-radio-text-container'>
-            <label className='entry-radio-text'>HARD (60%)</label>
-            <input
-              name="difficulty"
-              type="radio"
-              className="entry-radio-input"
-              value='60'
-              checked={this.state.value === '60'}
-              onChange={this.handleInputChange} 
-            />
-          </div>
-          <div className='entry-radio-text-container'>
-            <label className='entry-radio-text'>CUSTOM (%)</label>
-            <input className='entry-form-input' type="text" onChange={this.handleChange} />
-          </div> */}
-          {/* <div className='entry-radio-button'>
-            <button className='entry-form-submit' onClick={this.handleClick}>
-              Play
-            </button>
-          </div> */}
         </div>
         <div></div>
       </div>

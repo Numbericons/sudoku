@@ -11,7 +11,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-{/* <a href="https://www.flaticon.com/free-icons/shrink" title="shrink icons">Shrink icons created by Anas Mannaa - Flaticon</a> */}
+/* <a href="https://www.flaticon.com/free-icons/shrink" title="shrink icons">Shrink icons created by Anas Mannaa - Flaticon</a> */
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

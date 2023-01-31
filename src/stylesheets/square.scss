@@ -1,29 +1,42 @@
 $check-color: #e03d3d;
 
-.square {
+@mixin square($background) {
   height: 7.7vh;
   width: 4vw;
-  background-color: white;
+  background-color: $background;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@mixin square-text($background, $color) {
+  font-size: 4.7vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: $color;
+  margin-bottom: 1vh;
+  background-color: $background;
+}
+
+.square {
+  @include square(white);
+  &-dark {
+    @include square(black);
+  }
   &-revealed {
-    font-size: 4.7vh;
-    font-family: monospace;
-    height: 4vh;
-    width: 2vw;
-    color: black;
-    margin-bottom: 1vh;
+    @include square-text(white, black);
+    &-dark {
+      @include square-text(black, white);
+    }
   }
   &-entered {
-    height: 4vh;
-    width: 2vw;
-    font-size: 4.7vh;
-    font-family: monospace;
-    color: purple;
-    margin-bottom: 1vh;
+    @include square-text(white, purple);
+    &-dark {
+      @include square-text(black, #fa29dc);
+    }
   }
   &-input {
     font-size: 2vh;
@@ -35,21 +48,15 @@ $check-color: #e03d3d;
 }
 
 .chk-square {
-  height: 7.7vh;
-  width: 4vw;
-  background-color: $check-color;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include square($check-color);
+  &-dark {
+    @include square($check-color);
+  }
   &-entered {
-    height: 4vh;
-    width: 2vw;
-    font-size: 4.7vh;
-    font-family: monospace;
-    color: rgb(0, 0, 0);
-    margin-bottom: 1vh;
+    @include square-text($check-color, black);
+    &-dark {
+      @include square-text($check-color, white);
+    }
   }
 }
 
@@ -68,41 +75,19 @@ $check-color: #e03d3d;
 .chk-square + .square {
   border-left: 1.4px solid #bbb;
 }
-// .square:nth-of-type(2) {background-color: red};
 
-.App-logo {
-  height: 60%;
-  width: 60%;
-  pointer-events: none;
+.square-dark + .square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chk-square-dark + .chk-square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
 
-.App-header {
-  background-color: darkblue;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.square-dark + .chk-square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
 
-.App-link {
-  color: #61dafb;
+.chk-square-dark + .square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-

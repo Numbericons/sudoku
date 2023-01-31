@@ -11,12 +11,14 @@ class Game extends React.Component {
     this.state = {
       difficulty: null,
       background: 1,
-      showModals: true
+      showModals: true,
+      darkmode: false
     };
 
     this.setDifficulty = this.setDifficulty.bind(this);
     this.setBackground = this.setBackground.bind(this);
     this.toggleModals = this.toggleModals.bind(this);
+    this.toggleDarkmode = this.toggleDarkmode.bind(this);
   }
   
   gameOver(){}
@@ -55,6 +57,10 @@ class Game extends React.Component {
   toggleModals() {
     this.setState({ showModals: !this.state.showModals });
   }
+  
+  toggleDarkmode() {
+    this.setState({ darkmode: !this.state.darkmode });
+  }
  
   render() {
     if (!this.state.difficulty) {
@@ -64,12 +70,14 @@ class Game extends React.Component {
     }
 
     const backgroundUrl = this.getBackground();
+    let headText = this.state.darkmode ? 'main-head-text-dark' : 'main-head-text';
+    let timerClass = this.state.darkmode ? 'timer-dark' : 'timer';
 
     return <div className='main' onClick={this.toggleModals} style={{ backgroundImage: backgroundUrl, backgroundSize: 'cover'}} >
         <div className='main-head'>
-          <h1 className='main-head-text'>Sudoku</h1>
-          <div className='timer'>
-            <Timer formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`}>
+          <h1 className={headText}>Sudoku</h1>
+          <div className={timerClass}>
+            <Timer formatValue={(value) => `${(value < 10 ? `0${value}` : value)}`} darkmodeOn={this.state.darkmode}>
               <Timer.Hours formatValue={value => value === 0 ? '00:' : `${(value < 10 ? `0${value}` : value)}:`} />
               <Timer.Minutes formatValue={value => value === 0 ? '00:' : `${(value < 10 ? `0${value}` : value)}:`}/>
               <Timer.Seconds formatValue={value => value === 0 ? '00' : `${(value < 10 ? `0${value}` : value)}`}/>
@@ -78,7 +86,7 @@ class Game extends React.Component {
         </div>
         <div className='main-body'>
           <div></div>
-          <Board val={parseInt(this.state.difficulty)} setBackground={this.setBackground}></Board>
+          <Board val={parseInt(this.state.difficulty)} setBackground={this.setBackground} toggleDarkmode={this.toggleDarkmode} darkmodeOn={this.state.darkmode}></Board>
           {/* <Board val={parseInt(this.state.difficulty)} setBackground={this.setBackground} showModals={this.state.showModals}></Board> */}
           <div></div>
         </div>

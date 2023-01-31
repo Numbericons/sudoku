@@ -16,18 +16,31 @@ class Square extends React.Component {
   }
 
   renderFixed() {
-    return <div className='square'>
-      <h3 className='square-revealed'>
+    const divClass = this.props.darkmodeOn ? 'square-dark' : 'square';
+    const name = this.props.darkmodeOn ? 'square-revealed-dark' : 'square-revealed';
+
+    return <div className={divClass}>
+      <h3 className={name}>
         {this.state.value}
       </h3>
     </div>
   }
 
   renderNotes(val) {
-    return <div className='square'>
-      <h3 className="square-entered" onClick={this.enterVal}>{val}</h3>
-      <input className="square-input" type="text" />
-    </div >
+    let divClass = 'square';
+    let square = 'square-entered';
+    let squareInput = 'square-input';
+
+    if (this.props.darkmodeOn) {
+      divClass += '-dark';
+      square += '-dark';
+      squareInput += '-dark';
+    }
+
+    return <div className={divClass}>
+      <h3 className={square} onClick={this.enterVal}>{val}</h3>
+      <input className={squareInput} type="text" />
+    </div>
   }
  
   isIncorrect(){
@@ -44,8 +57,13 @@ class Square extends React.Component {
     if (this.props.showNotes && !this.props.attr[2]) return this.renderNotes(val);
 
     const incorrect = this.isIncorrect();
-    const border = incorrect ? 'chk-square' : 'square';
-    const text = incorrect ? 'chk-square-entered' : 'square-entered';
+    let border = incorrect ? 'chk-square' : 'square';
+    let text = incorrect ? 'chk-square-entered' : 'square-entered';
+
+    if (this.props.darkmodeOn) {
+      border += '-dark';
+      text += '-dark';
+    }
     
     return <div className={border} onClick={this.enterVal}>
       <h3 className={text}>{val}</h3>

@@ -19,12 +19,19 @@ class Number extends React.Component {
     </div>
   }
 
-  btnOn() {
-    let border = this.props.notesOn ? 'btn-notes' : this.props.darkmodeOn ? 'number-dark' : 'number';
-    if (this.props.checkOn) border = 'btn-check';
-    let click = this.props.setNotes || this.props.setCheck;
+  checkMode() {
+    let border = this.props.darkmodeOn ? 'number-dark' : 'number';
+    if (this.props.checkOn) border = this.props.darkmodeOn ? 'btn-check-dark' : 'btn-check';
 
-    return <div className={border} onClick={click}>
+    return <div className={border} onClick={this.props.setCheck}>
+      <h1 className={this.props.darkmodeOn ? 'number-text-check-dark' : 'number-text-check'}>{this.state.value}</h1>
+    </div>
+  }
+
+  notes() {
+    let border = this.props.notesOn ? 'btn-notes' : this.props.darkmodeOn ? 'number-dark' : 'number';
+
+    return <div className={border} onClick={this.props.setNotes}>
       <h1 className={this.props.darkmodeOn ? 'number-text-dark' : 'number-text'}>{this.state.value}</h1>
     </div>
   }
@@ -51,8 +58,8 @@ class Number extends React.Component {
   }
 
   darkmode() {
-    const fill1 = this.props.darkmodeOn ? "black" : "black";
-    const fill2 = this.props.darkmodeOn ? "white" : "white";
+    const fill1 = this.props.darkmodeOn ? "black" : "white";
+    const fill2 = this.props.darkmodeOn ? "white" : "black";
 
     return <div className={this.props.darkmodeOn ? 'number-dark' : 'number'} onClick={this.props.toggleDarkmode}>
       <h1 className={this.props.darkmodeOn ? 'number-darkmode-dark' : 'number-darkmode'}>
@@ -63,7 +70,8 @@ class Number extends React.Component {
 
   render() {
     if (this.props.isRefresh) return this.refresh();
-    if (this.props.isNotes || this.props.checkVal) return this.btnOn();
+    if (this.props.isNotes) return this.notes();
+    if (this.props.checkVal) return this.checkMode();
     if (this.props.backgroundModal) return this.backgroundModal();
     if (this.props.isBackground) return this.background();
     if (this.props.isInfo) return this.info();

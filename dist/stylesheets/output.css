@@ -360,7 +360,7 @@ table {
   border-width: 0;
   box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset, rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
   box-sizing: border-box;
-  color: #5d3e02;
+  color: black;
   cursor: pointer;
   font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
   font-size: 100%;
@@ -448,11 +448,25 @@ table {
   font-size: 3.8vh;
   font-family: monspace;
   color: black;
+  margin: 0px;
 }
 .number-text-dark {
   font-size: 3.8vh;
   font-family: monspace;
   color: white;
+  margin: 0px;
+}
+.number-text-check {
+  font-size: 3.8vh;
+  font-family: monspace;
+  color: black;
+  margin: 0.4vh 0vw 0vh 0.2vw;
+}
+.number-text-check-dark {
+  font-size: 3.8vh;
+  font-family: monspace;
+  color: white;
+  margin: 0.4vh 0vw 0vh 0.2vw;
 }
 .number-background-on {
   height: 4.4vh;
@@ -496,16 +510,25 @@ table {
   background-color: black;
   display: flex;
 }
-.number-darkmode-img {
-  height: 3.8vh;
-  margin-top: 0.7vh;
-}
 
 .btn-check {
   height: 4.4vh;
   width: 2.31vw;
   margin: 0.5vh 0vw 2vh 5vw;
   border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e03d3d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btn-check-dark {
+  height: 4.4vh;
+  width: 2.31vw;
+  margin: 0.5vh 0vw 2vh 5vw;
+  border: 1px solid white;
   border-radius: 5px;
   cursor: pointer;
   background-color: #e03d3d;

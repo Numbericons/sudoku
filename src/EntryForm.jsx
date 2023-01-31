@@ -6,24 +6,8 @@ class EntryForm extends React.Component {
     super(props);
     this.state = { difficulty: 'medium' };
 
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleInputChange = this.handleInputChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
-
-  // handleChange(event) {
-  //   this.setState({value: event.target.value});
-  // }
-
-  
-
-  // handleInputChange(event) {
-  //   this.setState({ value: event.target.value });
-  // }
-
-  // handleDifficultySubmit(event) {
-  //   this.props.setDifficulty(event, this.state.value);
-  // }
 
   handleClick(event) {
     const value = event.target.attributes.value.value;
@@ -39,8 +23,8 @@ class EntryForm extends React.Component {
         <div></div>
         <div className='entry-radio-form'>
           <div className='entry-prompt'>
-            Difficulty - Hidden %<br />
-            {/* (x% Hidden) */}
+            Set Difficulty<br />
+             Hidden %
           </div>
           <button className='entry-radio-button' onClick={this.handleClick} value={40}>
             EASY - 40%

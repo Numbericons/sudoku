@@ -34,7 +34,6 @@ class Square extends React.Component {
     if (this.props.darkmodeOn) {
       divClass += '-dark';
       square += '-dark';
-      squareInput += '-dark';
     }
 
     return <div className={divClass}>

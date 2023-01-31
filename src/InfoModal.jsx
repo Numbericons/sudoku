@@ -37,7 +37,7 @@ export default class InfoModal extends React.Component {
                     <h1 className='number-text'>{<i className="fa fa-check-square-o"></i>}</h1>
                   </div>
                   <h3 className='info-line-text-bold'>Check square:</h3>
-                  <h3 className='info-line-text'>Highlights cells with incorrect numbers red</h3>
+                  <h3 className='info-line-text'>Highlights incorrect cells</h3>
                 </div>
                 <div className='info-line'>
                   <div className='number'>

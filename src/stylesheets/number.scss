@@ -12,10 +12,11 @@
   align-items: center;
 }
 
-@mixin number-text($color) {
+@mixin number-text($color, $margin) {
   font-size: 3.8vh;
   font-family: monspace;
   color: $color;
+  margin: $margin;
 }
 
 @mixin number-darkmode($border, $background) {
@@ -49,9 +50,15 @@
     @include number(white, black);
   }
   &-text {
-    @include number-text(black);
+    @include number-text(black, 0px);
     &-dark {
-      @include number-text(white);
+      @include number-text(white, 0px);
+    }
+    &-check {
+      @include number-text(black, .4vh 0vw 0vh .2vw);
+      &-dark {
+        @include number-text(white, .4vh 0vw 0vh .2vw);
+      }
     }
   }
   &-background-on {
@@ -66,15 +73,18 @@
     &-dark {
       @include number-darkmode(white, black);
     }
-    &-img{
-      height: 3.8vh;
-      margin-top: 0.7vh;
-    }
+    // &-img{
+    //   height: 3.8vh;
+    //   margin-top: 0.7vh;
+    // }
   }
 }
 
 .btn-check {
-  @include number(black, $check-color)
+  @include number(black, $check-color);
+  &-dark {
+    @include number(white, $check-color);
+  }
 }
 
 .background {

@@ -272,16 +272,42 @@ table {
 .square-input {
   font-size: 2vh;
   font-family: monospace;
+  color: black;
   height: 1.2vh;
   width: 3.1vw;
   margin-bottom: -1.1vh;
+  background-color: white;
+  border-color: white;
 }
 .square-input-small {
   font-size: 1.66vh;
   font-family: monospace;
+  color: black;
   height: 1.1vh;
   width: 2.3vw;
   margin-bottom: -0.2vh;
+  background-color: white;
+  border-color: white;
+}
+.square-input-dark {
+  font-size: 2vh;
+  font-family: monospace;
+  color: white;
+  height: 1.2vh;
+  width: 3.1vw;
+  margin-bottom: -1.1vh;
+  background-color: black;
+  border-color: white;
+}
+.square-input-dark-small {
+  font-size: 1.66vh;
+  font-family: monospace;
+  color: white;
+  height: 1.1vh;
+  width: 2.3vw;
+  margin-bottom: -0.2vh;
+  background-color: black;
+  border-color: white;
 }
 
 .chk-square {

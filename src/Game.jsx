@@ -35,18 +35,18 @@ class Game extends React.Component {
 
   getBackground() {
     const backgroundRef = {
-      1: 'bckgrnd1.webp',
-      2: 'bckgrnd2.webp',
-      3: 'bckgrnd3.webp',
-      4: 'bckgrnd7.webp',
-      5: 'bckgrnd18.webp',
-      6: 'bckgrnd34.webp',
-      7: 'bckgrnd37.webp',
-      8: 'bckgrnd21n.webp',
-      9: 'bckgrnd50.webp',
-      10: 'bckgrnd41.webp',
-      11: 'bckgrnd19.webp',
-      12: 'bckgrnd36.webp'
+      1: 'bckgrnd_up_1.webp',
+      2: 'bckgrnd_up_2.webp',
+      3: 'bckgrnd_up_3.webp',
+      4: 'bckgrnd_up_7.webp',
+      5: 'bckgrnd_up_18.webp',
+      6: 'bckgrnd_up_34.webp',
+      7: 'bckgrnd_up_37.webp',
+      8: 'bckgrnd_up_21.webp',
+      9: 'bckgrnd_up_50.webp',
+      10: 'bckgrnd_up_41.webp',
+      11: 'bckgrnd_up_19.webp',
+      12: 'bckgrnd_up_36.webp'
     }
 
     let name = backgroundRef[this.state.background];
@@ -87,7 +87,6 @@ class Game extends React.Component {
         <div className='main-body'>
           <div></div>
           <Board val={parseInt(this.state.difficulty)} setBackground={this.setBackground} toggleDarkmode={this.toggleDarkmode} darkmodeOn={this.state.darkmode}></Board>
-          {/* <Board val={parseInt(this.state.difficulty)} setBackground={this.setBackground} showModals={this.state.showModals}></Board> */}
           <div></div>
         </div>
         <div className="hide">Icons made by <a href="https://www.flaticon.com/authors/surang" title="surang">surang</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

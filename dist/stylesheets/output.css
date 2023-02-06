@@ -785,8 +785,6 @@ body {
   color: red;
 }
 .modal-backdrop {
-  height: 100%;
-  width: 100%;
   position: absolute;
   translate: -70vw -15vh;
 }

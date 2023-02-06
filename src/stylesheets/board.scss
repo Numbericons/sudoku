@@ -22,18 +22,28 @@
 
 .board {
   display: flex;
-  height: 80vh;
+  margin-left: 33vw;
+  // height: 80vh;
+  &-small {
+    display: flex;
+    margin-left: 36vw;
+  }
 }
 
 .grid {
   display: flex;
   flex-direction: column;
-  height: 24vh;
+  // height: 24vh;
   &-row {
     display: flex;
     &-box-row {
       display: flex;
     }
+  }
+  &-small {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3vh;
   }
 }
 

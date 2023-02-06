@@ -16,11 +16,16 @@ class Square extends React.Component {
   }
 
   renderFixed() {
-    const divClass = this.props.darkmodeOn ? 'square-dark' : 'square';
-    const name = this.props.darkmodeOn ? 'square-revealed-dark' : 'square-revealed';
+    let divClass = this.props.darkmodeOn ? 'square-dark' : 'square';
+    let text = this.props.darkmodeOn ? 'square-revealed-dark' : 'square-revealed';
+
+    if (this.props.size === 'small') {
+      divClass += '-small';
+      text += '-small';
+    }
 
     return <div className={divClass}>
-      <h3 className={name}>
+      <h3 className={text}>
         {this.state.value}
       </h3>
     </div>
@@ -34,6 +39,12 @@ class Square extends React.Component {
     if (this.props.darkmodeOn) {
       divClass += '-dark';
       square += '-dark';
+    }
+
+    if (this.props.size === 'small') {
+      divClass += '-small';
+      square += '-small';
+      squareInput += '-small';
     }
 
     return <div className={divClass}>
@@ -62,6 +73,11 @@ class Square extends React.Component {
     if (this.props.darkmodeOn) {
       border += '-dark';
       text += '-dark';
+    }
+
+    if (this.props.size === 'small') {
+      border += '-small';
+      text += '-small';
     }
     
     return <div className={border} onClick={this.enterVal}>

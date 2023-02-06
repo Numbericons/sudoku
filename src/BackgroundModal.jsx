@@ -37,9 +37,9 @@ export default class BackgroundModal extends React.Component {
                     value={'8'} onClick={this.props.setBackground}></img>
               </div>
               <div className='modal-background-cont-inner'>
-                <img className='modal-background-img' src={'bckgrnd6.1.webp'} alt='Info Buttons-9' 
+                <img className='modal-background-img' src={'bckgrnd50.webp'} alt='Info Buttons-9' 
                     value={'9'} onClick={this.props.setBackground}></img>
-                <img className='modal-background-img' src={'bckgrnd4.webp'} alt='Info Buttons-10' 
+                <img className='modal-background-img' src={'bckgrnd41.webp'} alt='Info Buttons-10' 
                     value={'10'} onClick={this.props.setBackground}></img>
                 <img className='modal-background-img' src={'bckgrnd19.webp'} alt='Info Buttons-11' 
                     value={'11'} onClick={this.props.setBackground}></img>

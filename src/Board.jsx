@@ -17,7 +17,8 @@ class Board extends React.Component {
       grid: this.getBoard(),
       showWinModal: false,
       showInfoModal: false,
-      showBackgroundModal: true
+      showBackgroundModal: true,
+      size: 'normal'
     }
     this.select = this.select.bind(this);
     this.setNotes = this.setNotes.bind(this);
@@ -28,6 +29,7 @@ class Board extends React.Component {
     this.toggleWinModal = this.toggleWinModal.bind(this);
     this.toggleInfoModal = this.toggleInfoModal.bind(this);
     this.toggleBackgroundModal = this.toggleBackgroundModal.bind(this);
+    this.updateSize = this.updateSize.bind(this);
   }
 
   changeVal(e,idx) {
@@ -49,7 +51,8 @@ class Board extends React.Component {
     for (let i=0;i<3;i++) {
       let square = <Square key={idx + i} idx={idx + i} attr={this.state.grid[idx + i]} 
                            showNotes={this.state.showNotes} change={this.changeVal}
-                           check={this.state.check} darkmodeOn={this.props.darkmodeOn}>
+                           check={this.state.check} darkmodeOn={this.props.darkmodeOn}
+                           size={this.state.size}>
                    </Square>;
 
       squares.push(square);
@@ -75,7 +78,9 @@ class Board extends React.Component {
   }
 
   build() {
-    return <div className="grid">
+    const gridClass = this.state.size === 'normal' ? 'grid' : 'grid-small';
+
+    return <div className={gridClass}>
       <div className="grid-row">
         {this.boxRow(0)}
       </div>
@@ -118,6 +123,8 @@ class Board extends React.Component {
   }
 
   buttons(){
+    const containerClass = this.state.size === 'normal' ? 'btn-cont' : 'btn-cont-small';
+
     let buttons = [];
     buttons.push(<Number key='notes' value={<i className="fa fa-file-text-o"></i>} setNotes={this.setNotes} 
                          isNotes={true} notesOn={this.state.showNotes} darkmodeOn={this.props.darkmodeOn}></ Number>);
@@ -125,13 +132,15 @@ class Board extends React.Component {
     buttons.push(<Number key='check' value={<i className="fa fa-check-square-o"></i>} setCheck={this.setCheck}
                          checkVal={true} checkOn={this.state.check} darkmodeOn={this.props.darkmodeOn}></ Number>);
     
+
+    buttons.push(<Number key='size' size={this.state.size} darkmodeOn={this.props.darkmodeOn} updateSize={this.updateSize}></ Number>);
     buttons.push(<Number key='darkmode' value={<i className="number-darkmode" href={'Yin_yang.svg'}></i>} darkmode={true}
                          darkmodeOn={this.props.darkmodeOn}  toggleDarkmode={this.props.toggleDarkmode}></ Number>);
     buttons.push(<Number key='backgroundModal' value={<i className="fa fa-picture-o"></i>} backgroundModal={true}
                          showBackgroundModal={this.toggleBackgroundModal} darkmodeOn={this.props.darkmodeOn}></ Number>);
     buttons.push(<Number key='info' value={<i className="fa fa-info-circle"></i>} isInfo={true} showInfo={this.toggleInfoModal} darkmodeOn={this.props.darkmodeOn}></ Number>);
 
-    return <div className='btn-cont'>{buttons}</div>
+    return <div className={containerClass}>{buttons}</div>
   }
 
   usedNumbers(){
@@ -224,6 +233,12 @@ class Board extends React.Component {
   toggleInfoModal(e) {
     this.setState({ showInfoModal: !this.state.showInfoModal })
   }
+  
+  updateSize(e) {
+    const newSize = this.state.size === 'normal' ? 'small' : 'normal';
+
+    this.setState({ size: newSize });
+  }
 
   toggleBackgroundModal(e) {
     this.setState({ showBackgroundModal: !this.state.showBackgroundModal })
@@ -237,7 +252,9 @@ class Board extends React.Component {
   }
 
   render() {
-    return <div className='board'>
+    const boardClass = this.state.size === 'normal' ? 'board' : 'board-small';
+
+    return <div className={boardClass}>
       {this.build()}
       {this.buttons()}
       {this.numbers()}

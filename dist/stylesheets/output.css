@@ -80,24 +80,31 @@ table {
 }
 .main-body {
   display: flex;
-  justify-content: center;
 }
 
 .board {
   display: flex;
-  height: 80vh;
+  margin-left: 33vw;
+}
+.board-small {
+  display: flex;
+  margin-left: 36vw;
 }
 
 .grid {
   display: flex;
   flex-direction: column;
-  height: 24vh;
 }
 .grid-row {
   display: flex;
 }
 .grid-row-box-row {
   display: flex;
+}
+.grid-small {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vh;
 }
 
 .box {
@@ -160,9 +167,29 @@ table {
   justify-content: center;
   align-items: center;
 }
+.square-small {
+  height: 6vh;
+  width: 3.12vw;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .square-dark {
   height: 7.7vh;
   width: 4vw;
+  background-color: black;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.square-dark-small {
+  height: 6vh;
+  width: 3.12vw;
   background-color: black;
   cursor: pointer;
   display: flex;
@@ -179,6 +206,15 @@ table {
   margin-bottom: 1vh;
   background-color: white;
 }
+.square-revealed-small {
+  font-size: 3.66vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: black;
+  margin-bottom: 0vh;
+  background-color: white;
+}
 .square-revealed-dark {
   font-size: 4.7vh;
   font-family: monospace;
@@ -186,6 +222,15 @@ table {
   width: 2vw;
   color: white;
   margin-bottom: 1vh;
+  background-color: black;
+}
+.square-revealed-dark-small {
+  font-size: 3.66vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: white;
+  margin-bottom: 0vh;
   background-color: black;
 }
 .square-entered {
@@ -197,6 +242,15 @@ table {
   margin-bottom: 1vh;
   background-color: white;
 }
+.square-entered-small {
+  font-size: 3.66vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: purple;
+  margin-bottom: 0vh;
+  background-color: white;
+}
 .square-entered-dark {
   font-size: 4.7vh;
   font-family: monospace;
@@ -206,6 +260,15 @@ table {
   margin-bottom: 1vh;
   background-color: black;
 }
+.square-entered-dark-small {
+  font-size: 3.66vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: #fa29dc;
+  margin-bottom: 0vh;
+  background-color: black;
+}
 .square-input {
   font-size: 2vh;
   font-family: monospace;
@@ -213,10 +276,27 @@ table {
   width: 3.1vw;
   margin-bottom: -1.1vh;
 }
+.square-input-small {
+  font-size: 1.66vh;
+  font-family: monospace;
+  height: 1.1vh;
+  width: 2.3vw;
+  margin-bottom: -0.2vh;
+}
 
 .chk-square {
   height: 7.7vh;
   width: 4vw;
+  background-color: #e03d3d;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.chk-square-small {
+  height: 6vh;
+  width: 3.12vw;
   background-color: #e03d3d;
   cursor: pointer;
   display: flex;
@@ -234,6 +314,16 @@ table {
   justify-content: center;
   align-items: center;
 }
+.chk-square-dark-small {
+  height: 6vh;
+  width: 3.12vw;
+  background-color: #e03d3d;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .chk-square-entered {
   font-size: 4.7vh;
   font-family: monospace;
@@ -243,6 +333,15 @@ table {
   margin-bottom: 1vh;
   background-color: #e03d3d;
 }
+.chk-square-entered-small {
+  font-size: 3.66vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: black;
+  margin-bottom: 0vh;
+  background-color: #e03d3d;
+}
 .chk-square-entered-dark {
   font-size: 4.7vh;
   font-family: monospace;
@@ -250,6 +349,15 @@ table {
   width: 2vw;
   color: white;
   margin-bottom: 1vh;
+  background-color: #e03d3d;
+}
+.chk-square-entered-dark-small {
+  font-size: 3.66vh;
+  font-family: monospace;
+  height: 4vh;
+  width: 2vw;
+  color: white;
+  margin-bottom: 0vh;
   background-color: #e03d3d;
 }
 
@@ -282,6 +390,38 @@ table {
 }
 
 .chk-square-dark + .square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.square-small + .square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.chk-square-small + .chk-square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.square-small + .chk-square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.chk-square-small + .square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.square-dark-small + .square-dark-small {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.chk-square-dark-small + .chk-square-dark-small {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.square-dark-small + .chk-square-dark-small {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.chk-square-dark-small + .square-dark-small {
   border-left: 1.4px solid rgb(255, 255, 255);
 }
 
@@ -411,8 +551,13 @@ table {
 }
 
 .btn-cont {
-  height: 80vh;
   margin-right: 3vw;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 0vw;
+}
+.btn-cont-small {
+  margin: 0vh 3vw 0vh 4.9vw;
   flex-direction: column;
   justify-content: space-between;
   width: 0vw;

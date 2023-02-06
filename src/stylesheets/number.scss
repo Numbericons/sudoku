@@ -22,7 +22,6 @@
 @mixin number-darkmode($border, $background) {
   height: 4vh;
   width: 2.1vw;
-  // border: 1px solid $border;
   border-radius: 5px;
   cursor: pointer;
   background-color: $background;
@@ -37,11 +36,17 @@
 }
 
 .btn-cont {
-  height: 80vh;
+  // height: 80vh;
   margin-right: 3vw;
   flex-direction: column;
   justify-content: space-between;
   width: 0vw;
+  &-small {
+    margin: 0vh 3vw 0vh 4.9vw;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 0vw;
+  }
 }
 
 .number {
@@ -73,10 +78,6 @@
     &-dark {
       @include number-darkmode(white, black);
     }
-    // &-img{
-    //   height: 3.8vh;
-    //   margin-top: 0.7vh;
-    // }
   }
 }
 

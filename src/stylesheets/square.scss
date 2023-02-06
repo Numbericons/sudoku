@@ -1,8 +1,24 @@
 $check-color: #e03d3d;
 
-@mixin square($background) {
-  height: 7.7vh;
-  width: 4vw;
+$height-normal: 7.7vh;
+$width-normal: 4vw;
+$text-size-normal: 4.7vh;
+
+$height-small: 6vh;
+$width-small: 3.12vw;
+$text-size-small: 3.66vh;
+
+// $height-small: 5.159vh;
+// $width-small: 2.68vw;
+// $text-size-small: 3.149vh;
+
+$height-x-small: 5.159vh;
+$width-x-small: 2.68vw;
+$text-size-x-small: 3.149vh;
+
+@mixin square($background, $height, $width) {
+  height: $height;
+  width: $width;
   background-color: $background;
   cursor: pointer;
   display: flex;
@@ -11,31 +27,49 @@ $check-color: #e03d3d;
   align-items: center;
 }
 
-@mixin square-text($background, $color) {
-  font-size: 4.7vh;
+@mixin square-text($background, $size, $color, $margin-bottom) {
+  font-size: $size;
   font-family: monospace;
   height: 4vh;
   width: 2vw;
   color: $color;
-  margin-bottom: 1vh;
+  margin-bottom: $margin-bottom;
   background-color: $background;
 }
 
 .square {
-  @include square(white);
+  @include square(white, $height-normal, $width-normal);
+  &-small {
+    @include square(white, $height-small, $width-small);
+  }
   &-dark {
-    @include square(black);
+    @include square(black, $height-normal, $width-normal);
+    &-small {
+      @include square(black, $height-small, $width-small);
+    }
   }
   &-revealed {
-    @include square-text(white, black);
+    @include square-text(white,  $text-size-normal, black, 1vh);
+    &-small {
+      @include square-text(white,  $text-size-small, black, 0vh);
+    }
     &-dark {
-      @include square-text(black, white);
+      @include square-text(black, $text-size-normal, white, 1vh);
+      &-small {
+        @include square-text(black, $text-size-small, white, 0vh);
+      }
     }
   }
   &-entered {
-    @include square-text(white, purple);
+    @include square-text(white, $text-size-normal, purple, 1vh);
+    &-small {
+      @include square-text(white, $text-size-small, purple, 0vh);
+    }
     &-dark {
-      @include square-text(black, #fa29dc);
+      @include square-text(black, $text-size-normal, #fa29dc, 1vh);
+      &-small {
+        @include square-text(black, $text-size-small, #fa29dc, 0vh);
+      }
     }
   }
   &-input {
@@ -44,18 +78,37 @@ $check-color: #e03d3d;
     height: 1.2vh;
     width: 3.1vw;
     margin-bottom: -1.1vh;
+    &-small {
+      font-size: 1.66vh;
+      font-family: monospace;
+      height: 1.1vh;
+      width: 2.3vw;
+      margin-bottom: -0.2vh;
+    }
   }
 }
 
 .chk-square {
-  @include square($check-color);
+  @include square($check-color, $height-normal, $width-normal);
+  &-small {
+    @include square($check-color, $height-small, $width-small);
+  }
   &-dark {
-    @include square($check-color);
+    @include square($check-color, $height-normal, $width-normal);
+    &-small {
+      @include square($check-color, $height-small, $width-small);
+    }
   }
   &-entered {
-    @include square-text($check-color, black);
+    @include square-text($check-color, $text-size-normal, black, 1vh);
+    &-small {
+      @include square-text($check-color, $text-size-small, black, 0vh);
+    }
     &-dark {
-      @include square-text($check-color, white);
+      @include square-text($check-color, $text-size-normal, white, 1vh);
+      &-small {
+        @include square-text($check-color, $text-size-small, white, 0vh);
+      }
     }
   }
 }
@@ -89,5 +142,37 @@ $check-color: #e03d3d;
 }
 
 .chk-square-dark + .square-dark {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.square-small + .square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.chk-square-small + .chk-square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.square-small + .chk-square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.chk-square-small + .square-small {
+  border-left: 1.4px solid #bbb;
+}
+
+.square-dark-small + .square-dark-small {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.chk-square-dark-small + .chk-square-dark-small {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.square-dark-small + .chk-square-dark-small {
+  border-left: 1.4px solid rgb(255, 255, 255);
+}
+
+.chk-square-dark-small + .square-dark-small {
   border-left: 1.4px solid rgb(255, 255, 255);
 }

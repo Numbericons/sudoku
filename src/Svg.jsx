@@ -1,12 +1,6 @@
 import React from 'react';
 
 class Svg extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.className = this.props.className
-  //   this.fill1 = this.props.fill1;
-  // }
-
   render() {
     return <svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -40 80 80">
       <circle r="39" fill={this.props.fill1} stroke={this.props.fill2} strokeWidth="1" />

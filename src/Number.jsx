@@ -68,6 +68,15 @@ class Number extends React.Component {
     </div>
   }
 
+  size() {
+    const currentlyNormal = this.props.size === "normal";
+    const val = currentlyNormal ? <i className="fa fa-compress" aria-hidden="true"></i> : <i className="fa fa-expand" aria-hidden="true"></i>
+
+    return <div className={this.props.darkmodeOn ? 'number-dark' : 'number'} onClick={this.props.updateSize}>
+      <h1 className={this.props.darkmodeOn ? 'number-text-dark' : 'number-text'}>{val}</h1>
+    </div>
+  }
+
   render() {
     if (this.props.isRefresh) return this.refresh();
     if (this.props.isNotes) return this.notes();
@@ -76,6 +85,7 @@ class Number extends React.Component {
     if (this.props.isBackground) return this.background();
     if (this.props.isInfo) return this.info();
     if (this.props.darkmode) return this.darkmode();
+    if (this.props.size) return this.size();
 
     let container;
     

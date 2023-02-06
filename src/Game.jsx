@@ -43,8 +43,8 @@ class Game extends React.Component {
       6: 'bckgrnd34.webp',
       7: 'bckgrnd37.webp',
       8: 'bckgrnd21n.webp',
-      9: 'bckgrnd6.1.webp',
-      10: 'bckgrnd4.webp',
+      9: 'bckgrnd50.webp',
+      10: 'bckgrnd41.webp',
       11: 'bckgrnd19.webp',
       12: 'bckgrnd36.webp'
     }

@@ -15,7 +15,7 @@ class EntryForm extends React.Component {
   }
 
   render() {
-    return <div className='entry' style={{ backgroundImage: "url(bckgrnd_up_1.webp)", backgroundSize: 'cover' }}>
+    return <div className='entry' style={{ backgroundImage: "url(background1.webp)", backgroundSize: 'cover' }}>
       <div className='entry-header'>
         <h4 className='entry-header-text'>Sudoku</h4>
       </div>

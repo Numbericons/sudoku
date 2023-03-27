@@ -767,9 +767,9 @@ body {
 }
 
 .modal {
-  width: 80vw;
-  height: 77vh;
-  translate: -60vw;
+  width: 94vw;
+  height: 80vh;
+  translate: -70vw -4vh;
   position: absolute;
   background: antiquewhite;
   border: 1px solid #ccc;
@@ -838,12 +838,20 @@ body {
   line-height: 1;
   font-family: monospace;
 }
-.modal-background-img {
+.modal-background-imgBox {
+  display: flex;
   height: 14vh;
   width: 12vw;
-  margin-left: 5vw;
-  cursor: pointer;
+  margin-left: 6vw;
   border: 1.5px solid black;
+}
+.modal-background-imgBox-img {
+  height: 14vh;
+  width: 12vw;
+  cursor: pointer;
+}
+.modal-background-imgBox-spinner {
+  transform: translate(3vw, 1.5vh);
 }
 .modal-background-cont {
   display: flex;
@@ -851,7 +859,7 @@ body {
 }
 .modal-background-cont-inner {
   display: flex;
-  margin: 5vh 0vw 0vh 5vw;
+  margin: 5vh 0vw 0vh -2vw;
 }
 .modal-background-footer {
   border-top: 1px solid #ccc;

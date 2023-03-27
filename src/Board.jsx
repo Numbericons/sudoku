@@ -18,7 +18,7 @@ class Board extends React.Component {
       showWinModal: false,
       showInfoModal: false,
       showBackgroundModal: true,
-      size: 'normal'
+      size: 'small'
     }
     this.select = this.select.bind(this);
     this.setNotes = this.setNotes.bind(this);

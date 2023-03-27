@@ -11,9 +11,9 @@ body {
 }
 
 .modal {
-  width: 80vw;
-  height: 77vh;
-  translate: -60vw;
+  width: 94vw;
+  height: 80vh;
+  translate: -70vw -4vh;
   position: absolute;
   background: antiquewhite;
   border: 1px solid #ccc;
@@ -23,6 +23,18 @@ body {
   transform: scale(1);
   opacity: 1;
   visibility: visible;
+  // width: 80vw;
+  // height: 77vh;
+  // translate: -60vw;
+  // position: absolute;
+  // background: antiquewhite;
+  // border: 1px solid #ccc;
+  // transition: 1.1s ease-out;
+  // box-shadow: -2rem 2rem 2rem rgba(black, 0.2);
+  // filter: blur(0);
+  // transform: scale(1);
+  // opacity: 1;
+  // visibility: visible;
 
   &.red {
     background: black;
@@ -96,12 +108,22 @@ body {
   }
 
   &-background {
-    &-img {
+    &-imgBox {
+      display: flex;
       height: 14vh;
       width: 12vw;
-      margin-left: 5vw;
-      cursor: pointer;
+      margin-left: 6vw;
       border: 1.5px solid black;
+
+      &-img {
+        height: 14vh;
+        width: 12vw;
+        cursor: pointer;
+      }
+
+      &-spinner {
+        transform: translate(3vw, 1.5vh);
+      }
     }
 
     &-cont {
@@ -110,7 +132,7 @@ body {
 
       &-inner {
         display: flex;
-        margin: 5vh 0vw 0vh 5vw;
+        margin: 5vh 0vw 0vh -2vw;
       }
     }
     

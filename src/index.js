@@ -4,9 +4,17 @@ import './index.css';
 import Game from './Game.jsx';
 import * as serviceWorker from './serviceWorker';
 
+const loader = document.querySelector('.loader');
+
+const hideLoader = () => loader.classList.add('loader--hide');
+const showLoader = () => loader.classList.remove('loader--hide');
+
 ReactDOM.render(
   <React.StrictMode>
-    <Game />
+    <Game 
+      hideLoader={hideLoader}
+      showLoader={showLoader}
+    />
   </React.StrictMode>,
   document.getElementById('root')
 );

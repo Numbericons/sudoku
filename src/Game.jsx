@@ -12,7 +12,8 @@ class Game extends React.Component {
       difficulty: null,
       background: 1,
       showModals: true,
-      darkmode: false
+      darkmode: false,
+      isLoading: true
     };
 
     this.setDifficulty = this.setDifficulty.bind(this);
@@ -64,11 +65,25 @@ class Game extends React.Component {
   toggleDarkmode() {
     this.setState({ darkmode: !this.state.darkmode });
   }
+
+  componentDidMount() {
+    this.demoAsyncCall().then(() => {
+      // this.props.hideLoader();
+      this.setState({ isLoading: false })
+    });
+  }
+
+  demoAsyncCall() {
+    return new Promise((resolve) => setTimeout(() => resolve(), 1200));
+  }
  
   render() {
+    if (this.state.isLoading) {
+      return <div></div>
+    }
     if (!this.state.difficulty) {
       return <div>
-        <EntryForm setDifficulty={this.setDifficulty}></EntryForm>
+        <EntryForm setDifficulty={this.setDifficulty} hideLoader={this.props.hideLoader}></EntryForm>
       </div>
     }
 

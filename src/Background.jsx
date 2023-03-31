@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 
 class Background extends React.Component {
@@ -47,7 +47,6 @@ class Background extends React.Component {
 
 
     const style = !this.state.loading ? {} : { visibility: 'hidden' }
-    const { loading } = this.state;
 
     const loader = this.loader();
     
@@ -61,6 +60,7 @@ class Background extends React.Component {
           onClick={this.props.clickProp}
           value={this.props.value}
           style={style}
+          alt='imgBox-img'
           onLoad={() => this.setState({ loading: false })}
         />
       </div>

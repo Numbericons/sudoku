@@ -27,7 +27,7 @@ class Background extends React.Component {
 
   loader() {
     if (this.state.loading) return (
-      <div>
+      <div className="modal-background-imgBox-spinner-cont">
         < ClimbingBoxLoader
           color = { this.state.loaderColor }
           loading = "true"
@@ -41,11 +41,6 @@ class Background extends React.Component {
   }
 
   render() {
-    // const [loading, setLoading] = useState(true);
-
-    // [loading, setLoading] = useState(true);
-
-
     const style = !this.state.loading ? {} : { visibility: 'hidden' }
 
     const loader = this.loader();

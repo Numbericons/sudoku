@@ -123,6 +123,12 @@ body {
 
       &-spinner {
         transform: translate(3vw, 1.5vh);
+
+        &-cont {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
       }
     }
 

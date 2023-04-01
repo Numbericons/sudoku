@@ -853,6 +853,11 @@ body {
 .modal-background-imgBox-spinner {
   transform: translate(3vw, 1.5vh);
 }
+.modal-background-imgBox-spinner-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .modal-background-cont {
   display: flex;
   flex-direction: column;

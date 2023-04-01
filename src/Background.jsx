@@ -32,7 +32,7 @@ class Background extends React.Component {
           color = { this.state.loaderColor }
           loading = "true"
           className = 'modal-background-imgBox-spinner'
-          size = { 17}
+          size = { '1.6vh' }
           aria-label="Loading Spinner" />
       </div>
     )

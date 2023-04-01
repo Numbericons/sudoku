@@ -74,7 +74,7 @@ class Game extends React.Component {
   }
 
   demoAsyncCall() {
-    return new Promise((resolve) => setTimeout(() => resolve(), 1200));
+    return new Promise((resolve) => setTimeout(() => resolve(), 1500));
   }
  
   render() {
